@@ -4,6 +4,7 @@ require! <[
   @rollup/plugin-json
   rollup-plugin-terser
   ./livescript
+  ./html
 ]>
 
 module.exports = config
@@ -30,6 +31,7 @@ function config args
   plugins:
     plugin-json!
     livescript!
+    html!
     plugin-commonjs {extensions}
     plugin-node-resolve.node-resolve {extensions}
 
