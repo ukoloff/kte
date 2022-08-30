@@ -1,5 +1,6 @@
 require! <[
-  ../m
+  ./m
+  ../homepage
 ]>
 
 exports <<<
@@ -9,6 +10,12 @@ exports <<<
       m \form,
         m \button,
           disabled: true
-          'Загрузить результат распознавания'
-
-
+          'Загрузить результат распознавания!'
+      m \hr
+      m \ul,
+        m \li,
+          m \a,
+            href: homepage.homepage
+            target: \_blank
+            'Исходный код'
+          '@GitHub'
