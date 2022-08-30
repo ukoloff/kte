@@ -1,5 +1,5 @@
 require! <[
-  ../m
+  ./m
 ]>
 
 exports <<<
