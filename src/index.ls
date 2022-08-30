@@ -1,1 +1,2 @@
-console.log "Hello, world!"
+require! <[ ./ver ]>
+console.log "Hello, world ##{ver.v}!"
