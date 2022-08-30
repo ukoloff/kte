@@ -18,3 +18,4 @@ exports <<<
             href: homepage.homepage
             target: \_blank
             'Исходный код'
+          '@GitHub'
