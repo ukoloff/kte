@@ -1,0 +1,48 @@
+name: GitHubPages
+
+on:
+  push:
+    branches: main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Check out WWW
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: www
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key:  always
+
+      - name: Install packages
+        run:  npm install
+
+      - name: Build
+        run:  npm test
+
+      - name: Publish to GitHub Pages
+        working-directory: www
+        run: |
+          rm -rf *
+          cp -r ../bundle/* .
+          rm *.map
+          git add --all
+          git config user.email "none"
+          git config user.name "GitHub Pages Publisher"
+          git -C .. log -1 --format="%h: %s" > ../.commit
+          git diff-index --quiet HEAD || git commit -F ../.commit
+          git push
