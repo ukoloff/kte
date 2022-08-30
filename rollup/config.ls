@@ -11,8 +11,6 @@ module.exports = config
 extensions = <[ .js .ls .json ]>
 
 function config args
-  # console.log \ARGS args
-
   input:
     view: \./src
 
@@ -22,7 +20,8 @@ function config args
     sourcemap: true
     plugins:
       rollup-plugin-terser.terser do
-        output:
+        mangle: !args.watch
+        format:
           max_line_len: 80
           semicolons: false
       ...
