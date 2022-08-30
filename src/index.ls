@@ -1,1 +1,1 @@
-console.log "Hello, world!"
+set-timeout require \./spa
