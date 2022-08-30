@@ -38,6 +38,7 @@ jobs:
         working-directory: www
         run: |
           rm -rf *
+          touch .nojekyll
           cp -r ../bundle/* .
           rm *.map
           git add --all
