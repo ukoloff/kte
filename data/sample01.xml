@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<recognition_result>
+    <kte id="1" type="semiopened" side="left" pos="bottom">
+        <contour>G0X5.000000Z-10.000000L0&#x0A;G1X5.000000Z20.000000L7&#x0A;</contour>
+    </kte>
+    <kte id="2" type="opened" side="middle" pos="bottom">
+        <contour>G0X5.000000Z20.000000L0&#x0A;G1X5.000000Z20.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="3" type="semiopened" side="right" pos="bottom">
+        <contour>G0X20.000000Z100.000000L0&#x0A;G1X5.000000Z20.000000L8&#x0A;</contour>
+    </kte>
+    <kte id="4" type="opened" side="right" pos="end">
+        <contour>G0X20.000000Z100.000000L0&#x0A;G1X20.000000Z100.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="5" type="semiopened" side="right" pos="top">
+        <contour>G0X20.000000Z100.000000L0&#x0A;G1X40.000000Z50.000000L1&#x0A;</contour>
+    </kte>
+    <kte id="6" type="opened" side="middle" pos="top">
+        <contour>G0X40.000000Z-10.000000L0&#x0A;G1X40.000000Z50.000000L2&#x0A;</contour>
+    </kte>
+    <kte id="7" type="semiopened" side="left" pos="top">
+        <contour>G0X40.000000Z-10.000000L0&#x0A;G1X40.000000Z-10.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="8" type="opened" side="left" pos="end">
+        <contour>G0X40.000000Z-10.000000L0&#x0A;G1X20.000000Z-10.000000L3&#x0A;G1X15.000000Z0.000000L4&#x0A;G1X10.000000Z-10.000000L5&#x0A;G1X5.000000Z-10.000000L6&#x0A;</contour>
+    </kte>
+</recognition_result>
