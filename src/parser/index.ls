@@ -4,6 +4,7 @@
 #
 require! <[
   easysax
+  ./g
 ]>
 
 module.exports = parse
@@ -48,7 +49,7 @@ function parse xml
     ..on \textNode (txt, un-entities)!->
       if state == 3
         # <contour>
-        KTEs[*-1]._ ?= un-entities txt .trim!
+        KTEs[*-1]._ ?= g <| un-entities txt .trim!
 
     ..parse xml
   KTEs
