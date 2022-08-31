@@ -9,8 +9,10 @@ exports <<<
       m \h1 document.title = 'Визуализация КТЭ'
       m \form,
         m \button,
-          disabled: true
+          type: \button
+          disabled: !true
           'Загрузить результат распознавания!'
+        ' ...или перетащите XML-файл в это окно...'
       m \hr
       m \ul,
         m \li,
