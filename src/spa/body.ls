@@ -10,5 +10,4 @@ exports <<<
       m \h1 document.title = 'Визуализация КТЭ'
       m \form,
         m button
-      m \hr
       m notes

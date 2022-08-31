@@ -20,10 +20,8 @@ exports <<<
   view: ->
     me = @
     m.fragment do
-      m \input,
+      m \input.hidden,
         type: \file
-        style:
-          display: \none
         accept: \.xml
         oncreate: !->
           me.upload-button = it.dom

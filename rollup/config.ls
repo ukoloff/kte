@@ -2,6 +2,7 @@ require! <[
   @rollup/plugin-commonjs
   @rollup/plugin-node-resolve
   @rollup/plugin-json
+  rollup-plugin-styles
   rollup-plugin-terser
   ./livescript
   ./html
@@ -9,7 +10,7 @@ require! <[
 
 module.exports = config
 
-extensions = <[ .js .ls .json ]>
+extensions = <[ .js .ls .json .styl ]>
 
 function config args
   input:
@@ -28,6 +29,8 @@ function config args
       ...
 
   plugins:
+    rollup-plugin-styles do
+      minimize: true
     plugin-json!
     livescript!
     html!
