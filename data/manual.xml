@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<recognition_result>
+  <kte id = "1234" type = "closed" side = "middle" pos = "top">
+    <contour>
+      G0X50Z20L0
+      G1X30Z25L2
+      G1X30Z40L3
+      G1X50Z40L4
+    </contour>
+  </kte>
+  <kte id = "4321" type = "opened" side = "middle" pos = "top">
+    <contour>
+      G0X50Z10L0
+      G1X50Z20L10
+      G1X50Z40L0
+      G1X50Z60L15
+    </contour>
+  </kte>
+</recognition_result>
+ 
