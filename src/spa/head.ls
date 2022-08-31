@@ -1,9 +1,9 @@
 require! <[
   ./m
-  ./main
+  ./css
 ]>
 
 exports <<<
   view: ->
     m.fragment do
-      m \style main.css
+      m \style css.css
