@@ -18,7 +18,6 @@ function config args
   output:
     dir: \bundle
     format: \iife
-    name: \kte
     sourcemap: true
     plugins:
       rollup-plugin-terser.terser do

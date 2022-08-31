@@ -1,1 +1,0 @@
-set-timeout require \./spa

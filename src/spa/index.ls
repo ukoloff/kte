@@ -3,7 +3,7 @@ require! <[
   ./body
 ]>
 
-module.exports = hello
+set-timeout hello
 
 !function hello
   m.mount document.body, body
