@@ -1,7 +1,7 @@
 require! <[
   ./m
-  ../homepage
   ./button
+  ./notes
 ]>
 
 exports <<<
@@ -11,10 +11,4 @@ exports <<<
       m \form,
         m button
       m \hr
-      m \ul,
-        m \li,
-          m \a,
-            href: homepage.homepage
-            target: \_blank
-            'Исходный код'
-          '@GitHub'
+      m notes
