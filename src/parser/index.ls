@@ -8,16 +8,47 @@ require! <[
 
 module.exports = parse
 
+tags = <[
+  recognition_result
+  kte
+  contour
+]>
+
 function parse xml
-  console.log \XML xml
+  stack = []
+  KTEs = []
+  var state
+
+  !function update-state
+    state := 0
+    if stack.length > tags.length
+      return
+    for tag, i in stack
+      if tag != tags[i]
+        return
+    state := stack.length
+
   new easysax
     ..on \error !->
       console.log \ERR it
-    ..on \startNode ->
-      console.log \TAG arguments
-    ..on \endNode ->
-      console.log \/TAG arguments
-    ..on \textNode ->
-      console.log \TEXT arguments
+
+    ..on \startNode (tag, attrs)!->
+      stack.push tag
+      update-state!
+      if state == 2
+        # <kte>
+        KTEs.push $: attrs!
+
+    ..on \endNode !->
+      unless stack.length and stack[*-1] == it
+        return
+      stack.pop!
+      update-state!
+
+    ..on \textNode (txt, un-entities)!->
+      if state == 3
+        # <contour>
+        KTEs[*-1]._ = un-entities txt .trim!
+
     ..parse xml
-  void
+  KTEs
