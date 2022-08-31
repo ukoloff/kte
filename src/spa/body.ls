@@ -1,6 +1,7 @@
 require! <[
   ./m
   ../homepage
+  ./button
 ]>
 
 exports <<<
@@ -8,11 +9,7 @@ exports <<<
     m.fragment do
       m \h1 document.title = 'Визуализация КТЭ'
       m \form,
-        m \button,
-          type: \button
-          disabled: !true
-          'Загрузить результат распознавания!'
-        ' ...или перетащите XML-файл в это окно...'
+        m button
       m \hr
       m \ul,
         m \li,
