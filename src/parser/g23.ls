@@ -12,6 +12,7 @@ function g2triplets Gs
 
     if prev and g.G >= 2 and g.I? and g.K?
       # Arc
+      needCCW = g.G == 3
       A = for i til 2
         triplet[i] - prev[i]
       lenA = len A = mul-i A
@@ -21,7 +22,9 @@ function g2triplets Gs
       bulge =
         lenR - Math.abs AR = scalar nA, R
         lenA / 2
-      if (AR > 0) == (g.G == 2)
+      unless gotCCW = AR > 0
+        bulge[0] = - bulge[0]
+      if needCCW != gotCCW
         bulge = mul-i bulge
       prev[2] = bulge[0] / bulge[1]
 
