@@ -1,6 +1,10 @@
 #
 # Parse G-code
 #
+require! <[
+  ./g23
+]>
+
 module.exports = G
 
 function G txt
@@ -13,5 +17,5 @@ function G txt
         spans.push span = {}
     else if span
       span[prev] = parse-float token
-  spans
+  g23 spans
 
