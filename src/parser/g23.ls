@@ -1,6 +1,13 @@
 #
 # Convert G-code to triplets [[x, y, bulge]...]
 #
+require! <[
+  ../math/point/sub
+  ../math/point/scalar
+  ../math/point/len
+  ../math/point/ccw90
+]>
+
 module.exports = g2triplets
 
 function g2triplets Gs
@@ -12,29 +19,14 @@ function g2triplets Gs
 
     if prev and g.G >= 2 and g.I? and g.K?
       # Arc
-      A = for i til 2
-        vertex[i] - prev[i]
+      A = sub vertex, prev
       lenA = len A
       catets =
-        scalar([g.K, g.I], mul-i A) / lenA
+        scalar([g.K, g.I], ccw90 A) / lenA
         lenA / 2
       catets[1] += len catets
       if (/* gotCCW = */catets[0] > 0) != (/* needCCW = */g.G == 3)
-        catets = mul-i catets
+        catets = ccw90 catets
       prev[2] = catets[0] / catets[1]
 
     prev = vertex
-
-function mul-i vector
-  return
-    -vector[1]
-    +vector[0]
-
-function scalar a, b
-  result = 0
-  for i til 2
-    result += a[i] * b[i]
-  result
-
-function len vector
-  Math.sqrt scalar vector, vector
