@@ -4,9 +4,10 @@ require! <[
 
 module.exports = process
 
-!function process files
-  seq = Promise.resolve!
-  for let file in files
-    <-! seq .= then
-    <- file.text!then
-    console.log parser it
+!async function process files
+  for file in files
+    try
+      console.log parser await file.text!
+      return
+    catch e
+      console.error "#{file.name}: #{e.message}"
