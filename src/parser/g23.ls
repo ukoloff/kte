@@ -5,30 +5,25 @@ module.exports = g2triplets
 
 function g2triplets Gs
   for g in Gs
-    triplet =
+    vertex =
       g.Z ? if prev then prev[0] else 0
       g.X ? if prev then prev[1] else 0
       0
 
     if prev and g.G >= 2 and g.I? and g.K?
       # Arc
-      needCCW = g.G == 3
       A = for i til 2
-        triplet[i] - prev[i]
-      lenA = len A = mul-i A
-      nA = for i til 2
-        A[i] / lenA
-      lenR = len R = [g.K, g.I]
-      bulge =
-        lenR - Math.abs AR = scalar nA, R
+        vertex[i] - prev[i]
+      lenA = len A
+      catets =
+        scalar([g.K, g.I], mul-i A) / lenA
         lenA / 2
-      unless gotCCW = AR > 0
-        bulge[0] = - bulge[0]
-      if needCCW != gotCCW
-        bulge = mul-i bulge
-      prev[2] = bulge[0] / bulge[1]
+      catets[1] += len catets
+      if (/* gotCCW = */catets[0] > 0) != (/* needCCW = */g.G == 3)
+        catets = mul-i catets
+      prev[2] = catets[0] / catets[1]
 
-    prev = triplet
+    prev = vertex
 
 function mul-i vector
   return
