@@ -2,7 +2,6 @@ name: GitHubPages
 
 on:
   push:
-    branches: main
 
 jobs:
   publish:
@@ -31,10 +30,14 @@ jobs:
       - name: Install packages
         run:  npm install
 
+      - name: Test
+        run: npm test
+
       - name: Build
-        run:  npm test
+        run:  npm run build
 
       - name: Publish to GitHub Pages
+        if: github.ref_name == 'master'
         working-directory: www
         run: |
           rm -rf *

@@ -5,8 +5,9 @@
   "description": "Automated CAM for Turning",
   "main": "index.js",
   "scripts": {
-    "test": "rollup -c",
-    "start": "rollup -cw"
+    "test": "mocha",
+    "build": "rollup -c",
+    "debug": "rollup -cw"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,17 @@
     "url": "https://github.com/ukoloff/kte/issues"
   },
   "homepage": "https://github.com/ukoloff/kte",
+  "mocha": {
+    "extension": [
+      "ls",
+      "js"
+    ],
+    "reporter": "dot",
+    "require": [
+      "livescript",
+      "choma"
+    ]
+  },
   "dependencies": {
     "easysax": "^0.3.2"
   },
