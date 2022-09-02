@@ -17,6 +17,9 @@ function g2triplets Gs
       g.X ? if prev then prev[1] else 0
       0
 
+    for k, v of g when 0 > 'GXZIK'.index-of k
+      vertex[k] = v
+
     if prev and g.G >= 2 and g.I? and g.K?
       # Arc
       A = sub vertex, prev
