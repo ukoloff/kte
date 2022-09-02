@@ -2,7 +2,6 @@ name: GitHubPages
 
 on:
   push:
-    branches: main
 
 jobs:
   publish:
@@ -20,7 +19,9 @@ jobs:
           path: www
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
 
       - name: Cache Node.js modules
         uses: actions/cache@v2
@@ -31,10 +32,14 @@ jobs:
       - name: Install packages
         run:  npm install
 
+      - name: Test
+        run: npm test
+
       - name: Build
-        run:  npm test
+        run:  npm run build
 
       - name: Publish to GitHub Pages
+        if: github.ref_name == 'master'
         working-directory: www
         run: |
           rm -rf *
