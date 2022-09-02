@@ -5,6 +5,7 @@
 require! <[
   easysax
   ./g
+  ./verify
 ]>
 
 module.exports = parse
@@ -31,7 +32,7 @@ function parse xml
 
   new easysax
     ..on \error !->
-      console.log \ERR it
+      throw SyntaxError "Mal-formed XML: #{it}"
 
     ..on \startNode (tag, attrs)!->
       stack.push tag
@@ -52,4 +53,4 @@ function parse xml
         KTEs[*-1]._ ?= g <| un-entities txt .trim!
 
     ..parse xml
-  KTEs
+  verify KTEs
