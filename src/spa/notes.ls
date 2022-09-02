@@ -21,3 +21,9 @@ exports <<<
             href: issues = "#{homepage.homepage}/issues"
             target: \_blank
             issues
+        m \li,
+          m \a,
+            href: "#{homepage.homepage}/tree/main/data"
+            target: \_blank
+            'Примеры'
+          ' XML-файлов'

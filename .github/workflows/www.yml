@@ -1,11 +1,10 @@
-name: GitHubPages
+name: Test
 
 on:
   push:
-    branches: main
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
     if: "! contains(github.event.head_commit.message, '[skip ci]')"
 
@@ -20,7 +19,9 @@ jobs:
           path: www
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
 
       - name: Cache Node.js modules
         uses: actions/cache@v2
@@ -31,10 +32,14 @@ jobs:
       - name: Install packages
         run:  npm install
 
+      - name: Test
+        run: npm test
+
       - name: Build
-        run:  npm test
+        run:  npm run build
 
       - name: Publish to GitHub Pages
+        if: github.ref_name == 'main'
         working-directory: www
         run: |
           rm -rf *

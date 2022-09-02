@@ -1,5 +1,6 @@
 require! <[
   ./m
+  ./process
 ]>
 
 exports <<<
@@ -36,6 +37,3 @@ exports <<<
 
 function oops
   false
-
-!function process files
-  console.log \GOT files
