@@ -85,7 +85,7 @@ o++,i[l]=t,o===r&&e(i)}
 null==t[l]||"object"!=typeof t[l]&&"function"!=typeof t[l]||"function"!=typeof t[l].then?a(t[l]):t[l].then(a,n)
 }(l)}))},e.race=function(t){return new e((function(e,n){
 for(var r=0;r<t.length;r++)t[r].then(e,n)}))},C=e}var T,N,z,P,_=j()
-function L(){if(N)return T
+function I(){if(N)return T
 N=1
 var e=i()
 return T=function(t){var n,r=t&&t.document,o={svg:"http://www.w3.org/2000/svg",
@@ -157,12 +157,12 @@ for(;C>=c&&S>=u&&b.key===w.key;)b!==w&&h(e,b,w,r,o,i),null!=w.dom&&(o=w.dom),S--
 b=t[--C],w=n[S]
 if(u>S)k(e,t,c,C+1)
 else if(c>C)s(e,n,u,S+1,r,o,i)
-else{var A,E,j=o,T=S-u+1,N=new Array(T),z=0,P=0,_=2147483647,L=0
+else{var A,E,j=o,T=S-u+1,N=new Array(T),z=0,P=0,_=2147483647,I=0
 for(P=0;P<T;P++)N[P]=-1
 for(P=S;P>=u;P--){null==A&&(A=v(t,c,C+1))
-var I=A[(w=n[P]).key]
-null!=I&&(_=I<_?I:-1,N[P-u]=I,b=t[I],t[I]=null,b!==w&&h(e,b,w,r,o,i),null!=w.dom&&(o=w.dom),
-L++)}if(o=j,L!==C-c+1&&k(e,t,c,C+1),0===L)s(e,n,u,S+1,r,o,i)
+var L=A[(w=n[P]).key]
+null!=L&&(_=L<_?L:-1,N[P-u]=L,b=t[L],t[L]=null,b!==w&&h(e,b,w,r,o,i),null!=w.dom&&(o=w.dom),
+I++)}if(o=j,I!==C-c+1&&k(e,t,c,C+1),0===I)s(e,n,u,S+1,r,o,i)
 else if(-1===_)for(E=function(e){var t=[0],n=0,r=0,o=0,i=m.length=e.length
 for(o=0;o<i;o++)m[o]=e[o]
 for(o=0;o<i;++o)if(-1!==e[o]){var l=t[t.length-1]
@@ -264,7 +264,7 @@ return"value"===t||"checked"===t||"selectedIndex"===t||"selected"===t&&e.dom===u
 }(e,t)&&"object"!=typeof o||"type"===t&&"input"===e.tag)){
 if("o"===t[0]&&"n"===t[1])return R(e,t,o)
 if("xlink:"===t.slice(0,6))e.dom.setAttributeNS("http://www.w3.org/1999/xlink",t.slice(6),o)
-else if("style"===t)I(e.dom,n,o)
+else if("style"===t)L(e.dom,n,o)
 else if(N(e,t,i)){if("value"===t){
 if(("input"===e.tag||"textarea"===e.tag)&&e.dom.value===""+o&&(l||e.dom===u()))return
 if("select"===e.tag&&null!==n&&e.dom.value===""+o)return
@@ -274,7 +274,7 @@ if(l&&""+o!="")return void console.error("`value` is read-only on file inputs!")
 }else"boolean"==typeof o?o?e.dom.setAttribute(t,""):e.dom.removeAttribute(t):e.dom.setAttribute("className"===t?"class":t,o)
 }}function j(e,t,n,r){
 if("key"!==t&&"is"!==t&&null!=n&&!T(t))if("o"===t[0]&&"n"===t[1])R(e,t,void 0)
-else if("style"===t)I(e.dom,n,null)
+else if("style"===t)L(e.dom,n,null)
 else if(!N(e,t,r)||"className"===t||"title"===t||"value"===t&&("option"===e.tag||"select"===e.tag&&-1===e.dom.selectedIndex&&e.dom===u())||"input"===e.tag&&"type"===t){
 var o=t.indexOf(":")
 ;-1!==o&&(t=t.slice(o+1)),!1!==n&&e.dom.removeAttribute("className"===t?"class":t)
@@ -283,14 +283,14 @@ return"oninit"===e||"oncreate"===e||"onupdate"===e||"onremove"===e||"onbeforerem
 }function N(e,t,n){
 return void 0===n&&(e.tag.indexOf("-")>-1||null!=e.attrs&&e.attrs.is||"href"!==t&&"list"!==t&&"form"!==t&&"width"!==t&&"height"!==t)&&t in e.dom
 }var z,P=/[A-Z]/g
-function _(e){return"-"+e.toLowerCase()}function L(e){
+function _(e){return"-"+e.toLowerCase()}function I(e){
 return"-"===e[0]&&"-"===e[1]?e:"cssFloat"===e?"float":e.replace(P,_)}
-function I(e,t,n){if(t===n);else if(null==n)e.style.cssText=""
+function L(e,t,n){if(t===n);else if(null==n)e.style.cssText=""
 else if("object"!=typeof n)e.style.cssText=n
 else if(null==t||"object"!=typeof t)for(var r in e.style.cssText="",n){
-null!=(o=n[r])&&e.style.setProperty(L(r),String(o))}else{for(var r in n){var o
-null!=(o=n[r])&&(o=String(o))!==String(t[r])&&e.style.setProperty(L(r),o)}
-for(var r in t)null!=t[r]&&null==n[r]&&e.style.removeProperty(L(r))}}
+null!=(o=n[r])&&e.style.setProperty(I(r),String(o))}else{for(var r in n){var o
+null!=(o=n[r])&&(o=String(o))!==String(t[r])&&e.style.setProperty(I(r),o)}
+for(var r in t)null!=t[r]&&null==n[r]&&e.style.removeProperty(I(r))}}
 function $(){this._=n}function R(e,t,r){if(null!=e.events){
 if(e.events._=n,e.events[t]===r)return
 null==r||"function"!=typeof r&&"object"!=typeof r?(null!=e.events[t]&&e.dom.removeEventListener(t.slice(2),e.events,!1),
@@ -314,8 +314,8 @@ try{
 null==t.vnodes&&(t.textContent=""),r=e.normalizeChildren(Array.isArray(r)?r:[r]),
 p(t,t.vnodes,r,a,null,"http://www.w3.org/1999/xhtml"===f?void 0:f),
 t.vnodes=r,null!=s&&u()!==s&&"function"==typeof s.focus&&s.focus()
-for(var c=0;c<a.length;c++)a[c]()}finally{n=i,z=l}}},T}function I(){
-return P?z:(P=1,z=L()("undefined"!=typeof window?window:null))}
+for(var c=0;c<a.length;c++)a[c]()}finally{n=i,z=l}}},T}function L(){
+return P?z:(P=1,z=I()("undefined"!=typeof window?window:null))}
 "undefined"!=typeof window?(void 0===window.Promise?window.Promise=_:window.Promise.prototype.finally||(window.Promise.prototype.finally=_.prototype.finally),
 E.exports=window.Promise):void 0!==e?(void 0===e.Promise?e.Promise=_:e.Promise.prototype.finally||(e.Promise.prototype.finally=_.prototype.finally),
 E.exports=e.Promise):E.exports=_
@@ -327,7 +327,7 @@ if(null!=n&&null==n.view&&"function"!=typeof n)throw new TypeError("m.mount expe
 var o=r.indexOf(t)
 o>=0&&(r.splice(o,2),o<=i&&(i-=2),e(t,[])),null!=n&&(r.push(t,n),e(t,F(n),a))},
 redraw:a}
-}(I(),"undefined"!=typeof requestAnimationFrame?requestAnimationFrame:null,"undefined"!=typeof console?console:null)
+}(L(),"undefined"!=typeof requestAnimationFrame?requestAnimationFrame:null,"undefined"!=typeof console?console:null)
 function K(){return R?$:(R=1,$=function(e){
 if("[object Object]"!==Object.prototype.toString.call(e))return""
 var t=[]
@@ -337,13 +337,13 @@ function r(e,n){
 if(Array.isArray(n))for(var o=0;o<n.length;o++)r(e+"["+o+"]",n[o])
 else if("[object Object]"===Object.prototype.toString.call(n))for(var o in n)r(e+"["+o+"]",n[o])
 else t.push(encodeURIComponent(e)+(null!=n&&""!==n?"="+encodeURIComponent(n):""))
-}})}function B(){if(M)return q
+}})}function G(){if(M)return q
 M=1
 var e=f()
 return q=Object.assign||function(t,n){for(var r in n)e.call(n,r)&&(t[r]=n[r])}}
-function G(){if(U)return D
+function B(){if(U)return D
 U=1
-var e=K(),t=B()
+var e=K(),t=G()
 return D=function(n,r){
 if(/:([^\/\.-]+)(\.{3})?:/.test(n))throw new SyntaxError("Template parameter names must be separated by either a '/', '-', or '.'.")
 if(null==r)return n
@@ -356,7 +356,7 @@ o>=0&&(v+=n.slice(o,l)),c>=0&&(v+=(o<0?"?":"&")+f.slice(c,p))
 var m=e(s)
 return m&&(v+=(o<0&&c<0?"?":"&")+m),i>=0&&(v+=n.slice(i)),d>=0&&(v+=(i<0?"":"&")+f.slice(d)),
 v},D}
-var J,Q,X,Z,V,Y,W,ee,te,ne,re,oe,ie=G(),le=f(),ae=E.exports,ue=function(e,t,n){
+var J,X,Q,Z,V,Y,W,ee,te,ne,re,oe,ie=B(),le=f(),ae=E.exports,ue=function(e,t,n){
 var r=0
 function o(e){return new t(e)}function i(e){return function(r,i){
 "string"!=typeof r?(i=r,r=r.url):null==i&&(i={})
@@ -407,9 +407,9 @@ delete e[l],a.parentNode.removeChild(a),i(new Error("JSONP request failed"))
 },a.src=t+(t.indexOf("?")<0?"?":"&")+encodeURIComponent(n.callbackKey||"callback")+"="+encodeURIComponent(l),
 e.document.documentElement.appendChild(a)}))}
 }("undefined"!=typeof window?window:null,ae,H.redraw)
-function se(){if(Q)return J
+function se(){if(X)return J
 function e(e){try{return decodeURIComponent(e)}catch(t){return e}}
-return Q=1,J=function(t){if(""===t||null==t)return{}
+return X=1,J=function(t){if(""===t||null==t)return{}
 "?"===t.charAt(0)&&(t=t.slice(1))
 for(var n=t.split("&"),r={},o={},i=0;i<n.length;i++){
 var l=n[i].split("="),a=e(l[0]),u=2===l.length?e(l[1]):""
@@ -422,10 +422,10 @@ else if("__proto__"===d)break
 if(c===s.length-1)f[d]=u
 else{var v=Object.getOwnPropertyDescriptor(f,d)
 null!=v&&(v=v.value),null==v&&(f[d]=v=h?[]:{}),f=v}}}return o}}function fe(){
-if(Z)return X
+if(Z)return Q
 Z=1
 var e=se()
-return X=function(t){
+return Q=function(t){
 var n=t.indexOf("?"),r=t.indexOf("#"),o=r<0?t.length:r,i=n<0?o:n,l=t.slice(0,i).replace(/\/{2,}/g,"/")
 return l?("/"!==l[0]&&(l="/"+l),l.length>1&&"/"===l[l.length-1]&&(l=l.slice(0,-1))):l="/",
 {path:l,params:n<0?{}:e(t.slice(n+1,o))}}}function ce(){if(Y)return V
@@ -454,7 +454,7 @@ oe=1
 var e=H
 return re=function(){if(ne)return te
 ne=1
-var e=i(),t=b,n=E.exports,r=G(),o=fe(),l=ce(),a=B(),u=de(),s={}
+var e=i(),t=b,n=E.exports,r=B(),o=fe(),l=ce(),a=G(),u=de(),s={}
 function f(e){try{return decodeURIComponent(e)}catch(t){return e}}
 return te=function(i,c){
 var d,p,h,v,m,g,y=null==i?null:"function"==typeof i.setImmediate?i.setImmediate:i.setTimeout,b=n.resolve(),w=!1,x=!1,k=0,O=s,C={
@@ -500,9 +500,9 @@ var t
 !1===t||e.defaultPrevented||0!==e.button&&0!==e.which&&1!==e.which||e.currentTarget.target&&"_self"!==e.currentTarget.target||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||(e.preventDefault(),
 e.redraw=!1,T.set(i,null,n))}),l}},T.param=function(e){return v&&null!=e?v[e]:v
 },T},te}()("undefined"!=typeof window?window:null,e),re
-}(),me.render=I(),me.redraw=ve.redraw,
+}(),me.render=L(),me.redraw=ve.redraw,
 me.request=he.request,me.jsonp=he.jsonp,me.parseQueryString=se(),
-me.buildQueryString=K(),me.parsePathname=fe(),me.buildPathname=G(),me.vnode=i(),
+me.buildQueryString=K(),me.parsePathname=fe(),me.buildPathname=B(),me.vnode=i(),
 me.PromisePolyfill=j(),me.censor=de(),o.exports=me
 var ge={},ye=[],be=[]
 var we,xe,ke="body,html{height:100%;margin:0}h1{margin-block-start:0;text-align:center}form{padding:1ex}.hidden{display:none}h2{border-top:1px dashed #000}"
@@ -518,19 +518,19 @@ var l="prepend"===r?"afterbegin":"beforeend"
 return i.insertAdjacentElement(l,e),e}}(ke,{}),we=o.exports,xe=t(Object.freeze({
 __proto__:null,css:ke,default:ke})),ge.view=function(){
 return we.fragment(we("style",xe.css))}
-var Oe,Ce,Se,Ae={},Ee={},je=function(){if(!this)return null
-var e,t,n,r,o,i,l=ze,a=ze,u=ze,s=ze,f=ze,c=!1,d=!1,p=!1,h=!1,v=!1,m=!1,g=null,y=!1,b={
+var Oe={},Ce={},Se=function(){if(!this)return null
+var e,t,n,r,o,i,l=je,a=je,u=je,s=je,f=je,c=!1,d=!1,p=!1,h=!1,v=!1,m=!1,g=null,y=!1,b={
 xmlns:undefined},w=""
 this.on=function(o,i){if("function"==typeof i||null===i)switch(o){
-case"startNode":a=i||ze
+case"startNode":a=i||je
 break
-case"textNode":l=i||ze
+case"textNode":l=i||je
 break
-case"endNode":u=i||ze
+case"endNode":u=i||je
 break
-case"error":f=i||ze
+case"error":f=i||je
 break
-case"cdata":s=i||ze
+case"cdata":s=i||je
 break
 case"unknownNS":r=i,h=!!i
 break
@@ -558,38 +558,38 @@ c=g.indexOf("'",p=c+2)}if(-1===c)return x=!1
 if(c+1<y&&((f=g.charCodeAt(c+1))>32||f<9||f<32&&f>13))return x=!1
 if(l=g.substring(p,c),p=c+1,m)if(v){
 if(null!==(o="xmlns"!==u?120===u.charCodeAt(0)&&"xmlns:"===u.substr(0,6)?u.substr(6):null:"xmlns")){
-a=i[_e(l)],
-h&&!a&&(a=r(l)),a?b[o]!==a&&(n||(b=Le(b),n=!0),b[o]=a):b[o]&&(n||(b=Le(b),n=!0),
+a=i[Ne(l)],
+h&&!a&&(a=r(l)),a?b[o]!==a&&(n||(b=ze(b),n=!0),b[o]=a):b[o]&&(n||(b=ze(b),n=!0),
 b[o]=!1),w[u]=l
 continue}d.push(u,l)
 }else-1!==(f=u.indexOf(":"))?(t=b[u.substring(0,f)])&&(w[(t=b.xmlns===t?u.substr(f+1):t+u.substr(f))+u.substr(f)]=l):w[u]=l
 else w[u]=l}if(!s)return x=!0
 if(v)for(e=b.xmlns,p=0,y=d.length;p<y;p++)-1===(f=(u=d[p++]).indexOf(":"))?w[u]=d[p]:(t=b[u.substring(0,f)])&&(w[t=e===t?u.substr(f+1):t+u.substr(f)]=d[p])
 return x=w}function E(){return w.substring(k,O+1)}function j(){
-for(var r,o,i,h,j,T,N,z,P=[],_=[],L=!1,I=!1,$=0,R=0,q=0;-1!==$;){
+for(var r,o,i,h,j,T,N,z,P=[],_=[],I=!1,L=!1,$=0,R=0,q=0;-1!==$;){
 if(z=q>0,-1===(R=60===w.charCodeAt($)?$:w.indexOf("<",$)))return _.length?void f(g="end file"):void 0
-if($!==R&&!z&&(l(w.substring($,R),_e),y))return
+if($!==R&&!z&&(l(w.substring($,R),Ne),y))return
 if(33!==(h=w.charCodeAt(R+1)))if(63!==h){
 if(-1==($=w.indexOf(">",R+1)))return void f(g="...>")
 if(x=!0,47===h){
-if(L=!1,I=!0,!_.length)return void f(g="close tag, requires open tag")
+if(I=!1,L=!0,!_.length)return void f(g="close tag, requires open tag")
 if(i=R+2+(r=N=_.pop()).length,w.substring(R+2,i)!==r)return void f(g="close tag, not equal to the open tag")
 for(;i<$;i++)if(!(32===(h=w.charCodeAt(i))||h>8&&h<14))return void f(g="close tag")
 }else{
-if(47===w.charCodeAt($-1)?(r=N=w.substring(R+1,$-1),L=!0,I=!0):(r=N=w.substring(R+1,$),
-L=!0,
-I=!1),!(h>96&&h<123||h>64&&h<91||95===h||58===h))return void f(g="first char nodeName")
+if(47===w.charCodeAt($-1)?(r=N=w.substring(R+1,$-1),I=!0,L=!0):(r=N=w.substring(R+1,$),
+I=!0,
+L=!1),!(h>96&&h<123||h>64&&h<91||95===h||58===h))return void f(g="first char nodeName")
 for(i=1,o=r.length;i<o;i++)if(!((h=r.charCodeAt(i))>96&&h<123||h>64&&h<91||h>47&&h<59||45===h||95===h)){
 if(32===h||h<14&&h>8){N=r.substring(0,i),x=null
-break}return void f(g="invalid nodeName")}I||_.push(N)}if(m){if(z){
-I?L||0==--q&&(b=P.pop()):q+=1,$+=1
-continue}if(j=b,I||P.push(b),L&&!0!==x&&(v=-1!==r.indexOf("xmlns",i))&&(S=i,C=r,
+break}return void f(g="invalid nodeName")}L||_.push(N)}if(m){if(z){
+L?I||0==--q&&(b=P.pop()):q+=1,$+=1
+continue}if(j=b,L||P.push(b),I&&!0!==x&&(v=-1!==r.indexOf("xmlns",i))&&(S=i,C=r,
 A(),
 v=!1),-1!==(h=N.indexOf(":"))?(T=b[N.substring(0,h)],N=N.substr(h+1)):T=b.xmlns,
-!T){I?b=L?j:P.pop():(q=1,x=!0),$+=1
-continue}N=T+":"+N}if(k=R,O=$,L){if(S=i,C=r,a(N,A,_e,I,E),y)return
-x=!0}if(I){if(u(N,_e,L,E),y)return
-m&&(b=L?j:P.pop())}$+=1}else{
+!T){L?b=I?j:P.pop():(q=1,x=!0),$+=1
+continue}N=T+":"+N}if(k=R,O=$,I){if(S=i,C=r,a(N,A,Ne,L,E),y)return
+x=!0}if(L){if(u(N,Ne,I,E),y)return
+m&&(b=I?j:P.pop())}$+=1}else{
 if(-1===($=w.indexOf("?>",R)))return void f(g="...?>")
 if(d&&(t(w.substring(R,$+2)),y))return
 $+=2}else{if(91===(h=w.charCodeAt(R+2))&&"CDATA["===w.substr(R+3,6)){
@@ -598,62 +598,74 @@ if(!z&&(s(w.substring(R+9,$),!1),y))return
 $+=3
 continue}if(45===h&&45===w.charCodeAt(R+3)){
 if(-1===($=w.indexOf("--\x3e",R)))return void f(g="expected --\x3e")
-if(c&&!z&&(e(w.substring(R+4,$),_e),y))return
+if(c&&!z&&(e(w.substring(R+4,$),Ne),y))return
 $+=3
 continue}if(-1===($=w.indexOf(">",R+1)))return void f(g='expected ">"')
-if(p&&!z&&(n(w.substring(R,$+1),_e),y))return
-$+=1}}}},Te=String.fromCharCode,Ne={constructor:!1,propertyIsEnumerable:!1,
+if(p&&!z&&(n(w.substring(R,$+1),Ne),y))return
+$+=1}}}},Ae=String.fromCharCode,Ee={constructor:!1,propertyIsEnumerable:!1,
 toLocaleString:!1,hasOwnProperty:!1,isPrototypeOf:!1,toString:!1,valueOf:!1,
 quot:'"',QUOT:'"',amp:"&",AMP:"&",nbsp:" ",apos:"'",lt:"<",LT:"<",gt:">",GT:">",
 copy:"©",laquo:"«",raquo:"»",reg:"®",deg:"°",plusmn:"±",sup2:"²",sup3:"³",
 micro:"µ",para:"¶"}
-function ze(){}function Pe(e,t,n,r){return r?Ne[r]||"":Te(t||parseInt(n,16))}
-function _e(e){
+function je(){}function Te(e,t,n,r){return r?Ee[r]||"":Ae(t||parseInt(n,16))}
+function Ne(e){
 return(e=""+e).length>3&&-1!==e.indexOf("&")&&(-1!==e.indexOf("&quot;")&&(e=e.replace(/&quot;/g,'"')),
 -1!==e.indexOf("&gt;")&&(e=e.replace(/&gt;/g,">")),
 -1!==e.indexOf("&lt;")&&(e=e.replace(/&lt;/g,"<")),
--1!==e.indexOf("&")&&(e=e.replace(/&#(\d+);|&#x([0123456789abcdef]+);|&(\w+);/gi,Pe))),
-e}function Le(e){var t={}
+-1!==e.indexOf("&")&&(e=e.replace(/&#(\d+);|&#x([0123456789abcdef]+);|&(\w+);/gi,Te))),
+e}function ze(e){var t={}
 for(var n in e)t[n]=e[n]
-return t}Oe=je,Ce=function(e){var t,n,r,o,i,l,a,u
+return t}var Pe,_e,Ie,Le,$e=function(e){
+var t,n,r,o,i,l,a,u,s,f,c,d,p,h,v,m,g,y,b=[]
+for(t=0,n=e.length;t<n;++t){
+if(r=e[t],o=[null!=(i=r.Z)?i:y?y[0]:0,null!=(i=r.X)?i:y?y[1]:0,0],
+y&&r.G>=2&&null!=r.I&&null!=r.K){
+for(l=3===r.G,u=[],s=0;s<2;++s)f=s,u.push(o[f]-y[f])
+for(c=Me(a=Re(a=u)),u=[],s=0;s<2;++s)f=s,u.push(a[f]/c)
+d=u,p=Me(h=[r.K,r.I]),v=[p-Math.abs(m=qe(d,h)),c/2],(g=m>0)||(v[0]=-v[0]),l!==g&&(v=Re(v)),
+y[2]=v[0]/v[1]}b.push(y=o)}return b}
+function Re(e){return[-e[1],+e[0]]}function qe(e,t){var n,r,o
+for(n=0,r=0;r<2;++r)n+=e[o=r]*t[o]
+return n}function Me(e){return Math.sqrt(qe(e,e))}Pe=$e,_e=Se,Ie=function(e){
+var t,n,r,o,i,l,a,u
 for(t=[],n=0,o=(r=e.split(/\s*((?!E)[A-Z])\s*/i)).length;n<o;++n)i=n,l=r[n],i%2?"G"===(a=l.toUpperCase())&&t.push(u={}):u&&(u[a]=parseFloat(l))
-return t}
-var Ie,$e,Re,qe=function(e){var t,n,r,o
+return Pe(t)}
+var De,Ue,Fe,He=function(e){var t,n,r,o
 function i(){var e,n,o,i
-if(r=0,!(t.length>Se.length)){
-for(e=0,o=(n=t).length;e<o;++e)if(i=e,n[e]!==Se[i])return
-r=t.length}}return t=[],n=[],(o=new Oe).on("error",(function(e){
+if(r=0,!(t.length>Le.length)){
+for(e=0,o=(n=t).length;e<o;++e)if(i=e,n[e]!==Le[i])return
+r=t.length}}return t=[],n=[],(o=new _e).on("error",(function(e){
 console.log("ERR",e)})),o.on("startNode",(function(e,o){
 t.push(e),i(),2===r&&n.push({$:o()})})),o.on("endNode",(function(e){
 t.length&&t[t.length-1]===e&&(t.pop(),i())})),o.on("textNode",(function(e,t){
 var o
-3===r&&null==(o=n[n.length-1])._&&(o._=Ce(t(e).trim()))})),o.parse(e),n}
-function Me(){return!1}
-Se=["recognition_result","kte","contour"],Ie=qe,$e=o.exports,Re=function(e){
+3===r&&null==(o=n[n.length-1])._&&(o._=Ie(t(e).trim()))})),o.parse(e),n}
+function Ke(){return!1}
+Le=["recognition_result","kte","contour"],De=He,Ue=o.exports,Fe=function(e){
 var t,n,r
 for(t=Promise.resolve(),n=0,r=e.length;n<r;++n)o.call(this,e[n])
 function o(e){t=t.then((function(){e.text().then((function(e){
-return console.log(Ie(e))}))}))}},Ee.oncreate=function(){var e
-;(e=document.body).ondragenter=Me,
-e.ondragleave=Me,e.ondragover=Me,e.ondrop=function(e){
-return Re(e.dataTransfer.files),!1}},Ee.onremove=function(){var e
+return console.log(De(e))}))}))}},Ce.oncreate=function(){var e
+;(e=document.body).ondragenter=Ke,
+e.ondragleave=Ke,e.ondragover=Ke,e.ondrop=function(e){
+return Fe(e.dataTransfer.files),!1}},Ce.onremove=function(){var e
 ;(e=document.body).ondragenter=null,
-e.ondragleave=null,e.ondragover=null,e.ondrop=null},Ee.view=function(){var e
-return e=this,$e.fragment($e("input.hidden",{type:"file",accept:".xml",
-oncreate:function(t){(e.uploadButton=t.dom).onchange=function(){Re(this.files)}}
-}),$e("button",{type:"button",onclick:function(){e.uploadButton.click()}
+e.ondragleave=null,e.ondragover=null,e.ondrop=null},Ce.view=function(){var e
+return e=this,Ue.fragment(Ue("input.hidden",{type:"file",accept:".xml",
+oncreate:function(t){(e.uploadButton=t.dom).onchange=function(){Fe(this.files)}}
+}),Ue("button",{type:"button",onclick:function(){e.uploadButton.click()}
 },"Загрузить результат распознавания!")," ...или перетащите XML-файл в это окно...")
 }
-var De,Ue,Fe,He,Ke,Be,Ge,Je,Qe={}
-De=o.exports,Ue=t(Object.freeze({__proto__:null,
-homepage:"https://github.com/ukoloff/kte"})),Qe.view=function(){var e
-return De.fragment(De("h2","Примечания"),De("ul",De("li",De("a",{
-href:Ue.homepage,target:"_blank"
-},"Исходный код"),"@GitHub"),De("li","Замечания и предложения по работе визуализатора КТЕ: ",De("a",{
-href:e=Ue.homepage+"/issues",target:"_blank"},e)),De("li",De("a",{
-href:Ue.homepage+"/tree/main/data",target:"_blank"},"Примеры")," XML-файлов")))
-},Fe=o.exports,He=Ee,Ke=Qe,Ae.view=function(){
-return Fe.fragment(Fe("h1",document.title="Визуализация КТЭ"),Fe("form",Fe(He)),Fe(Ke))
-},Be=o.exports,Ge=ge,Je=Ae,setTimeout((function(){
-Be.mount(document.head,Ge),Be.mount(document.body,Je)}))}()
+var Ge,Be,Je,Xe,Qe,Ze,Ve,Ye,We={}
+Ge=o.exports,Be=t(Object.freeze({__proto__:null,
+homepage:"https://github.com/ukoloff/kte"})),We.view=function(){var e
+return Ge.fragment(Ge("h2","Примечания"),Ge("ul",Ge("li",Ge("a",{
+href:Be.homepage,target:"_blank"
+},"Исходный код"),"@GitHub"),Ge("li","Замечания и предложения по работе визуализатора КТЕ: ",Ge("a",{
+href:e=Be.homepage+"/issues",target:"_blank"},e)),Ge("li",Ge("a",{
+href:Be.homepage+"/tree/main/data",target:"_blank"},"Примеры")," XML-файлов")))
+},Je=o.exports,Xe=Ce,Qe=We,Oe.view=function(){
+return Je.fragment(Je("h1",document.title="Визуализация КТЭ"),Je("form",Je(Xe)),Je(Qe))
+},Ze=o.exports,Ve=ge,Ye=Oe,setTimeout((function(){
+Ze.mount(document.head,Ve),Ze.mount(document.body,Ye)}))}()
 //# sourceMappingURL=view.js.map
