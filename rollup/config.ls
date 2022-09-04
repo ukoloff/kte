@@ -21,8 +21,7 @@ function config args
     format: \iife
     sourcemap: true
     plugins:
-      rollup-plugin-terser.terser do
-        mangle: !args.watch
+      !args.watch and rollup-plugin-terser.terser do
         format:
           max_line_len: 80
           semicolons: false

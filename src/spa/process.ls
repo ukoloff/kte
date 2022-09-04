@@ -1,12 +1,22 @@
 require! <[
   ../parser
+  ./state
+  ./draw
+  ./m
 ]>
 
 module.exports = process
 
-!function process files
-  seq = Promise.resolve!
-  for let file in files
-    <-! seq .= then
-    <- file.text!then
-    console.log parser it
+!async function process files
+  state.name = null
+  state.errors = null
+  for file in files
+    try
+      state.ktes = parser await file.text!
+      state.name = file.name
+      draw!
+      return
+    catch e
+      state.errors ?= {}
+      state.errors[file.name] = e.message
+  m.redraw!
