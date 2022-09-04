@@ -1,6 +1,7 @@
 require! <[
   ./m
   ./state
+  ../math/path/svg
 ]>
 
 module.exports = draw
@@ -18,4 +19,8 @@ txt =
       m.mount document.body, require \./body
 
   view: ->
-      m \pre JSON.stringify state.ktes, null, 2
+      m \pre JSON.stringify state.ktes.map(KTE), null, 2
+
+function KTE kte
+  $: kte.$
+  _: svg kte._
