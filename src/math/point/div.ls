@@ -5,7 +5,7 @@ require! <[
 module.exports = div
 
 function div a, b
-  if \number == typeof b
+  if \number != typeof b
     a =
       a[0] * b[0] - a[1] * b[1]
       a[0] * b[1] + a[1] * b[0]
