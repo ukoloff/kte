@@ -12,4 +12,4 @@ function expand R, factor
     s = mul size(R), factor - 1
     return
       sub R[0], s
-      add R[0], s
+      add R[1], s

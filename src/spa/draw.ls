@@ -3,6 +3,10 @@ require! <[
   ./m
   ./state
   ../math/path/svg
+  ../math/rect/union
+  ../math/rect/expand
+  ../math/rect/viewbox
+  ../math/path/bounds
 ]>
 
 module.exports = draw
@@ -23,11 +27,14 @@ txt =
       control-icons-enabled: true
 
   view: ->
+      for kte in state.ktes when kte._
+        R = union R, bounds kte._
+      RX = expand R, 1.01
+      R = union R, bounds axis = [[RX[0][0], 0, 0], [RX[1][0], 0, 0]]
+
       m \svg,
         xmlns: "http://www.w3.org/2000/svg"
-        view-box: "-10 -60 110 25"
-        # height: \100%
-        # width: \100%
+        view-box: viewbox R
         m \g, # For Pan&Zoom
           m \g,
             class: \ktes
@@ -36,6 +43,9 @@ txt =
               m \path.kte,
                 d: svg it._
                 m \title format-attrs it.$
+            m \path.axis,
+              d: svg axis
+              m \title 'Axis'
 
 function format-attrs dict
   for k, v of dict

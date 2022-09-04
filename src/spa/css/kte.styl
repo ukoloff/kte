@@ -11,6 +11,8 @@ g.ktes > path
   stroke-width: 1px
   vector-effect: non-scaling-stroke
   fill-rule: evenodd
+  stroke-linecap: round
+  stroke-linejoin: round
 
   &.kte
     stroke-width: 5px
@@ -20,6 +22,9 @@ g.ktes > path
     &:hover
       stroke-dasharray: 1%
       animation: dash 1s linear infinite
+
+  &.axis
+    stroke: red
 
 @keyframes dash
   from
