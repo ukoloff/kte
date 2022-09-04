@@ -1,6 +1,7 @@
 require! <[
   ../parser
   ./state
+  ./draw
 ]>
 
 module.exports = process
@@ -10,8 +11,9 @@ module.exports = process
   state.errors = {}
   for file in files
     try
-      console.log parser await file.text!
+      state.ktes = parser await file.text!
       state.name = file.name
+      draw!
       return
     catch e
       console.error "#{file.name}: #{e.message}"
