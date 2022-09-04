@@ -25,7 +25,7 @@ txt =
   view: ->
       m \svg,
         xmlns: "http://www.w3.org/2000/svg"
-        # viewport: "-10 -60 110 25"
+        view-box: "-10 -60 110 25"
         # height: \100%
         # width: \100%
         m \g, # For Pan&Zoom
