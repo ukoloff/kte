@@ -2,13 +2,14 @@ require! <[
   ../parser
   ./state
   ./draw
+  ./m
 ]>
 
 module.exports = process
 
 !async function process files
   state.name = null
-  state.errors = {}
+  state.errors = null
   for file in files
     try
       state.ktes = parser await file.text!
@@ -16,5 +17,6 @@ module.exports = process
       draw!
       return
     catch e
-      console.error "#{file.name}: #{e.message}"
+      state.errors ?= {}
       state.errors[file.name] = e.message
+  m.redraw!
