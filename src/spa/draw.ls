@@ -1,4 +1,5 @@
 require! <[
+  svg-pan-zoom
   ./m
   ./state
   ../math/path/svg
@@ -18,12 +19,23 @@ txt =
       window.onpopstate = save
       m.mount document.body, require \./body
 
+    svg-pan-zoom it.dom,
+      control-icons-enabled: true
+
   view: ->
       m \svg,
-        state.ktes.map ->
-          m \path.kte,
-            d: svg it._
-            m \title format-attrs it.$
+        xmlns: "http://www.w3.org/2000/svg"
+        # viewport: "-10 -60 110 25"
+        # height: \100%
+        # width: \100%
+        m \g, # For Pan&Zoom
+          m \g,
+            class: \ktes
+            transform: "scale(1, -1)",
+            state.ktes.map ->
+              m \path.kte,
+                d: svg it._
+                m \title format-attrs it.$
 
 function format-attrs dict
   for k, v of dict
