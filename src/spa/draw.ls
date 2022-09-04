@@ -19,8 +19,13 @@ txt =
       m.mount document.body, require \./body
 
   view: ->
-      m \pre JSON.stringify state.ktes.map(KTE), null, 2
+      m \svg,
+        state.ktes.map ->
+          m \path.kte,
+            d: svg it._
+            m \title format-attrs it.$
 
-function KTE kte
-  $: kte.$
-  _: svg kte._
+function format-attrs dict
+  for k, v of dict
+    "#{k}: #{v}"
+  .join "\n"
