@@ -3,6 +3,8 @@ require! <[
   ../point/mul
   ../rect/add
   ./vector
+  ./center
+  ./radius
 ]>
 
 module.exports = box
