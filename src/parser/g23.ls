@@ -27,9 +27,12 @@ function g2triplets Gs
       catets =
         scalar([g.K, g.I], ccw90 A) / lenA
         lenA / 2
-      catets[1] += len catets
-      if (/* gotCCW = */catets[0] > 0) != (/* needCCW = */g.G == 3)
+      if catets[0] < 0
+        catets[0] = -catets[0]
+        catets[1] = -catets[1]
+      catets[0] += len catets
+      if (/* gotCCW = */catets[1] > 0) != (/* needCCW = */g.G == 3)
         catets = ccw90 catets
-      prev[2] = catets[0] / catets[1]
+      prev[2] = catets[1] / catets[0]
 
     prev = vertex

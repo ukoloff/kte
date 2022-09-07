@@ -17,6 +17,7 @@ module.exports = draw
 txt =
   oncreate: !->
     history.push-state {}, "View #{state.name}"
+    document.title .= replace /:.*/, ''
     document.title += ": #{state.name}"
     save = window.onpopstate
     window.onpopstate = !->
@@ -31,6 +32,7 @@ txt =
         R = union R, bounds kte._
       RX = expand R, 1.01
       R = union R, bounds axis = [[RX[0][0], 0, 0], [RX[1][0], 0, 0]]
+      R = expand R, 1.01
 
       m \svg,
         xmlns: "http://www.w3.org/2000/svg"
