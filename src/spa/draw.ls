@@ -17,6 +17,7 @@ module.exports = draw
 txt =
   oncreate: !->
     history.push-state {}, "View #{state.name}"
+    document.title .= replace /:.*/, ''
     document.title += ": #{state.name}"
     save = window.onpopstate
     window.onpopstate = !->

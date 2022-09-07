@@ -12,12 +12,13 @@ exports <<<
       ..ondrop = ->
         process it.data-transfer.files
         false
-  onremove: !->
-    document.body
-      ..ondragenter = null
-      ..ondragleave = null
-      ..ondragover = null
-      ..ondrop = null
+  # Allow Drop on Visualisation
+  # onremove: !->
+  #   document.body
+  #     ..ondragenter = null
+  #     ..ondragleave = null
+  #     ..ondragover = null
+  #     ..ondrop = null
   view: ->
     me = @
     m.fragment do
