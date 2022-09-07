@@ -629,8 +629,9 @@ var _t,Vt=function(t){var e,n,o,r,i,s,a,l,u,c,f,h=[]
 for(e=0,n=t.length;e<n;++e){
 for(s in o=t[e],r=[null!=(i=o.Z)?i:f?f[0]:0,null!=(i=o.X)?i:f?f[1]:0,0],
 o)a=o[s],0>"GXZIK".indexOf(s)&&(r[s]=a)
-f&&o.G>=2&&null!=o.I&&null!=o.K&&(l=Dt(r,f),u=jt(l),(c=[Lt([o.K,o.I],qt(l))/u,u/2])[1]+=jt(c),
-c[0]>0!=(3===o.G)&&(c=qt(c)),f[2]=c[0]/c[1]),h.push(f=r)}return h}
+f&&o.G>=2&&null!=o.I&&null!=o.K&&(l=Dt(r,f),u=jt(l),(c=[Lt([o.K,o.I],qt(l))/u,u/2])[0]<0&&(c[0]=-c[0],
+c[1]=-c[1]),c[0]+=jt(c),c[1]>0!=(3===o.G)&&(c=qt(c)),f[2]=c[1]/c[0]),h.push(f=r)
+}return h}
 _t=Vt
 var Ut,$t,Ft,Gt,Xt=function(t){var e,n,o,r,i,s,a,l
 for(e=[],n=0,r=(o=t.split(/\s*((?!E)[A-Z])\s*/i)).length;n<r;++n)i=n,s=o[n],i%2?"G"===(a=s.toUpperCase())&&e.push(l={}):l&&(l[a]=parseFloat(s))
@@ -1112,11 +1113,12 @@ var t,e,n,o
 return cn=1,t=Ht,e=Wt,n=function(){
 return ln||(ln=1,t=ye,e=r.exports,n=Wt,o=Ee,i=Ae,s=je,a=Re,l=hn,an=function(){
 e.mount(document.body,u)},u={oncreate:function(o){var r
-history.pushState({},"View "+n.name),document.title+=": "+n.name,r=window.onpopstate,
-window.onpopstate=function(){window.onpopstate=r,e.mount(document.body,Cn())
-},t(o.dom,{controlIconsEnabled:!0})},view:function(){var t,r,u,c,f,h,p
+history.pushState({},"View "+n.name),document.title=document.title.replace(/:.*/,""),
+document.title+=": "+n.name,r=window.onpopstate,window.onpopstate=function(){
+window.onpopstate=r,e.mount(document.body,Cn())},t(o.dom,{controlIconsEnabled:!0
+})},view:function(){var t,r,u,c,f,h,p
 for(t=0,u=(r=n.ktes).length;t<u;++t)(c=r[t])._&&(f=i(f,l(c._)))
-return h=s(f,1.01),f=i(f,l(p=[[h[0][0],0,0],[h[1][0],0,0]])),e("svg",{
+return h=s(f,1.01),f=i(f,l(p=[[h[0][0],0,0],[h[1][0],0,0]])),f=s(f,1.01),e("svg",{
 xmlns:"http://www.w3.org/2000/svg",viewBox:a(f)},e("g",e("g",{class:"ktes",
 transform:"scale(1, -1)"},n.ktes.map((function(t){return e("path.kte",{d:o(t._)
 },e("title",(n=t.$,function(){var t,e=[]
@@ -1132,9 +1134,7 @@ var t,e
 function n(){return!1}return fn=1,t=r.exports,e=pn(),Ct.oncreate=function(){
 var t
 ;(t=document.body).ondragenter=n,t.ondragleave=n,t.ondragover=n,t.ondrop=function(t){
-return e(t.dataTransfer.files),!1}},Ct.onremove=function(){var t
-;(t=document.body).ondragenter=null,
-t.ondragleave=null,t.ondragover=null,t.ondrop=null},Ct.view=function(){var n
+return e(t.dataTransfer.files),!1}},Ct.view=function(){var n
 return n=this,t.fragment(t("input.hidden",{type:"file",accept:".xml",
 oncreate:function(t){(n.uploadButton=t.dom).onchange=function(){e(this.files)}}
 }),t("button",{type:"button",onclick:function(){n.uploadButton.click()}
