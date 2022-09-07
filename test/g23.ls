@@ -34,3 +34,7 @@ context "G-code math" !->
     .to.almost.eql [[2, 1, 0]]
     expect dst[0].L
     .to.equal 3
+
+  specify "works for smaller arcs" !->
+    expect g23 [{G: 0, X: 11.5, Z: 12}, {G: 2, X: 12.5, Z: 12 - Math.sqrt(3), I: 2, K: 0}]
+    .to.almost.eql [[12, 11.5, -2 + Math.sqrt 3], [12 - Math.sqrt(3), 12.5, 0]]
