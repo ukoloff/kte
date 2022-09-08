@@ -41,10 +41,11 @@ txt =
           m \g,
             class: \ktes
             transform: "scale(1, -1)",
-            state.ktes.map ->
+            for kte, i in state.ktes
               m \path.kte,
-                d: svg it._
-                m \title format-attrs it.$
+                class: "kte-#{i % 3 + 1}"
+                d: svg kte._
+                m \title format-attrs kte.$
             m \path.axis,
               d: svg axis
               m \title 'Axis'
