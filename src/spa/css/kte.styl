@@ -7,6 +7,15 @@ svg
   box-sizing: border-box
   padding: 0
 
+.kte-1
+  stroke: navy
+
+.kte-2
+  stroke: green
+
+.kte-3
+  stroke: red
+
 g.ktes > path
   stroke-width: 1px
   vector-effect: non-scaling-stroke
@@ -17,14 +26,14 @@ g.ktes > path
   &.kte
     stroke-width: 5px
     fill: none
-    stroke: black
+    // stroke: black
 
     &:hover
       stroke-dasharray: 1%
       animation: dash 1s linear infinite
 
   &.axis
-    stroke: red
+    stroke: black
     stroke-dasharray: 3% 1% 0.3% 1%
 
 @keyframes dash
