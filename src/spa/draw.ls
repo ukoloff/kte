@@ -2,6 +2,7 @@ require! <[
   svg-pan-zoom
   ./m
   ./state
+  ./sort
   ../math/path/svg
   ../math/rect/union
   ../math/rect/expand
@@ -12,6 +13,7 @@ require! <[
 module.exports = draw
 
 !function draw
+  sort!
   m.mount document.body, txt
 
 txt =
@@ -41,9 +43,9 @@ txt =
           m \g,
             class: \ktes
             transform: "scale(1, -1)",
-            for kte, i in state.ktes
+            for kte in state.ktes
               m \path.kte,
-                class: "kte-#{i % 3 + 1}"
+                class: "kte-#{kte.i % 3 + 1}"
                 d: svg kte._
                 m \title format-attrs kte.$
             m \path.axis,
