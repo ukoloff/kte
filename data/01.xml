@@ -22,6 +22,9 @@
         <contour>G0X40.000000Z-10.000000L0&#x0A;G1X40.000000Z-10.000000L0&#x0A;</contour>
     </kte>
     <kte id="8" type="opened" side="left" pos="end">
-        <contour>G0X40.000000Z-10.000000L0&#x0A;G1X20.000000Z-10.000000L3&#x0A;G1X15.000000Z0.000000L4&#x0A;G1X10.000000Z-10.000000L5&#x0A;G1X5.000000Z-10.000000L6&#x0A;</contour>
+        <contour>G0X40.000000Z-10.000000L0&#x0A;G1X20.000000Z-10.000000L3&#x0A;G1X10.000000Z-10.000000L0&#x0A;G1X5.000000Z-10.000000L6&#x0A;</contour>
+    </kte>
+    <kte id="9" subtype="undef" type="closed" side="left" pos="end">
+        <contour>G0X20.000000Z-10.000000L0&#x0A;G1X15.000000Z0.000000L4&#x0A;G1X10.000000Z-10.000000L5&#x0A;</contour>
     </kte>
 </recognition_result>

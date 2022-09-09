@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <recognition_result>
     <kte id="1" type="semiopened" side="left" pos="bottom">
-        <contour>G0X5.000000Z0.000000L0&#x0A;G1X5.000000Z50.000000L2&#x0A;</contour>
+        <contour>G0X5.000000Z0.000000L0&#x0A;G1X5.000000Z50.000000L9&#x0A;</contour>
     </kte>
     <kte id="2" type="opened" side="middle" pos="bottom">
         <contour>G0X5.000000Z50.000000L0&#x0A;G1X5.000000Z50.000000L0&#x0A;</contour>
@@ -10,18 +10,21 @@
         <contour>G0X5.000000Z50.000000L0&#x0A;G1X5.000000Z50.000000L0&#x0A;</contour>
     </kte>
     <kte id="4" type="opened" side="right" pos="end">
-        <contour>G0X10.900000Z50.000000L0&#x0A;G1X5.000000Z50.000000L3&#x0A;</contour>
+        <contour>G0X10.900000Z50.000000L0&#x0A;G1X5.000000Z50.000000L8&#x0A;</contour>
     </kte>
     <kte id="5" type="semiopened" side="right" pos="top">
-        <contour>G0X10.900000Z50.000000L0&#x0A;G1X12.500000Z48.400000L4&#x0A;G1X12.500000Z16.000000L5&#x0A;G1X11.500000Z15.000000L6&#x0A;G1X11.500000Z12.000000L7&#x0A;G2X13.500000Z10.000000L8I2.000000K0.000000&#x0A;G1X24.000000Z10.000000L9&#x0A;</contour>
+        <contour>G0X10.900000Z50.000000L0&#x0A;G1X12.500000Z48.400000L7&#x0A;G1X12.500000Z16.000000L6&#x0A;G1X12.500000Z10.267938L0&#x0A;G2X13.500000Z10.000000L3I1.000000K1.732062&#x0A;G1X24.000000Z10.000000L2&#x0A;</contour>
     </kte>
     <kte id="6" type="opened" side="middle" pos="top">
-        <contour>G0X24.000000Z0.000000L0&#x0A;G1X24.000000Z10.000000L10&#x0A;</contour>
+        <contour>G0X24.000000Z0.000000L0&#x0A;G1X24.000000Z10.000000L1&#x0A;</contour>
     </kte>
     <kte id="7" type="semiopened" side="left" pos="top">
         <contour>G0X24.000000Z0.000000L0&#x0A;G1X24.000000Z0.000000L0&#x0A;</contour>
     </kte>
     <kte id="8" type="opened" side="left" pos="end">
-        <contour>G0X24.000000Z0.000000L0&#x0A;G1X5.000000Z0.000000L1&#x0A;</contour>
+        <contour>G0X24.000000Z0.000000L0&#x0A;G1X5.000000Z0.000000L10&#x0A;</contour>
+    </kte>
+    <kte id="9" subtype="undef" type="closed" side="right" pos="top">
+        <contour>G0X12.500000Z16.000000L0&#x0A;G1X11.500000Z15.000000L5&#x0A;G1X11.500000Z12.000000L4&#x0A;G2X12.500000Z10.267938L3I2.000000K0.000000&#x0A;</contour>
     </kte>
 </recognition_result>
