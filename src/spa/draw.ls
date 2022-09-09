@@ -22,7 +22,7 @@ txt =
     save = window.onpopstate
     window.onpopstate = !->
       window.onpopstate = save
-      m.mount document.body, require \./body
+      state.home!
 
     svg-pan-zoom it.dom,
       control-icons-enabled: true
