@@ -42,6 +42,5 @@ context '2 DPoint' !->
     expect div [12, -15], 3
     .to.be.eql [4, -5]
 
-    debugger
     expect div [5, 10], [3, -4]
     .to.be.eql [-1, 2]

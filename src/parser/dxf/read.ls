@@ -26,11 +26,11 @@ function read readline
   var pair
   # Read next pair of lines (id + value)
   !function next
-    unless /^\d+$/.test line = trim readline!
+    unless /^\d+$/.test line = readline!trim!
       throw Error "Invalid DXF file"
     pair :=
       id: +line
-      val: trim readline!
+      val: readline!trim!
 
   !function line
     loop
