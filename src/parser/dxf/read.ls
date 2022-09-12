@@ -67,10 +67,7 @@ function read readline
       this-vertex.non-closed.push [A, Z]
     else
       # Circle
-      this-vertex.closed.push do
-        [X - R, Y, -1],
-        [X + R, Y, -1],
-        [X - R, Y, 0]
+      this-vertex.closed.push [[X - R, Y, -1], [X + R, Y, -1], [X - R, Y, 0]]
 
   !function push-poly path, do-close
     if do-close
