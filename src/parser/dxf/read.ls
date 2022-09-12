@@ -3,7 +3,7 @@
 #
 require! <[
   ../../math/point/add
-  ../../math/point/sub
+  ../../math/point/o2
   ../../math/o2/ccw
 ]>
 
@@ -116,6 +116,7 @@ function read readline
     push-poly me, closed
 
   !function start-block
+
     if this-vertex.id
       throw Error "Nested BLOCK definition"
     new-vertice!
@@ -168,10 +169,10 @@ function read readline
       | 21 => fit[1] = +pair.val
 
   # Read Main Loop
+  next!
   until done
-    next!
     switch pair.id
-    | 0  =>
+    | 0 =>
       switch pair.val
       | \EOF          => done = true
       | \LINE         => line!
@@ -179,8 +180,9 @@ function read readline
       | \POLYLINE     => old-poly!
       | \LWPOLYLINE   => new-poly!
       | \BLOCK        => start-block!
-      | \ENDBLK       => this-vertex = vertices[0]
+      | \ENDBLK       => this-vertex = vertices[0]; next!
       | \INSERT       => new-edge!
       | \SPLINE       => spline!
-
+      | _             => next!
+    | _ => next!
   vertices
