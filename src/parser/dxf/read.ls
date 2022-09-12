@@ -151,7 +151,23 @@ function read readline
       | 70 => edge.columns = +pair.val
       | 71 => edge.rows = +pair.val
 
-  # Read loop
+  !function spline
+    this-vertex.splines.push me =
+      knots: []
+      controls: []
+      fits: []
+    loop
+      next!
+      switch pair.id
+      | 0  => return
+      | 71 => me.degree = +pair.val
+      | 40 => me.knots.push +pair.val
+      | 10 => me.controls.push control = [+pair.val, 0]
+      | 20 => control[1] = +pair.val
+      | 11 => me.fits.push fit = [+pair.val, 0]
+      | 21 => fit[1] = +pair.val
+
+  # Read Main Loop
   until done
     next!
     switch pair.id
@@ -165,5 +181,6 @@ function read readline
       | \BLOCK        => start-block!
       | \ENDBLK       => this-vertex = vertices[0]
       | \INSERT       => new-edge!
+      | \SPLINE       => spline!
 
   vertices
