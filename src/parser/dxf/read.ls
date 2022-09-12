@@ -1,6 +1,12 @@
 #
 # Read DXF
 #
+require! <[
+  ../../math/point/add
+  ../../math/point/sub
+  ../../math/o2/ccw
+]>
+
 module.exports = read
 
 function read readline
@@ -54,9 +60,9 @@ function read readline
       C = [X, Y]
       angle = end-deg - start-deg
       angle -= 360 * Math.floor angle / 360
-      A = dbs.point.add C, dbs.point.o2 [R, 0], dbs.o2.ccw start-deg
+      A = add C, o2 [R, 0], ccw start-deg
       A[2] = Math.tan angle * Math.PI / 720
-      Z = dbs.point.add C, dbs.point.o2 [R, 0], dbs.o2.ccw end-deg
+      Z = add C, o2 [R, 0], ccw end-deg
       Z[2] = 0
       this-vertex.non-closed.push [A, Z]
     else
