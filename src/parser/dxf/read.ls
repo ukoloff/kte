@@ -14,7 +14,7 @@ function read readline
   vertices = []
   var this-vertex
 
-  do !function newVertice
+  do !function new-vertice
     vertices.push this-vertex :=
       id: vertices.length
       base: [0, 0]
@@ -115,6 +115,43 @@ function read readline
       next!
     push-poly me, closed
 
+  !function start-block
+    if this-vertex.id
+      throw Error "Nested BLOCK definition"
+    new-vertice!
+    loop
+      next!
+      switch pair.id
+      | 0  => return
+      | 2  => this-vertex.name    =  pair.val
+      | 10 => this-vertex.base[0] = +pair.val
+      | 20 => this-vertex.base[1] = +pair.val
+
+  !function new-edge
+    this-vertex.edges.push edge =
+      origin: [0, 0]
+      # Not used so far
+      scale: [1, 1]
+      angle: 0
+      rows: 1
+      columns: 1
+      cell: [0, 0]
+    loop
+      next!
+      switch pair.id
+      | 0  => return
+      | 2  => edge.name = pair.val
+      | 10 => edge.origin[0] = +pair.val
+      | 20 => edge.origin[1] = +pair.val
+      | 41 => edge.scale[0] = +pair.val
+      | 42 => edge.scale[1] = +pair.val
+      | 44 => edge.cell[0] = +pair.val
+      | 45 => edge.cell[1] = +pair.val
+      | 50 => edge.angle = +pair.val
+      | 70 => edge.columns = +pair.val
+      | 71 => edge.rows = +pair.val
+
+  # Read loop
   until done
     next!
     switch pair.id
@@ -125,5 +162,8 @@ function read readline
       | \CIRCLE, \ARC => arc!
       | \POLYLINE     => old-poly!
       | \LWPOLYLINE   => new-poly!
+      | \BLOCK        => start-block!
+      | \ENDBLK       => this-vertex = vertices[0]
+      | \INSERT       => new-edge!
 
   vertices
