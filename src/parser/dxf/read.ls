@@ -55,7 +55,7 @@ function read readline
       | 50 => start-deg = +pair.val
       | 51 => end-deg = +pair.val
 
-    if startDeg? and endDeg?
+    if start-deg? and end-deg?
       # Arc
       C = [X, Y]
       angle = end-deg - start-deg
@@ -72,13 +72,58 @@ function read readline
         [X + R, Y, -1],
         [X - R, Y, 0]
 
+  !function push-poly path, do-close
+    if do-close
+      path.push back = path[0].slice!
+      back[2] = 0
+      this-vertex.closed.push path
+    else
+      this-vertex.non-closed.push path
+
+  !function new-poly
+  # LWPOLYLINE
+    me = []
+    until done
+      next!
+      switch pair.id
+      | 0  => done = true
+      | 10 => me.push tail = [+pair.val, 0, 0] # X
+      | 20 => tail[1] = +pair.val              # Y
+      | 42 => tail[2] = +pair.val              # Bulge
+      | 70 => closed = 1 .&. +pair.val
+    push-poly me, closed
+
+  !function old-poly
+  # POLYLINE
+    me = []
+    until done
+      next!
+      switch pair.id
+      | 0  => done = true
+      | 70 => closed = 1 .&. +pair.val
+    done = false
+    loop
+      switch pair.id
+      | 0 =>
+          unless done = \VERTEX != pair.val
+            me.push tail = [0, 0, 0]
+      | 10 => tail[0] = +pair.val  # X
+      | 20 => tail[1] = +pair.val  # Y
+      | 42 => tail[2] = +pair.val  # Bulge
+      if done
+        break
+      next!
+    push-poly me, closed
+
   until done
     next!
     switch pair.id
     | 0  =>
       switch pair.val
-      | \EOF  => done = true
-      | \LINE => line!
+      | \EOF          => done = true
+      | \LINE         => line!
       | \CIRCLE, \ARC => arc!
+      | \POLYLINE     => old-poly!
+      | \LWPOLYLINE   => new-poly!
 
   vertices
