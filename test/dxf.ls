@@ -10,8 +10,9 @@ require! <[
 ]>
 
 context \DXF !->
-  specify 'is parsed' !->
-    for src in discover!
+  context 'is parsed' !->
+    for let src in discover!
+      <-! specify path.basename src
       dxf = fs.read-file-sync src
       dxf = iconv-lite.decode dxf, \win1251
       dxf = read splitter dxf
