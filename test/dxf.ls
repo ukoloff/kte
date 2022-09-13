@@ -5,6 +5,8 @@ require! <[
   ./expect
   ../src/parser/dxf/read
   ../src/parser/dxf/splitter
+  ../src/parser/dxf/spline
+  ../src/parser/dxf/joiner
 ]>
 
 context \DXF !->
@@ -20,6 +22,17 @@ context \DXF !->
       j = JSON.parse fs.read-file-sync j, \utf-8
       expect dxf
       .to.almost.eql j
+
+  specify "Can process/reject splines" !->
+    spline.mode = false
+    expect !->
+      spline controls: [[], []]
+    .to.throw Error
+
+    spline.mode = true
+    expect do
+      spline controls: [[1, 2], [3, 4], [5, 6]]
+    .to.eql [[1, 2, 0], [5, 6, 0]]
 
 function discover
   dir = fs.opendir-sync root = path.join do
