@@ -8,7 +8,7 @@ require! <[
   ../src/math/point/div
 ]>
 
-context '2 DPoint' !->
+context '2D Point' !->
   specify 'supports =' !->
     expect eq [1, 2], a = [1, 2]
     .to.be.ok

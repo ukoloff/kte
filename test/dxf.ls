@@ -34,6 +34,27 @@ context \DXF !->
       spline controls: [[1, 2], [3, 4], [5, 6]]
     .to.eql [[1, 2, 0], [5, 6, 0]]
 
+  specify "Can join polylines" !->
+    expect joiner []
+    .to.eql []
+
+    expect joiner single = [[[1, 2, 3], [4, 5, 6]]]
+    .to.eql single
+
+    expect joiner [
+      [[1, 2, 3], [4, 5, 6]]
+      [[1, 2, -1], [7,8, 9]]]
+    .to.eql [[[4, 5, -3], [1, 2, -1], [7, 8, 9]]]
+
+    expect joiner [
+      [[1, 2, 3], [4, 5, 6]]
+      [[10, 20, 30], [40, 50, 60]]
+      [[1, 2, -1], [7,8, 9]]]
+    .to.eql [
+      [[10, 20, 30], [40, 50, 60]]
+      [[4, 5, -3], [1, 2, -1], [7, 8, 9]]]
+
+
 function discover
   dir = fs.opendir-sync root = path.join do
     path.dirname __filename
