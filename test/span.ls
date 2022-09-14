@@ -88,3 +88,59 @@ context 'Span' !->
     expect b2[1][0]
     .to.be.almost.eql b2[1][1]
     .and.to.be.almost.eql 1 / 2 + 1 / Math.sqrt 2
+
+  specify 'knows its perimeter', ->
+    require! <[ ../src/math/span/perimeter ]>
+    span =
+      a: [0, 0]
+      b: 0
+      z: [0, 1]
+    function eq p
+      expect perimeter span
+      .to.almost.equal p
+    eq 1
+    span.a[1] = 2
+    eq 1
+    span.a[0] = 1
+    eq Math.sqrt 2
+    span.b = Math.sqrt(2) - 1
+    eq Math.PI / 2
+    span.b = -span.b
+    eq Math.PI / 2
+    span.b = 1
+    eq Math.PI / Math.sqrt 2
+    span.b = -1
+    eq Math.PI / Math.sqrt 2
+
+  specify 'knows its area', ->
+    require! <[ ../src/math/span/area ]>
+
+    function eq p
+      expect area span
+      .to.almost.equal p
+
+    span =
+      a: [0, 0]
+      b: 0
+      z: [0, 1]
+
+    eq 0
+    span.z[0] = 1
+    eq 0
+    span.a[1] = 1
+    eq 0.5
+
+    span =
+      a: [10, 0]
+      b: 1
+      z: [11, 0]
+
+    eq -Math.PI / 8
+    span.b = 1 - Math.sqrt 2
+    eq Math.PI / 8 - 1 / 4
+
+    span =
+      a: [1, 0]
+      b: 1
+      z: [1, 1]
+    eq -1 / 2 - Math.PI / 8
