@@ -5,14 +5,6 @@ require! <[
 ]>
 
 exports <<<
-  oncreate: !->
-    unless state.ktes
-      return
-    svg-pan-zoom it.dom,
-      control-icons-enabled: true
-
-    document.title = "Просмотр КТЭ: #{state.name}"
-
   view: ->
     require! <[
       ../math/path/svg
@@ -34,6 +26,11 @@ exports <<<
     m \svg,
       xmlns: "http://www.w3.org/2000/svg"
       view-box: viewbox R
+      oncreate: !->
+        svg-pan-zoom it.dom,
+          control-icons-enabled: true
+
+        document.title = "Просмотр КТЭ: #{state.name}"
       m \g, # For Pan&Zoom
         m \g,
           class: \ktes
