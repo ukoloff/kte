@@ -22,4 +22,4 @@ exports <<<
         'Загрузить результат распознавания!'
       ' ...или перетащите XML-файл в это окно...'
 
-dragdrop exports
+dragdrop exports, process

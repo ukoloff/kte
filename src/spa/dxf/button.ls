@@ -1,22 +1,11 @@
 require! <[
   ../m
+  ../dragdrop
 ]>
 
+dragdrop exports, process
+
 exports <<<
-  oncreate: !->
-    document.body
-      ..ondragenter = oops
-      ..ondragleave = oops
-      ..ondragover =  oops
-      ..ondrop = ->
-        process it.data-transfer.files
-        false
-  onremove: !->
-    document.body
-      ..ondragenter = null
-      ..ondragleave = null
-      ..ondragover = null
-      ..ondrop = null
   view: ->
     me = @
     m.fragment do
@@ -33,9 +22,6 @@ exports <<<
           me.upload-button.click!
         'Загрузить файл геометрии!'
       ' ...или перетащите DXF-файл в это окно...'
-
-function oops
-  false
 
 async function process files
   require! <[ ../../parser/dxf ]>

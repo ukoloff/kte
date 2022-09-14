@@ -4,9 +4,10 @@ require! <[
   ./state
   ./sort
   ./dragdrop
+  ./process
 ]>
 
-dragdrop exports
+dragdrop exports, process
 
 exports <<<
   view: ->
@@ -46,8 +47,7 @@ exports <<<
         svg-pan-zoom it.dom,
           control-icons-enabled: true
       m \g, # For Pan&Zoom
-        m \g,
-          class: \ktes
+        m \g.ktes,
           transform: "scale(1, -1)",
           for kte in state.ktes
             m \path.kte,

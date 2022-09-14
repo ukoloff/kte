@@ -7,7 +7,7 @@ require! <[
 
 module.exports = install
 
-!function install view
+!function install view, handler
   view <<<
     oncreate: !->
       document.body
@@ -15,7 +15,7 @@ module.exports = install
         ..ondragleave = oops
         ..ondragover =  oops
         ..ondrop = ->
-          process it.data-transfer.files
+          handler it.data-transfer.files
           false
     onremove: !->
       document.body
