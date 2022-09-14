@@ -28,8 +28,8 @@ function g2triplets Gs
         scalar([g.K, g.I], ccw90 A) / lenA
         lenA / 2
       if catets[0] < 0
-        catets[0] = -catets[0]
-        catets[1] = -catets[1]
+        - = catets[0]
+        - = catets[1]
       catets[0] += len catets
       if (/* gotCCW = */catets[1] > 0) != (/* needCCW = */g.G == 3)
         catets = ccw90 catets

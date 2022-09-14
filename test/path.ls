@@ -38,3 +38,22 @@ context 'Polyline' !->
 
     expect area [[1, 2, -1], [3, 2, 0], [1, 2, 100]]
     .to.almost.equal Math.PI / 2
+
+  specify 'can move' !->
+    require! <[ ../src/math/path/o2 ]>
+    require! <[ ../src/math/o2/translation ]>
+
+    src =
+      [1, 2, 3]
+      [4, 5, 6]
+      [7, 8, 9]
+    expect o2 src
+    .to.be.eql src
+    .and.not.equal src
+
+    expect o2 src, translation [1, 2]
+    .to.be.eql [
+      [2, 4, 3]
+      [5, 7, 6]
+      [8, 10, 9]
+    ]

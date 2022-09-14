@@ -1,18 +1,19 @@
 require! <[
   fs
   path
-  iconv-lite
   ./expect
-  ../src/parser/dxf/read
-  ../src/parser/dxf/splitter
-  ../src/parser/dxf/spline
-  ../src/parser/dxf/joiner
 ]>
 
-context \DXF !->
-  context 'is parsed' !->
+context 'DXF Parser' !->
+  context 'can read DXF file' !->
     for let src in discover!
       <-! specify path.basename src
+      require! <[
+        iconv-lite
+        ../src/parser/dxf/read
+        ../src/parser/dxf/splitter
+      ]>
+
       dxf = fs.read-file-sync src
       dxf = iconv-lite.decode dxf, \win1251
       dxf = read splitter dxf
@@ -24,7 +25,9 @@ context \DXF !->
       expect dxf
       .to.almost.eql j
 
-  specify "Can process/reject splines" !->
+  specify "can process/reject splines" !->
+    require! <[ ../src/parser/dxf/spline ]>
+
     spline.mode = false
     expect !->
       spline controls: [[], []]
@@ -36,6 +39,8 @@ context \DXF !->
     .to.eql [[1, 2, 0], [5, 6, 0]]
 
   specify "Can join polylines" !->
+    require! <[ ../src/parser/dxf/joiner ]>
+
     expect joiner []
     .to.eql []
 
@@ -56,10 +61,55 @@ context \DXF !->
       [[4, 5, -3], [1, 2, -1], [7, 8, 9]]]
 
 
-function discover
-  dir = fs.opendir-sync root = path.join do
+  context 'generate list of paths' !->
+    items = JSON.parse fs.read-file-sync path.join(data-root!, \dxf.json), \utf-8
+    for let src in discover!
+      <-! specify path.basename src
+      require! <[
+        ../src/parser/dxf
+        ../src/parser/dxf/spline
+        ../src/math/path/area
+        ../src/math/path/perimeter
+        ../src/math/path/closed
+      ]>
+
+      unless item = items[path.parse src .name]
+        @skip!
+
+      txt = fs.read-file-sync src, \utf-8
+
+      if item.splines
+        spline.mode = false
+        expect !-> dxf txt
+        .to.throw Error
+
+      spline.mode = true
+      paths = dxf txt
+      paths = for p in paths
+        count: p.length
+        perimeter: perimeter p
+        closed: closed p
+        area: Math.abs area p
+
+      function sort paths
+        paths.sort (a, b)->
+          b.perimeter - a.perimeter
+
+      sort paths
+      for p in item.paths
+        p.area = Math.abs p.area
+      sort item.paths
+
+      expect paths
+      .to.almost.eql item.paths
+
+function data-root
+  path.join do
     path.dirname __filename
     \dxf
+
+function discover
+  dir = fs.opendir-sync root = data-root!
   files = []
   while f = dir.read-sync!
     if f.is-file! and /[.]dxf$/i.test f.name
