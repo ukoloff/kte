@@ -1,10 +1,11 @@
 require! <[
   ./m
+  ./notes
 ]>
 
 exports <<<
   view: ->
-    m.fragment do
+    return
       m \h1 document.title = 'Automatic CAM for Turning'
       m \ul,
         m \li,
@@ -15,4 +16,4 @@ exports <<<
           m \a,
             href: '#!/kte'
             'Просмотр результатов распознавания КТЭ'
-
+      m notes
