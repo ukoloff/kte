@@ -32,6 +32,7 @@ async function process files
     try
       paths = dxf await file.text!
       console.log \DXF paths
+      location.hash = "/dxf/edit"
       break
     catch e
       state.{}errors[file.name] = e.message
