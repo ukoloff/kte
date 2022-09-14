@@ -1,6 +1,5 @@
 require! <[
-  ./m
-  ./process
+  ../m
 ]>
 
 exports <<<
@@ -23,7 +22,7 @@ exports <<<
     m.fragment do
       m \input.hidden,
         type: \file
-        accept: \.xml
+        accept: \.dxf
         oncreate: !->
           me.upload-button = it.dom
             ..onchange = !->
@@ -32,8 +31,20 @@ exports <<<
         type: \button
         onclick: !->
           me.upload-button.click!
-        'Загрузить результат распознавания!'
-      ' ...или перетащите XML-файл в это окно...'
+        'Загрузить файл геометрии!'
+      ' ...или перетащите DXF-файл в это окно...'
 
 function oops
   false
+
+async function process files
+  require! <[ ../../parser/dxf ]>
+
+  for file in files
+    try
+      paths = dxf await file.text!
+      console.log \DXF paths
+      return
+    catch e
+      console.log \ERR e.message
+  m.redraw!
