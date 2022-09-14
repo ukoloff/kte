@@ -1,6 +1,7 @@
 require! <[
   ../m
   ../dragdrop
+  ./state
 ]>
 
 dragdrop exports, process
@@ -26,11 +27,12 @@ exports <<<
 async function process files
   require! <[ ../../parser/dxf ]>
 
+  delete state.errors
   for file in files
     try
       paths = dxf await file.text!
       console.log \DXF paths
-      return
+      break
     catch e
-      console.log \ERR e.message
+      state.{}errors[file.name] = e.message
   m.redraw!
