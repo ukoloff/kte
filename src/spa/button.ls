@@ -1,23 +1,10 @@
 require! <[
   ./m
   ./process
+  ./dragdrop
 ]>
 
 exports <<<
-  oncreate: !->
-    document.body
-      ..ondragenter = oops
-      ..ondragleave = oops
-      ..ondragover =  oops
-      ..ondrop = ->
-        process it.data-transfer.files
-        false
-  onremove: !->
-    document.body
-      ..ondragenter = null
-      ..ondragleave = null
-      ..ondragover = null
-      ..ondrop = null
   view: ->
     me = @
     m.fragment do
@@ -35,5 +22,4 @@ exports <<<
         'Загрузить результат распознавания!'
       ' ...или перетащите XML-файл в это окно...'
 
-function oops
-  false
+dragdrop exports
