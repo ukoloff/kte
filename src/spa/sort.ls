@@ -16,4 +16,3 @@ module.exports = sort
     kte.W = len size bounds kte._
   state.ktes.sort (a, b)->
     b.W - a.W
-  console.log state.ktes
