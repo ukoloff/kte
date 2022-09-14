@@ -32,11 +32,20 @@ jobs:
       - name: Install packages
         run:  npm install
 
-      - name: Test
-        run: npm test
+      - name: Run tests
+        uses: nick-fields/retry@v2
+        with:
+          command: npm test
+          max_attempts: 3
+          timeout_seconds: 27
 
       - name: Build
         run:  npm run build
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: ./bundle
 
       - name: Publish to GitHub Pages
         if: github.ref_name == 'main'
