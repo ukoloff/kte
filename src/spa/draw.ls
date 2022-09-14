@@ -11,8 +11,9 @@ exports <<<
     document.title .= replace /:.*/, ''
     document.title += ": #{state.name}"
 
-    svg-pan-zoom it.dom,
-      control-icons-enabled: true
+    if state.ktes
+      svg-pan-zoom it.dom,
+        control-icons-enabled: true
 
   view: ->
     require! <[
@@ -22,6 +23,9 @@ exports <<<
       ../math/rect/viewbox
       ../math/path/bounds
     ]>
+
+    unless state.ktes
+      return m require \./empty
 
     for kte in state.ktes when kte._
       R = union R, bounds kte._
