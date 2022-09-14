@@ -1,7 +1,7 @@
 require! <[
   ./welcome
   ./body
-  ./draw
+  ./show
   ./dxf
 ]>
 
@@ -9,4 +9,4 @@ exports <<<
   "/":    welcome
   "/dxf": dxf
   "/kte": body
-  "/kte/show": draw
+  "/kte/show": show

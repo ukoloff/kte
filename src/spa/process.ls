@@ -1,7 +1,6 @@
 require! <[
   ../parser
   ./state
-  ./draw
   ./sort
   ./m
 ]>
