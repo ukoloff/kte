@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Check out WWW
+        if:   github.ref_name == 'main'
         uses: actions/checkout@v2
         with:
           ref: gh-pages
@@ -47,8 +48,13 @@ jobs:
           name: bundle
           path: ./bundle
 
+      - name: Create commit message
+        if:   github.ref_name == 'main'
+        run:  |
+          git log -1 --format="%h: %s" > .commit
+
       - name: Publish to GitHub Pages
-        if: github.ref_name == 'main'
+        if:   github.ref_name == 'main'
         working-directory: www
         run: |
           rm -rf *
@@ -58,6 +64,5 @@ jobs:
           git add --all
           git config user.email "none"
           git config user.name "GitHub Pages Publisher"
-          git -C .. log -1 --format="%h: %s" > ../.commit
           git diff-index --quiet HEAD || git commit -F ../.commit
           git push
