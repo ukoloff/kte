@@ -6,7 +6,7 @@ require! <[
 
 exports <<<
   view: ->
-    m.fragment do
+    return
       m errors if state.errors
       m \h2, 'Во время просмотра'
       m \ul,
@@ -19,7 +19,7 @@ exports <<<
 
 errors =
   view: ->
-    m.fragment do
+    return
       m \h3 'Ошибки'
       m \ul,
         for k, v of state.errors

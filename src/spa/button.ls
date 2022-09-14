@@ -7,7 +7,7 @@ require! <[
 exports <<<
   view: ->
     me = @
-    m.fragment do
+    return
       m \input.hidden,
         type: \file
         accept: \.xml

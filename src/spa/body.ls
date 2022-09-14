@@ -6,7 +6,7 @@ require! <[
 
 exports <<<
   view: ->
-    m.fragment do
+    return
       m \h1 document.title = 'Визуализация КТЭ'
       m \form,
         m button
