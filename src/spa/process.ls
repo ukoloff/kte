@@ -1,7 +1,6 @@
 require! <[
   ../parser
   ./state
-  ./sort
   ./m
 ]>
 
@@ -12,11 +11,10 @@ module.exports = process
   state.errors = null
   for file in files
     try
-      state.ktes = parser await file.text!
+      state.KTEs = parser await file.text!
       state.name = file.name
-      sort!
       location.hash = \/kte/show
-      return
+      break
     catch e
       state.errors ?= {}
       state.errors[file.name] = e.message

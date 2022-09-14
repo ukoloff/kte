@@ -2,7 +2,11 @@ require! <[
   svg-pan-zoom
   ./m
   ./state
+  ./sort
+  ./dragdrop
 ]>
+
+dragdrop exports
 
 exports <<<
   view: ->
@@ -13,6 +17,18 @@ exports <<<
       ../math/rect/viewbox
       ../math/path/bounds
     ]>
+
+    if state.KTEs
+      # Render something to force repaint SVG
+      return
+        m '',
+          oncreate: !->
+            document.title = "Просмотр КТЭ: #{state.name}"
+
+            state.ktes = state.KTEs
+            delete state.KTEs
+            sort!
+            m.redraw!
 
     unless state.ktes
       return m require \./empty
@@ -29,8 +45,6 @@ exports <<<
       oncreate: !->
         svg-pan-zoom it.dom,
           control-icons-enabled: true
-
-        document.title = "Просмотр КТЭ: #{state.name}"
       m \g, # For Pan&Zoom
         m \g,
           class: \ktes
@@ -42,7 +56,7 @@ exports <<<
               m \title format-attrs kte.$
           m \path.axis,
             d: svg axis
-            m \title 'Axis'
+            m \title 'Ось вращения'
 
 function format-attrs dict
   for k, v of dict
