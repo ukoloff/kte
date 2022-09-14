@@ -2,6 +2,7 @@ require! <[
   ../parser
   ./state
   ./draw
+  ./sort
   ./m
 ]>
 
@@ -14,6 +15,7 @@ module.exports = process
     try
       state.ktes = parser await file.text!
       state.name = file.name
+      sort!
       location.hash = \/kte/show
       return
     catch e

@@ -2,11 +2,9 @@ require! <[
   svg-pan-zoom
   ./m
   ./state
-  ./sort
 ]>
 
 exports <<<
-  oninit: sort
   oncreate: !->
     document.title .= replace /:.*/, ''
     document.title += ": #{state.name}"

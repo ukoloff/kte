@@ -11,8 +11,6 @@ require! <[
 module.exports = sort
 
 !function sort
-  unless state.ktes
-    return
   for kte, i in state.ktes
     kte.i = i
     kte.W = len size bounds kte._
