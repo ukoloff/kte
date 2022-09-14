@@ -14,7 +14,7 @@ module.exports = process
     try
       state.ktes = parser await file.text!
       state.name = file.name
-      set-timeout draw
+      location.hash = \/kte/show
       return
     catch e
       state.errors ?= {}

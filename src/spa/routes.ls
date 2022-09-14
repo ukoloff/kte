@@ -9,4 +9,4 @@ exports <<<
   "/":    welcome
   "/dxf": dxf
   "/kte": body
-  # "/kte/show": draw
+  "/kte/show": draw
