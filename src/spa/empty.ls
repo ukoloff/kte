@@ -8,7 +8,7 @@ require! <[
 exports <<<
   view: ->
     return
-      m \h1, 'Нет данных для отображения'
+      m \h1, document.title = 'КТЭ отсутствуют'
       m \ul,
         m \li,
           m \a,

@@ -6,12 +6,12 @@ require! <[
 
 exports <<<
   oncreate: !->
-    document.title .= replace /:.*/, ''
-    document.title += ": #{state.name}"
+    unless state.ktes
+      return
+    svg-pan-zoom it.dom,
+      control-icons-enabled: true
 
-    if state.ktes
-      svg-pan-zoom it.dom,
-        control-icons-enabled: true
+    document.title = "Просмотр КТЭ: #{state.name}"
 
   view: ->
     require! <[
