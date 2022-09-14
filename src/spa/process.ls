@@ -7,8 +7,7 @@ require! <[
 module.exports = process
 
 !async function process files
-  state.name = null
-  state.errors = null
+  delete state.errors
   for file in files
     try
       state.KTEs = parser await file.text!
@@ -16,6 +15,5 @@ module.exports = process
       location.hash = \/kte/show
       break
     catch e
-      state.errors ?= {}
-      state.errors[file.name] = e.message
+      state.{}errors[file.name] = e.message
   m.redraw!
