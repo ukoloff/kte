@@ -30,8 +30,7 @@ async function process files
   delete state.errors
   for file in files
     try
-      paths = dxf await file.text!
-      console.log \DXF paths
+      state.DXF = dxf await file.text!
       location.hash = "/dxf/edit"
       break
     catch e

@@ -6,7 +6,7 @@ require! <[
 
 exports <<<
   view: ->
-    m.fragment do
+    return
       m \h1 document.title = 'Импорт геометрии из DXF'
       m \form do
         m button

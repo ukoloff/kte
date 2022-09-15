@@ -1,9 +1,13 @@
 require! <[
   ../m
+  ./left
+  ./right
 ]>
 
 exports <<<
   view: ->
     return
-      m '', 'One'
-      m '', 'Two'
+      m '',
+        m left
+      m '',
+        m right
