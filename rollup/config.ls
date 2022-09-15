@@ -21,6 +21,7 @@ function config args
     dir: \bundle
     format: \iife
     sourcemap: true
+    freeze: false
     plugins:
       open!
       !args.watch and rollup-plugin-terser.terser do
