@@ -24,5 +24,8 @@ exports <<<
       m \g, # For Pan&Zoom
         m \g.ktes,
           transform: "scale(1, -1)",
+          if state.tab == \span
+            m \path.kte.kte-z,
+              d: svg state.path.slice state.n-1, state.n+1
           m \path.kte.kte-1,
             d: svg state.path
