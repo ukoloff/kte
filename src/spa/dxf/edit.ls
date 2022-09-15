@@ -10,8 +10,9 @@ exports <<<
     if state.DXF
       init!
     unless state.path
-      location.hash = '/dxf'
+      location.replace '#!/dxf'
       return
+    document.title = "Ввод технологических параметров: #{state.name}"
     return
       m '',
         m left

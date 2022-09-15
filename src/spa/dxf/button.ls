@@ -31,7 +31,8 @@ async function process files
   for file in files
     try
       state.DXF = dxf await file.text!
-      location.hash = "/dxf/edit"
+      state.name = file.name
+      location.hash = \#!/dxf/edit
       break
     catch e
       state.{}errors[file.name] = e.message
