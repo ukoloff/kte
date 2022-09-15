@@ -32,7 +32,9 @@ exports <<<
             m.redraw!
 
     unless state.ktes
-      return m require \./empty
+      # return m require \./empty
+      location.hash = '/kte'
+      return
 
     for kte in state.ktes when kte._
       R = union R, bounds kte._

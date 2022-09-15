@@ -7,7 +7,6 @@ exports <<<
   k: \span
   t: \Локально
   view: ->
-    state.n ?= 1
     m \form,
       m \table,
         m \tr,
@@ -15,16 +14,18 @@ exports <<<
             m \button,
               type: \button
               onclick: !->
-                state.n--
+                unless --state.n
+                  state.n = state.spans.length
               '<<'
           m \td,
             width: \100%
             align: \center
-            "#{state.n} / #{if state.DXF then that[0].length else \- }"
+            "#{state.n} / #{state.spans.length}"
           m \td,
             m \button,
               type: \button
               onclick: !->
+                state.n %= state.spans.length
                 state.n++
               '>>'
       m \label,
@@ -42,12 +43,12 @@ exports <<<
       m \label,
         m \input,
           type: \checkbox
-          checked: state.thread
+          checked: storage!thread
           onclick: !->
-            state.thread = @checked
+            storage!thread = @checked
         ' Резьба'
       m '',
-        class: \hidden unless state.thread
+        class: \hidden unless storage!thread
         style:
           padding-left: \1em
         m \label,
@@ -68,3 +69,6 @@ exports <<<
           m \br
           m \input,
             type: \text
+
+function storage
+  state.spans[state.n-1]
