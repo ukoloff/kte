@@ -28,18 +28,8 @@ exports <<<
                 state.n %= state.spans.length
                 state.n++
               '>>'
-      m \label,
-        'Шероховатость Ra'
-        m \br
-        m \input,
-          type: \text
-      m \br
-      m \label,
-        'Квалитет'
-        m \br
-        m \input,
-          type: \text
-      m \br
+      m input, 'Ra' 'Шероховатость Ra'
+      m input, 'Q'  'Квалитет'
       m \label,
         m \input,
           type: \checkbox
@@ -55,20 +45,29 @@ exports <<<
           'Тип'
           m \br
           m \select,
-            for opt in <[Метрическая Дюймовая Трапецеидальная]>
-              m \option opt
+            onchange: !->
+              storage!tx = @selected-index
+            for let opt, i in <[Метрическая Дюймовая Трапецеидальная]>
+              m \option,
+                selected: (storage!tx ?= i) == i
+                opt
         m \br
-        m \label,
-          'Шаг резьбы'
-          m \br
-          m \input,
-            type: \text
-        m \br
-        m \label,
-          'Глубина резьбы'
-          m \br
-          m \input,
-            type: \text
+        m input, 'w' 'Шаг резьбы'
+        m input, 'x' 'Глубина резьбы'
 
 function storage
   state.spans[state.n-1]
+
+input =
+  view: ->
+    name = it.children[0]
+    text = it.children[1]
+    m \label,
+      text
+      m \br
+      m \input,
+        type: \text
+        value: storage![name]
+        onchange: !->
+          storage![name] = @value.trim!
+      m \br

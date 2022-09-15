@@ -16,38 +16,29 @@ exports <<<
             m \input,
               type: \radio
               name: \dir
-              checked: (state.dir ?= i) == i
+              checked: (state.global.dir ?= i) == i
               onclick: ->
-                state.dir = i
+                state.global.dir = i
             ' '
             dir
             ' '
-      m \label,
-        'Код детали'
-        m \br
-        m \input,
-          type: \text
+      m input, 'id' 'Код детали'
+      m input, 'matter', 'Материал'
+      m input, 'hard', 'Твёрдость'
+      m input, 'D', 'Диаметр заготовки'
+      m input, 'W', 'Длина заготовки'
+
+input =
+  view: ->
+    storage = state.global
+    name = it.children[0]
+    text = it.children[1]
+    m \label,
+      text
       m \br
-      m \label,
-        'Материал'
-        m \br
-        m \input,
-          type: \text
+      m \input,
+        type: \text
+        value: storage[name]
+        onchange: !->
+          storage[name] = @value.trim!
       m \br
-      m \label,
-        'Твёрдость'
-        m \br
-        m \input,
-          type: \text
-      m \br
-      m \label,
-        'Диаметр заготовки'
-        m \br
-        m \input,
-          type: \text
-      m \br
-      m \label,
-        'Длина заготовки'
-        m \br
-        m \input,
-          type: \text
