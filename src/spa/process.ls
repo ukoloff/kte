@@ -1,22 +1,19 @@
 require! <[
   ../parser
   ./state
-  ./draw
   ./m
 ]>
 
 module.exports = process
 
 !async function process files
-  state.name = null
-  state.errors = null
+  delete state.errors
   for file in files
     try
-      state.ktes = parser await file.text!
+      state.KTEs = parser await file.text!
       state.name = file.name
-      set-timeout draw
-      return
+      location.hash = \/kte/show
+      break
     catch e
-      state.errors ?= {}
-      state.errors[file.name] = e.message
+      state.{}errors[file.name] = e.message
   m.redraw!

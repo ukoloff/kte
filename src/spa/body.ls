@@ -1,13 +1,16 @@
 require! <[
   ./m
+  ./state
   ./button
-  ./notes
+  ./errors
+  ./footer
 ]>
 
 exports <<<
   view: ->
-    m.fragment do
+    return
       m \h1 document.title = 'Визуализация КТЭ'
       m \form,
         m button
-      m notes
+      m errors, state
+      m footer

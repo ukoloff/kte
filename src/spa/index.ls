@@ -1,10 +1,10 @@
 require! <[
   ./m
   ./head
-  ./body
-  ./state
+  ./routes
 ]>
 
-set-timeout state.home = !->
-  m.mount document.head, head
-  m.mount document.body, body
+m.mount document.head, head
+
+# m.route.prefix = \#
+m.route document.body, "/" routes

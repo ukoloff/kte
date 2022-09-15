@@ -5,5 +5,4 @@ require! <[
 
 exports <<<
   view: ->
-    m.fragment do
-      m \style css.css
+    m \style css.css
