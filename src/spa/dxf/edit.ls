@@ -1,7 +1,7 @@
 require! <[
   ../m
   ./left
-  ./right
+  ./pages
 ]>
 
 exports <<<
@@ -10,4 +10,4 @@ exports <<<
       m '',
         m left
       m '',
-        m right
+        m pages

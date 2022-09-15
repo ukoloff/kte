@@ -4,6 +4,8 @@ require! <[
 ]>
 
 exports <<<
+  k: \global
+  t: \Общие
   view: ->
     state.n ?= 1
     m \form,

@@ -4,6 +4,8 @@ require! <[
 ]>
 
 exports <<<
+  k: \text
+  t: \Текст
   view: ->
     m \form,
       m \textarea,

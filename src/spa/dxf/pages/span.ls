@@ -4,6 +4,8 @@ require! <[
 ]>
 
 exports <<<
+  k: \span
+  t: \Локально
   view: ->
     state.n ?= 1
     m \form,
