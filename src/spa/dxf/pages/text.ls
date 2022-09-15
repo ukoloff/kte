@@ -8,11 +8,17 @@ exports <<<
   t: \Текст
   view: ->
     m \form,
+      m \button,
+        type: \button
+        style:
+          width: \100%
+        'Сохранить файл'
+      m \p
       m \textarea,
         style:
           width: \100%
           box-sizing: \border-box
-        rows: 21
+        rows: 27
         readonly: true
         """
         PART12-8

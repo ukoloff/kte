@@ -13,9 +13,9 @@ exports <<<
   view: ->
     return
       m \.tabs,
-        m \span
         for let v in tabs
           return
+            m \span
             m \label,
               class: \active if (state.tab ?= v.k) == v.k
               m \input,
@@ -26,7 +26,6 @@ exports <<<
                   state.tab = v.k
               ' '
               v.t
-            m \span
 
       for v in tabs
         m '',
