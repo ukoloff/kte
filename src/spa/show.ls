@@ -33,7 +33,7 @@ exports <<<
 
     unless state.ktes
       # return m require \./empty
-      location.hash = '/kte'
+      location.replace '#!/kte'
       return
 
     for kte in state.ktes when kte._

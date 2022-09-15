@@ -12,7 +12,7 @@ module.exports = process
     try
       state.KTEs = parser await file.text!
       state.name = file.name
-      location.hash = \/kte/show
+      location.hash = \#!/kte/show
       break
     catch e
       state.{}errors[file.name] = e.message
