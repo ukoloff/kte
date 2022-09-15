@@ -7,6 +7,7 @@ exports <<<
   k: \text
   t: \Текст
   view: ->
+    X = state.global
     m \form,
       m \button,
         type: \button
@@ -21,21 +22,18 @@ exports <<<
         rows: 27
         readonly: true
         """
-        PART12-8
-        23
-        143
-        82
-        112
-        0
-        8
-        0,2.5,0,0,0,0,0,0,0,0,0,0,
-        0,2.5,0,0,0,0,0,0,0,0,2,0,
-        0,2.5,0,0,0,0,0,0,0,0,2,0,
-        0,2.5,0,0,0,0,0,0,0,0,1,0,
-        0,2.5,0,0,0,0,0,0,0,0,1,0,
-        0,2.5,0,0,0,0,0,0,0,0,1,0,
-        0,2.5,0,0,0,0,0,0,0,0,3,0,
-        0,2.5,0,0,0,0,0,0,0,0,0,0,
+        #{X.id or 6 * 7}
+        #{X.matter or \STEEL }
+        #{X.hard or 1.0}
+        #{X.D or 25.0}
+        #{X.W or 50.0}
+        #{X.dir or 0}
+        #{state.spans.length}
+        #{
+          for span in state.spans
+            "#{span.tread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
+          .join "\n"
+        }
         G0X20Z100
         G1X40Z50
         G1X40Z-10
@@ -46,3 +44,6 @@ exports <<<
         G1X5Z20
         G1X20Z100
         """
+
+function Z v
+  v ? ''

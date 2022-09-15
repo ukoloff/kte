@@ -20,11 +20,19 @@ exports <<<
         m pages
 
 function init
+  require! <[
+    ../../math/path/bounds
+    ../../math/rect/size
+  ]>
   for p in state.DXF
     if !path or path.length < p.length
       path = p
   delete state.DXF
   state.path = path
-  state.global = {}
+  sz = size bounds path
+  state.global =
+    id: state.name.replace /[.].*/, ''
+    D: Math.ceil 2 * sz[1]
+    W: Math.ceil sz[0]
   state.spans = [{} for i til path.length - 1]
   state.n = 1
