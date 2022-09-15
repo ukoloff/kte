@@ -3,11 +3,11 @@ require! <[
   ./state
   ./pages/tabs
   ./pages/span
-  ./pages/global
+  ./pages/text
 ]>
 
 exports <<<
   view: ->
     return
       m tabs
-      m global
+      m text
