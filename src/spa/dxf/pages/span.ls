@@ -5,7 +5,7 @@ require! <[
 
 exports <<<
   view: ->
-    state.n ?= 108
+    state.n ?= 1
     m \form,
       m \table,
         m \tr,

@@ -1,9 +1,12 @@
 require! <[
   ../m
   ./state
+  ./pages/tabs
   ./pages/span
 ]>
 
 exports <<<
   view: ->
-    m span
+    return
+      m tabs
+      m span

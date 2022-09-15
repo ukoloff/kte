@@ -12,3 +12,24 @@ body > div
 
   &:last-child
     right: 0
+
+.tabs
+  border-bottom: 1px solid black
+  white-space: nowrap
+
+  & > label
+    display: inline-block
+    position: relative
+    top: 1px
+    b-radius = 1ex
+    border-radius: b-radius b-radius 0 0
+    border: 1px solid black
+    padding: 1ex
+
+    &.active
+      padding-top: 1.618ex
+      border-bottom: 1px solid white
+      font-weight: bold
+
+  & > span
+    padding: 1ex
