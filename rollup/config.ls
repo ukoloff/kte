@@ -6,6 +6,7 @@ require! <[
   rollup-plugin-terser
   ./livescript
   ./html
+  ./open
 ]>
 
 module.exports = config
@@ -21,6 +22,7 @@ function config args
     format: \iife
     sourcemap: true
     plugins:
+      open!
       !args.watch and rollup-plugin-terser.terser do
         format:
           max_line_len: 80
