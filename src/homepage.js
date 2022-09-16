@@ -1,1 +1,1 @@
-export {homepage} from '../package'
+export {homepage as _} from '../package'
