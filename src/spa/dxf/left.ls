@@ -22,10 +22,20 @@ exports <<<
       xmlns: "http://www.w3.org/2000/svg"
       view-box: viewbox B
       m \g, # For Pan&Zoom
-        m \g.ktes,
-          transform: "scale(1, -1)",
+        m \g.DXF,
+          m \defs,
+            for ,i in state.path when i
+              m \path,
+                id: ":#{i}"
+                d: svg state.path.slice i-1, i+1
           if state.tab == \span
-            m \path.kte.kte-z,
-              d: svg state.path.slice state.n-1, state.n+1
-          m \path.kte.kte-1,
-            d: svg state.path
+            m \use,
+              href: "#:#{state.n}"
+              class: \active
+          for let ,i in state.path when i
+            m \use,
+              href: "#:#{i}"
+              onclick: !->
+                state.n = i
+                state.tab = 'span'
+
