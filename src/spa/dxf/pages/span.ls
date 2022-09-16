@@ -63,7 +63,7 @@ exports <<<
           m \select,
             onchange: !->
               storage!tx = @selected-index
-            for let opt, i in <[Метрическая Дюймовая Трапецеидальная]>
+            for opt, i in <[Метрическая Дюймовая Трапецеидальная]>
               m \option,
                 selected: (storage!tx ?= i) == i
                 opt

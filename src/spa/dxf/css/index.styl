@@ -34,4 +34,16 @@ body > div
   & > span
     padding: 1ex
 
+sup.popover
+  position: relative
+
+  > div
+    display: none
+    position: absolute
+    right: 0
+    top: 0
+
+  &:hover > div
+    display: block
+
 @require dxf

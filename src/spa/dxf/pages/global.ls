@@ -21,7 +21,10 @@ exports <<<
                 state.global.dir = i
             ' '
             dir
-            ' '
+            unless i
+              ' '
+            else
+              m popover
       m input, 'id' 'Код детали'
       m input, 'matter', 'Материал'
       m input, 'hard', 'Твёрдость'
@@ -42,3 +45,17 @@ input =
         onchange: !->
           storage[name] = @value.trim!
       m \br
+
+popover =
+  view: ->
+    m \sup.popover,
+      \*
+      m '',
+        m \select,
+          onchange: !->
+            state.mirror = @selected-index
+          for opt, i in ['Отражением', 'Установкой флага']
+            m \option,
+              selected: (state.mirror ?= i) == i
+              opt
+
