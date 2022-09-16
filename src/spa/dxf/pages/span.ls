@@ -51,7 +51,7 @@ exports <<<
           type: \checkbox
           checked: storage!thread
           onclick: !->
-            storage!thread = @checked
+            storage!thread = Number @checked
         ' Резьба'
       m '',
         class: \hidden unless storage!thread

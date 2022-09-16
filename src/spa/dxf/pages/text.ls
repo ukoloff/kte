@@ -38,7 +38,7 @@ exports <<<
         #{state.spans.length}
         #{
           for span in state.spans
-            "#{span.tread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
+            "#{span.thread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
           .join "\n"
         }
         G0X20Z100
