@@ -54,7 +54,7 @@ popover =
         m \select,
           onchange: !->
             state.mirror = @selected-index
-          for opt, i in ['Отражением', 'Установкой флага']
+          for opt, i in ['Отражением <=>', 'Установкой флага 0|1']
             m \option,
               selected: (state.mirror ?= i) == i
               opt
