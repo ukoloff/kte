@@ -25,22 +25,23 @@ exports <<<
               ' '
             else
               m popover
-      m input, 'id' 'Код детали'
-      m input, 'matter', 'Материал'
-      m input, 'hard', 'Твёрдость'
-      m input, 'D', 'Диаметр заготовки'
-      m input, 'W', 'Длина заготовки'
+      m input, \id      'Код детали'
+      m input, \matter  'Материал'
+      m input, \hard    'Твёрдость'         true
+      m input, \D       'Диаметр заготовки' true
+      m input, \W       'Длина заготовки'   true
 
 input =
   view: ->
     storage = state.global
-    name = it.children[0]
-    text = it.children[1]
+    [name, text, num] = it.children
     m \label,
       text
       m \br
       m \input,
-        type: \text
+        type: if num then \number else \text
+        step: \any
+        min: 0
         value: storage[name]
         onchange: !->
           storage[name] = @value.trim!

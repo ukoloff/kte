@@ -44,8 +44,8 @@ exports <<<
               onclick: !->
                 state.n = state.spans.length
               '>>|'
-      m input, 'Ra' 'Шероховатость Ra'
-      m input, 'Q'  'Квалитет'
+      m input, \Ra 'Шероховатость Ra'
+      m input, \Q  'Квалитет'         "\\p{Letter}?\\d+"
       m \label,
         m \input,
           type: \checkbox
@@ -68,21 +68,21 @@ exports <<<
                 selected: (storage!tx ?= i) == i
                 opt
         m \br
-        m input, 'w' 'Шаг резьбы'
-        m input, 'x' 'Глубина резьбы'
+        m input, \w 'Шаг резьбы'
+        m input, \x 'Глубина резьбы'
 
 function storage
   state.spans[state.n-1]
 
 input =
   view: ->
-    name = it.children[0]
-    text = it.children[1]
+    [name, text, pattern] = it.children
     m \label,
       text
       m \br
       m \input,
-        type: \number           # TODO: except Q
+        type: if pattern then \text else \number
+        pattern: pattern
         step: \any
         min: 0
         value: storage![name]
