@@ -8,42 +8,7 @@ exports <<<
   t: \Локально
   view: ->
     m \form,
-      m \table,
-        m \tr,
-          style:
-            white-space: \nowrap
-          m \td,
-            m \button,
-              type: \button
-              disabled: state.n == 1
-              onclick: !->
-                state.n = 1
-              '|<<'
-          m \td,
-            m \button,
-              type: \button
-              onclick: !->
-                unless --state.n
-                  state.n = state.spans.length
-              '<<'
-          m \td,
-            width: \100%
-            align: \center
-            "#{state.n} / #{state.spans.length}"
-          m \td,
-            m \button,
-              type: \button
-              onclick: !->
-                state.n %= state.spans.length
-                state.n++
-              '>>'
-          m \td,
-            m \button,
-              type: \button
-              disabled: state.n == state.spans.length
-              onclick: !->
-                state.n = state.spans.length
-              '>>|'
+      m nav
       m input, \Ra 'Шероховатость Ra'
       m input, \Q  'Квалитет'         "\\p{Letter}?\\d+"
       m \label,
@@ -90,3 +55,42 @@ input =
           storage![name] = @value.trim!
       m \span
       m \br
+
+nav =
+  view: ->
+    m \table,
+      m \tr,
+        style:
+          white-space: \nowrap
+        m \td,
+          m \button,
+            type: \button
+            disabled: state.n == 1
+            onclick: !->
+              state.n = 1
+            '|<<'
+        m \td,
+          m \button,
+            type: \button
+            onclick: !->
+              unless --state.n
+                state.n = state.spans.length
+            '<<'
+        m \td,
+          width: \100%
+          align: \center
+          "#{state.n} / #{state.spans.length}"
+        m \td,
+          m \button,
+            type: \button
+            onclick: !->
+              state.n %= state.spans.length
+              state.n++
+            '>>'
+        m \td,
+          m \button,
+            type: \button
+            disabled: state.n == state.spans.length
+            onclick: !->
+              state.n = state.spans.length
+            '>>|'
