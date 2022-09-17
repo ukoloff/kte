@@ -55,8 +55,12 @@ function G-code
   R = bounds state.path
   g o2 state.path, translation mul R[0], -1
 
-function Z v
-  v ? ''
+# Format as CSV
+function Z v=''
+  return if /^\s|\s$|"|,/.test v
+    "\"#{v.replace /"/g, '""'}\""
+  else
+    v
 
 # https://stackoverflow.com/a/18197511
 !function download filename, text
