@@ -41,19 +41,26 @@ exports <<<
             "#{span.thread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
           .join "\n"
         }
-        G0X20Z100
-        G1X40Z50
-        G1X40Z-10
-        G1X20Z-10
-        G1X15Z0
-        G1X10Z-10
-        G1X5Z-10
-        G1X5Z20
-        G1X20Z100
+        #{G-code!}
         """
 
-function Z v
-  v ? ''
+function G-code
+  require! <[
+    ../../../math/path/bounds
+    ../../../math/point/mul
+    ../../../math/o2/translation
+    ../../../math/path/o2
+    ../../../math/path/g
+  ]>
+  R = bounds state.path
+  g o2 state.path, translation mul R[0], -1
+
+# Format as CSV
+function Z v=''
+  return if /^\s|\s$|"|,/.test v
+    "\"#{v.replace /"/g, '""'}\""
+  else
+    v
 
 # https://stackoverflow.com/a/18197511
 !function download filename, text
