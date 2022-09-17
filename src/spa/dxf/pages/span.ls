@@ -82,8 +82,11 @@ input =
       text
       m \br
       m \input,
-        type: \text
+        type: \number           # TODO: except Q
+        step: \any
+        min: 0
         value: storage![name]
         onchange: !->
           storage![name] = @value.trim!
+      m \span
       m \br

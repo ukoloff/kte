@@ -44,6 +44,7 @@ input =
         value: storage[name]
         onchange: !->
           storage[name] = @value.trim!
+      m \span
       m \br
 
 popover =
