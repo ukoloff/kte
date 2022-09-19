@@ -18,7 +18,7 @@ exports <<<
       m \li,
         "Ось #{state.got.$dir}=#{round state.got.axis}"
       m \li,
-        "Размеры: #{state.got.size.map round .join 'x'}"
+        "Размеры: #{state.got.size.map round .join 'x'} (\u2300#{round 2 * state.got.size[1]})"
       m \li,
         'Перейдите на вкладку '
         m \a,

@@ -6,6 +6,7 @@ function detect paths
   require! <[
     ../../math/point/len
     ../../math/rect/size
+    ../../math/rect/add
     ../../math/path/bounds
     ../../math/path/close
     ../../math/path/area
@@ -59,7 +60,7 @@ function detect paths
 
   # return
   path: path
-  size: size R
+  size: size add R, [R[0][0], 0]
   paths: path-count
   axis: axis-pos
   dir: axis-dir

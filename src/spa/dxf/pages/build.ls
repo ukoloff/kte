@@ -6,12 +6,10 @@ module.exports = build
 function build
   require! <[
     ../state
-    ../../../math/path/bounds
     ../../../math/point/mul
     ../../../math/o2/translation
     ../../../math/o2/mirror
     ../../../math/o2/compose
-    ../../../math/rect/size
     ../../../math/path/o2
     ../../../math/path/g
     ../../../math/path/reverse
@@ -19,8 +17,7 @@ function build
   X = state.global
   dir = X.dir
   path = state.path
-  R = bounds path
-  sz = size R
+  sz = state.got.size
   if dir and state.mirror
     dir = Number !dir
     path = o2 do
