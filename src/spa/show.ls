@@ -12,11 +12,9 @@ dragdrop exports, process
 exports <<<
   view: ->
     require! <[
+      ./axis
       ../math/path/svg
-      ../math/rect/union
-      ../math/rect/expand
       ../math/rect/viewbox
-      ../math/path/bounds
     ]>
 
     if state.KTEs
@@ -32,19 +30,14 @@ exports <<<
             m.redraw!
 
     unless state.ktes
-      # return m require \./empty
       location.replace '#!/kte'
       return
 
-    for kte in state.ktes when kte._
-      R = union R, bounds kte._
-    RX = expand R, 1.01
-    R = union R, bounds axis = [[RX[0][0], 0, 0], [RX[1][0], 0, 0]]
-    R = expand R, 1.01
+    ax = axis [kte._ for kte in state.ktes when kte._]
 
     m \svg,
       xmlns: "http://www.w3.org/2000/svg"
-      view-box: viewbox R
+      view-box: viewbox ax.bounds
       oncreate: !->
         svg-pan-zoom it.dom,
           control-icons-enabled: true
@@ -57,7 +50,7 @@ exports <<<
               d: svg kte._
               m \title format-attrs kte.$
           m \path.axis,
-            d: svg axis
+            d: svg ax
             m \title 'Ось вращения'
 
 function format-attrs dict
