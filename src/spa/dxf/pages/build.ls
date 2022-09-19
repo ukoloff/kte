@@ -9,27 +9,40 @@ function build
     ../../../math/path/bounds
     ../../../math/point/mul
     ../../../math/o2/translation
+    ../../../math/o2/mirror
+    ../../../math/o2/compose
+    ../../../math/rect/size
     ../../../math/path/o2
     ../../../math/path/g
+    ../../../math/path/reverse
   ]>
-  R = bounds state.path
-  G-code = g o2 state.path, translation mul R[0], -1
-
   X = state.global
+  dir = X.dir
+  path = state.path
+  R = bounds path
+  sz = size R
+  if dir and state.mirror
+    dir = Number !dir
+    path = o2 do
+      reverse path
+      compose do
+        translation [sz[0], 0]
+        mirror!
+
   """
   #{X.id or 6 * 7}
   #{X.matter or \STEEL }
   #{X.hard or 1.0}
-  #{X.D or 25.0}
-  #{X.W or 50.0}
-  #{X.dir or 0}
+  #{X.D or Math.ceil 2 * sz[1]}
+  #{X.W or Math.ceil sz[0]}
+  #{dir or 0}
   #{state.spans.length}
   #{
     for span in state.spans
       "#{span.thread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
     .join "\n"
   }
-  #{G-code}
+  #{g path}
   """
 
 # Format as CSV
