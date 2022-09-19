@@ -23,13 +23,22 @@ function init
   require! <[
     ../../math/path/bounds
     ../../math/rect/size
-  ]>
+    ../../math/path/o2
+    ../../math/path/area
+    ../../math/path/reverse
+    ../../math/o2/translation
+     ../../math/point/negate
+ ]>
   for p in state.DXF
     if !path or path.length < p.length
       path = p
   delete state.DXF
+  R = bounds path
+  path = o2 path, translation negate R[0]
+  if 0 > area path
+    path = reverse path
   state.path = path
-  sz = size bounds path
+  sz = size R
   state.global =
     id: state.name.replace /[.].*/, ''
     D: Math.ceil 2 * sz[1]
