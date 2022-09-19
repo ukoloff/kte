@@ -9,18 +9,16 @@ exports <<<
       return
 
     require! <[
-      ../../math/rect/expand
+      ../axis
       ../../math/rect/viewbox
-      ../../math/path/bounds
       ../../math/path/svg
     ]>
 
-    B = bounds state.path
-    B = expand B, 1.01
+    ax = axis [state.path]
 
     m \svg,
       xmlns: "http://www.w3.org/2000/svg"
-      view-box: viewbox B
+      view-box: viewbox ax.bounds
       m \g, # For Pan&Zoom
         m \g.DXF,
           m \defs,
@@ -38,4 +36,5 @@ exports <<<
               onclick: !->
                 state.n = i
                 state.tab = 'span'
-
+          m \path.axis,
+            d: svg ax

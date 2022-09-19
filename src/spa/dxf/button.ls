@@ -24,14 +24,18 @@ exports <<<
         'Загрузить файл геометрии!'
       ' ...или перетащите DXF-файл в это окно...'
 
-async function process files
-  require! <[ ../../parser/dxf ]>
+!async function process files
+  require! <[
+    ../../parser/dxf
+    ../../parser/dxf/axis
+  ]>
 
   delete state.errors
   for file in files
     try
-      state.DXF = dxf await file.text!
-      state.name = file.name
+      state <<<
+        $: axis dxf await file.text!
+        name: file.name
       location.hash = \#!/dxf/edit
       break
     catch e

@@ -4,6 +4,7 @@ require! <[
 ]>
 
 tabs =
+  require \./info
   require \./global
   require \./span
   require \./text
