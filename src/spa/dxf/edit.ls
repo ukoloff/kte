@@ -22,6 +22,7 @@ exports <<<
 function init
   got = state.$
   delete state.$
+  state.got = got
   state.path = got.path
   sz = got.size
   state.global =
