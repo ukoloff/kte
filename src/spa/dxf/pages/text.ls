@@ -6,7 +6,7 @@ require! <[
 
 exports <<<
   k: \text
-  t: \Текст
+  t: \Результат
   view: ->
     me = @
     m \form,
