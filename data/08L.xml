@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<recognition_result>
+    <kte id="1" parent_id="0" X="0" Z="0" A="0" B="0" h="0" Rmin="1.79769e+308" b="0" H1="25" type="semiopened" side="left" pos="bottom">
+        <contour>G0X0.000000Z0.000000L0&#x0A;G1X0.000000Z0.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="2" parent_id="0" X="0" Z="100" A="0" B="0" h="0" Rmin="1.79769e+308" b="0" H1="25" type="semiopened" side="right" pos="bottom">
+        <contour>G0X0.000000Z100.000000L0&#x0A;G1X0.000000Z100.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="3" parent_id="0" X="1.68662e-42" Z="100" A="3.37324e-42" B="3.37324e-42" h="0" Rmin="1.79769e+308" b="0" H1="25" type="opened" side="right" pos="end">
+        <contour>G0X0.000000Z100.000000L0&#x0A;G1X0.000000Z100.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="4" parent_id="0" X="0" Z="100" A="0" B="50" h="25" Rmin="5" b="85" H1="0" type="semiopened" side="right" pos="top">
+        <contour>G0X0.000000Z100.000000L0&#x0A;G1X15.000000Z91.340000L10&#x0A;G1X15.000000Z65.000000L9&#x0A;G1X15.000000Z45.000000L0&#x0A;G1X15.000000Z25.000000L5&#x0A;G2X20.000000Z20.000000L4I5.000000K0.000000&#x0A;G3X25.000000Z15.000000L3I-0.000000K-5.000000&#x0A;</contour>
+    </kte>
+    <kte id="5" parent_id="4" X="15" Z="65" A="20" B="30" h="5" Rmin="0" b="20" H1="10" subtype="notch_x" type="closed" side="right" pos="top">
+        <contour>G0X15.000000Z65.000000L0&#x0A;G1X10.000000Z65.000000L8&#x0A;G1X10.000000Z45.000000L7&#x0A;G1X15.000000Z45.000000L6&#x0A;</contour>
+    </kte>
+    <kte id="6" parent_id="0" X="25" Z="0" A="50" B="50" h="0" Rmin="1.79769e+308" b="15" H1="0" type="opened" side="left" pos="top">
+        <contour>G0X25.000000Z0.000000L0&#x0A;G1X25.000000Z15.000000L2&#x0A;</contour>
+    </kte>
+    <kte id="7" parent_id="0" X="25" Z="0" A="50" B="50" h="0" Rmin="1.79769e+308" b="0" H1="0" type="semiopened" side="left" pos="top">
+        <contour>G0X25.000000Z0.000000L0&#x0A;G1X25.000000Z0.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="8" parent_id="0" X="25" Z="0" A="0" B="50" h="25" Rmin="1.79769e+308" b="0" H1="0" type="opened" side="left" pos="end">
+        <contour>G0X25.000000Z0.000000L0&#x0A;G1X0.000000Z0.000000L1&#x0A;</contour>
+    </kte>
+</recognition_result>
