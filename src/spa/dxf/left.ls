@@ -26,6 +26,7 @@ exports <<<
               m \path,
                 id: ":#{i}"
                 d: svg state.path.slice i-1, i+1
+                "vector-effect": \non-scaling-stroke  # For FireFox
           if state.tab == \span
             m \use,
               href: "#:#{state.n}"

@@ -18,6 +18,7 @@ function build
   dir = X.dir
   path = state.path
   sz = state.got.size
+  spans = state.spans
   if dir and state.mirror
     dir = Number !dir
     path = o2 do
@@ -25,7 +26,8 @@ function build
       compose do
         translation [sz[0], 0]
         mirror!
-
+    spans .= slice!
+    spans.reverse()
   """
   #{X.id or 6 * 7}
   #{X.matter or \STEEL }
@@ -35,7 +37,7 @@ function build
   #{dir or 0}
   #{state.spans.length}
   #{
-    for span in state.spans
+    for span in spans
       "#{span.thread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
     .join "\n"
   }

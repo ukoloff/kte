@@ -5,7 +5,7 @@ require! <[
 
 exports <<<
   k: \global
-  t: \Общие
+  t: \Параметры
   view: ->
     state.n ?= 1
     m \form,

@@ -16,7 +16,7 @@ exports <<<
         m \li,
           "Найдено осей: #{state.got.axles}"
       m \li,
-        "Ось #{state.got.$dir}=#{round state.got.axis}"
+        "Используется ось #{state.got.$dir}=#{round state.got.axis}"
       m \li,
         "Размеры: #{state.got.size.map round .join 'x'} (\u2300#{round 2 * state.got.size[1]})"
       m \li,
@@ -26,8 +26,8 @@ exports <<<
           onclick: ->
             state.tab = \text
             false
-          'Текст'
-        ' для просмотра / сохранения результата'
+          'Результат'
+        ' для просмотра / сохранения входного файла для распознавания КТЭ'
 
 function round x
   Math.round(x * 100) / 100

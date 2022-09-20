@@ -31,3 +31,4 @@ function init
     W: Math.ceil sz[0]
   state.spans = [{} for i til state.path.length - 1]
   state.n = 1
+  state.tab = \info
