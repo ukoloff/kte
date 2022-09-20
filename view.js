@@ -1399,7 +1399,7 @@ if(Jo.path)return t=Hn(),e=Qn(),n=Kn(),o=t([Jo.path]),Qo("svg",{
 xmlns:"http://www.w3.org/2000/svg",viewBox:e(o.bounds)
 },Qo("g",Qo("g.DXF",Qo("defs",function(){var t,e,o=[]
 for(t=0,e=Jo.path.length;t<e;++t)(r=t)&&o.push(Qo("path",{id:":"+r,
-d:n(Jo.path.slice(r-1,r+1))}))
+d:n(Jo.path.slice(r-1,r+1)),"vector-effect":"non-scaling-stroke"}))
 return o}()),"span"===Jo.tab?Qo("use",{href:"#:"+Jo.n,class:"active"
 }):void 0,function(){var t,e,n=[]
 for(t=0,e=Jo.path.length;t<e;++t)(r=t)&&n.push(o.call(this,r))
@@ -1409,11 +1409,12 @@ Jo.n=t,Jo.tab="span"}})}}.call(this),Qo("path.axis",{d:n(o)}))))}
 var nr={},or={}
 function rr(t){return Math.round(100*t)/100}
 or.k="info",or.t="Сводка",or.view=function(){var t,e
-return(t=r.exports)("ul",t("li","Файл: "+(e=Vo).name),1!==e.got.paths?t("li","Найдено контуров: "+e.got.paths):void 0,1!==e.got.axles?t("li","Найдено осей: "+e.got.axles):void 0,t("li","Ось "+e.got.$dir+"="+rr(e.got.axis)),t("li","Размеры: "+e.got.size.map(rr).join("x")+" (⌀"+rr(2*e.got.size[1])+")"),t("li","Перейдите на вкладку ",t("a",{
+return(t=r.exports)("ul",t("li","Файл: "+(e=Vo).name),1!==e.got.paths?t("li","Найдено контуров: "+e.got.paths):void 0,1!==e.got.axles?t("li","Найдено осей: "+e.got.axles):void 0,t("li","Используется ось "+e.got.$dir+"="+rr(e.got.axis)),t("li","Размеры: "+e.got.size.map(rr).join("x")+" (⌀"+rr(2*e.got.size[1])+")"),t("li","Перейдите на вкладку ",t("a",{
 href:"#",onclick:function(){return e.tab="text",!1}
-},"Текст")," для просмотра / сохранения результата"))}
+},"Результат")," для просмотра / сохранения входного файла для распознавания КТЭ"))
+}
 var ir,ar,sr,lr,ur={}
-ir=r.exports,ar=Vo,ur.k="global",ur.t="Общие",ur.view=function(){
+ir=r.exports,ar=Vo,ur.k="global",ur.t="Параметры",ur.view=function(){
 return null==ar.n&&(ar.n=1),
 ir("form",ir("fieldset",ir("legend","Начало обработки"),function(){
 var t,e,n,o=[]
@@ -1469,22 +1470,22 @@ f&&0!==f[2]&&(c=t({a:f,b:f[2],z:l
 }),c=e(c,f),r+="I"+n(c[1])+"K"+n(c[0])),r+="\n",f=l
 var h
 return r},kr}var zr,Ar,Nr,Pr,Tr,Zr,Or,Ir,Dr,Lr,Br,jr,Rr,qr=function(){
-var t,e,n,o,r,i,a,s,l,u,c,f
+var t,e,n,o,r,i,a,s,l,u,c,f,h
 t=Vo,Ge(),e=$o(),n=function(){return yr||(yr=1,br=function(t){var e,n,o
 return e=Cr(),t=Number(!!t),n=e(),(o=n[t])[t]=-o[t],n}),br}(),o=function(){
 return xr||(xr=1,wr=function(){var t,e,n,o,r,i,a
 for(t=Cr(),e=Xo(),n=qt,o=t(),r=arguments.length-1;r>=0;--r)if(i=arguments[r])for(a=0;a<3;++a)o[a]=e(o[a],i)
 for(r=0;r<2;++r)o[r]=n(o[r],o[2])
 return o}),wr
-}(),r=Go(),i=Mr(),a=Uo(),l=(s=t.global).dir,u=t.path,c=t.got.size,l&&t.mirror&&(l=Number(!l),
-u=r(a(u),o(e([c[0],0]),n())))
+}(),r=Go(),i=Mr(),a=Uo(),l=(s=t.global).dir,u=t.path,c=t.got.size,f=t.spans,
+l&&t.mirror&&(l=Number(!l),u=r(a(u),o(e([c[0],0]),n())),(f=f.slice()).reverse())
 return(s.id||42)+"\n"+(s.matter||"STEEL")+"\n"+(s.hard||1)+"\n"+(s.D||Math.ceil(2*c[1]))+"\n"+(s.W||Math.ceil(c[0]))+"\n"+(l||0)+"\n"+t.spans.length+"\n"+function(){
-var e,n,o,r=[]
-for(e=0,o=(n=t.spans).length;e<o;++e)f=n[e],r.push((f.thread||0)+","+_r(f.Ra)+",,,,,,,"+_r(f.x)+","+_r(f.tx)+","+_r(f.w)+","+_r(f.Q))
-return r}().join("\n")+"\n"+i(u)}
+var t,e,n,o=[]
+for(t=0,n=(e=f).length;t<n;++t)h=e[t],o.push((h.thread||0)+","+_r(h.Ra)+",,,,,,,"+_r(h.x)+","+_r(h.tx)+","+_r(h.w)+","+_r(h.Q))
+return o}().join("\n")+"\n"+i(u)}
 function _r(t){
 return null==t&&(t=""),/^\s|\s$|"|,/.test(t)?'"'+t.replace(/"/g,'""')+'"':t}
-zr=r.exports,Ar=Vo,Nr=qr,Sr.k="text",Sr.t="Текст",Sr.view=function(){var t
+zr=r.exports,Ar=Vo,Nr=qr,Sr.k="text",Sr.t="Результат",Sr.view=function(){var t
 return t=this,zr("form",zr("button",{type:"button",style:{width:"100%"},
 onclick:function(){!function(t,e){var n,o
 ;(n=document.createElement("a")).setAttribute("href","data:text/plain;charset=utf-8,"+encodeURIComponent(e)),
@@ -1509,7 +1510,7 @@ if(Ir.$&&function(){var t,e,n,o,r
 for(t=Ir.$,delete Ir.$,Ir.got=t,Ir.path=t.path,e=t.size,Ir.global={
 id:Ir.name.replace(/[.].*/,""),D:Math.ceil(2*e[1]),W:Math.ceil(e[0])
 },n=[],o=0,r=Ir.path.length-1;o<r;++o)n.push({})
-Ir.spans=n,Ir.n=1
+Ir.spans=n,Ir.n=1,Ir.tab="info"
 }(),Ir.path)return document.title="Ввод технологических параметров: "+Ir.name,
 [Or("",Or(Dr)),Or("",Or(Lr))]
 location.replace("#!/dxf")},function(t){var e,n,o,r,i
