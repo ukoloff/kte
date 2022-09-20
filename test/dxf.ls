@@ -115,4 +115,7 @@ function discover
     if f.is-file! and /[.]dxf$/i.test f.name
       files.push path.join root, f.name
   dir.close-sync!
+  # Warm the cache
+  for f in files
+    fs.read-file f, !->
   files
