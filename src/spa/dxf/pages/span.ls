@@ -27,14 +27,14 @@ exports <<<
           m \br
           m \select,
             onchange: !->
-              storage!tx = @selected-index
+              storage!t$ = @selected-index
             for opt, i in <[Метрическая Дюймовая Трапецеидальная]>
               m \option,
-                selected: (storage!tx ?= i) == i
+                selected: (storage!t$ ?= i) == i
                 opt
         m \br
-        m input, \w 'Шаг резьбы'
-        m input, \x 'Глубина резьбы'
+        m input, \pitch 'Шаг резьбы'
+        m input, \depth 'Глубина резьбы'
 
 function storage
   state.spans[state.n-1]

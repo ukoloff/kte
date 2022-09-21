@@ -23,39 +23,24 @@ function parse-job txt
     unless /G\s*\d/i.test txt[line = 7 + N + ..]
       throw SyntaxError "No geometry @line[#{line+1}]!"
 
-  require! <[ ../g ]>
+  require! <[
+    ./csv
+    ../g
+  ]>
 
-  G-code =
+  path =
     txt.slice 7 + N, 8 + 2 * N
     .join \\n
     |> g
 
-# Parse CSV line
-function csv s
-  var L
+  fields = "thread,Ra,,,,,,,depth,t$,pitch,:Q".split \,
 
-  !function test rexp
-    Z = rexp.exec s
-    L += s.substring 0, Z.index
-    s := s.substring Z.index + Z[0].length
-    Z[0].trim!
-
-  while s.length
-    unless mode
-      L = ''
-      s .= trim!
-    if mode < 2
-      if \" == test /"|\s*,|\s*$/
-        mode = 2
-        continue
-    else
-      switch test /""?|$/
-      | \" =>
-        mode = 1
-        continue
-      | \"" =>
-        L += \"
-        continue
-    mode = 0
-    result.push L
-  result
+  spans = for til N
+    line = csv txt[7 + ..]
+    span = {}
+    for f, i in fields when f and line[i]
+      span[f.replace /^:/, ''] = if /^:/.test f
+        line[i]
+      else
+        Number line[i]
+    span
