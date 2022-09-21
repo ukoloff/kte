@@ -54,6 +54,25 @@ exports <<<
             m \title 'Ось вращения'
 
 function format-attrs dict
-  for k, v of dict
-    "#{k}: #{v}"
+  list = [[k.to-lower-case!, k, v] for k, v of dict]
+  list.sort (a, b)->
+    if a[0] > b[0]
+      1
+    else
+      -1
+  A = []
+  M = []
+  Z = []
+  for item in list
+    (if /id$/.test item[0]
+      A
+    else if /^\s*[-+]?[.\d]/.test item[2]
+      Z
+    else
+      M
+    ).push item
+  A.push ...M
+  A.push ...Z
+  for item in A
+    "#{item[1]}: #{item[2]}"
   .join "\n"
