@@ -11,7 +11,7 @@ context "Job back parser" !->
       job fs.read-file-sync __filename, \utf-8
     .to.throw SyntaxError
 
-  specify.only "works" !->
+  specify "works" !->
     job fs.read-file-sync do
       path.join __filename, "../job/08.txt"
       \utf-8

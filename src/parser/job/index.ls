@@ -1,7 +1,6 @@
 module.exports = parse-job
 
 function parse-job txt
-  debugger
   txt = txt
   .split /\r?\n|\r/
   .map (.trim!)
@@ -30,3 +29,33 @@ function parse-job txt
     txt.slice 7 + N, 8 + 2 * N
     .join \\n
     |> g
+
+# Parse CSV line
+function csv s
+  var L
+
+  !function test rexp
+    Z = rexp.exec s
+    L += s.substring 0, Z.index
+    s := s.substring Z.index + Z[0].length
+    Z[0].trim!
+
+  while s.length
+    unless mode
+      L = ''
+      s .= trim!
+    if mode < 2
+      if \" == test /"|\s*,|\s*$/
+        mode = 2
+        continue
+    else
+      switch test /""?|$/
+      | \" =>
+        mode = 1
+        continue
+      | \"" =>
+        L += \"
+        continue
+    mode = 0
+    result.push L
+  result
