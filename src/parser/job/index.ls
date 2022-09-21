@@ -44,3 +44,14 @@ function parse-job txt
       else
         Number line[i]
     span
+
+  params = ":id,:matter,hard,D,W,dir".split \,
+  global =
+    path: path
+  for p, i in params when txt[i]
+    global[p.replace /^:/, ''] = if /^:/.test p
+      txt[i]
+    else
+      Number txt[i]
+  # return
+  {global, spans}
