@@ -35,7 +35,7 @@ function build
   #{X.D or Math.ceil 2 * sz[1]}
   #{X.W or Math.ceil sz[0]}
   #{dir or 0}
-  #{state.spans.length}
+  #{spans.length}
   #{
     for span in spans
       "#{
