@@ -33,7 +33,7 @@ function parse-job txt
     .join \\n
     |> g
 
-  fields = "thread,Ra,,,,,,,depth,t$,pitch,:Q".split \,
+  fields = "thread,Ra,,,,,tstart,xdiameter,depth,t$,pitch,:Q".split \,
 
   spans = for til N
     line = csv txt[7 + ..]

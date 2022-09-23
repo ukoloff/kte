@@ -35,6 +35,8 @@ exports <<<
         m \br
         m input, \pitch 'Шаг резьбы'
         m input, \depth 'Глубина резьбы'
+        m input, \xdiameter 'Внешний диаметр (для внутренней резьбы)'
+        m input, \tstart 'Начало резьбы'
 
 function storage
   state.spans[state.n-1]

@@ -38,7 +38,15 @@ function build
   #{state.spans.length}
   #{
     for span in spans
-      "#{span.thread or 0},#{Z span.Ra},,,,,,,#{Z span.depth},#{Z span.t$},#{Z span.pitch},#{Z span.Q}"
+      "#{
+        span.thread or 0},#{
+        Z span.Ra},,,,,#{
+        Z span.tstart},#{
+        Z span.xdiameter},#{
+        Z span.depth},#{
+        Z span.t$},#{
+        Z span.pitch},#{
+        Z span.Q}"
     .join "\n"
   }
   #{g path}
