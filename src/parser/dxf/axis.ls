@@ -5,8 +5,6 @@ module.exports = detect
 function detect paths
   require! <[
     ../../math/point/len
-    ../../math/rect/size
-    ../../math/rect/add
     ../../math/path/bounds
     ../../math/path/close
     ../../math/path/area
@@ -15,6 +13,7 @@ function detect paths
     ../../math/o2/cw90
     ../../math/o2/cw180
     ../../math/o2/translation
+    ../../math/rect/size
   ]>
   var path-key, axis-key
   path-count = paths.length
@@ -53,14 +52,15 @@ function detect paths
   if 0 > area path
     path = reverse path
   R = bounds path
+  delta = -R[0][0]
   if R[0][1] + R[1][1] < 0
     path = o2 path, cw180!
-    R = bounds path
-  path = o2 path, translation [-R[0][0], 0]
+    delta = R[1][0]
+  path = o2 path, translation [delta, 0]
 
   # return
   path: path
-  size: size add R, [R[0][0], 0]
+  # size: size add R, [R[0][0], 0]
   paths: path-count
   axis: axis-pos
   dir: axis-dir

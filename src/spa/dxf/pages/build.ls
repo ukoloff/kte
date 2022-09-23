@@ -17,14 +17,14 @@ function build
   X = state.global
   dir = X.dir
   path = state.path
-  sz = state.got.size
+  sz = state.size
   spans = state.spans
   if dir and state.mirror
     dir = Number !dir
     path = o2 do
       reverse path
       compose do
-        translation [sz[0], 0]
+        translation [state.max-z, 0]
         mirror!
     spans .= slice!
     spans.reverse()
@@ -35,10 +35,18 @@ function build
   #{X.D or Math.ceil 2 * sz[1]}
   #{X.W or Math.ceil sz[0]}
   #{dir or 0}
-  #{state.spans.length}
+  #{spans.length}
   #{
     for span in spans
-      "#{span.thread or 0},#{Z span.Ra},,,,,,,#{Z span.x},#{Z span.tx},#{Z span.w},#{Z span.Q}"
+      "#{
+        span.thread or 0},#{
+        Z span.Ra},,,,,#{
+        Z span.tstart},#{
+        Z span.xdiameter},#{
+        Z span.depth},#{
+        Z span.t$},#{
+        Z span.pitch},#{
+        Z span.Q}"
     .join "\n"
   }
   #{g path}
