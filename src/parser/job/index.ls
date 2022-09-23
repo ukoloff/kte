@@ -38,20 +38,21 @@ function parse-job txt
   spans = for til N
     line = csv txt[7 + ..]
     span = {}
-    for f, i in fields when f and line[i]
-      span[f.replace /^:/, ''] = if /^:/.test f
-        line[i]
-      else
-        Number line[i]
+    for f, i in fields when f
+      assign span, f, line[i]
     span
 
   params = ":id,:matter,hard,D,W,dir".split \,
-  global =
-    path: path
-  for p, i in params when txt[i]
-    global[p.replace /^:/, ''] = if /^:/.test p
-      txt[i]
-    else
-      Number txt[i]
+  global = {}
+  for p, i in params
+    assign global, p, txt[i]
+
   # return
-  {global, spans}
+  {path, global, spans}
+
+!function assign dict, field, value
+  if value
+    dict[field.replace /^:/, ''] = if /^:/.test field
+      value
+    else
+      Number value
