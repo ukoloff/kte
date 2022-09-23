@@ -12,7 +12,7 @@ exports <<<
     m.fragment do
       m \input.hidden,
         type: \file
-        accept: \.dxf
+        accept: ".dxf,.txt"
         oncreate: !->
           me.upload-button = it.dom
             ..onchange = !->
@@ -28,13 +28,19 @@ exports <<<
   require! <[
     ../../parser/dxf
     ../../parser/dxf/axis
+    ../../parser/job
   ]>
 
   delete state.errors
   for file in files
     try
+      txt = await file.text!
+      switch file.name.replace /.*[.]/, '' .to-lower-case!
+      | \dxf => data = axis dxf txt
+      | \txt => data = job  txt
+      | _ => throw RangeError "Unknow file type!"
       state <<<
-        $: axis dxf await file.text!
+        _: data
         name: file.name
       location.hash = \#!/dxf/edit
       break

@@ -7,7 +7,7 @@ require! <[
 
 exports <<<
   view: ->
-    if state.$
+    if state._
       init!
     unless state.path
       location.replace '#!/dxf'
@@ -19,16 +19,27 @@ exports <<<
       m '',
         m pages
 
-function init
-  got = state.$
-  delete state.$
-  state.got = got
-  state.path = got.path
-  sz = got.size
-  state.global =
-    id: state.name.replace /[.].*/, ''
-    D: Math.ceil 2 * sz[1]
-    W: Math.ceil sz[0]
-  state.spans = [{} for i til state.path.length - 1]
-  state.n = 1
-  state.tab = \info
+!function init
+  require! <[
+    ../../math/path/bounds
+    ../../math/rect/size
+  ]>
+
+  got = state._
+  delete state._
+  state.$ = got
+  R = bounds got.path
+  sz = size R
+  sz[1] = Math.max ...for til 2
+    Math.abs R[..][1]
+  state <<<
+    path: got.path
+    global: got.global or do
+      id: state.name.replace /[.].*/, ''
+      D: Math.ceil 2 * sz[1]
+      W: Math.ceil sz[0]
+    spans: got.spans or [{} for til state.path.length - 1]
+    size: sz
+    max-z: R[1][0]
+    n: 1
+    tab: \info

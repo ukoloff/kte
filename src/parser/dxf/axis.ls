@@ -13,6 +13,7 @@ function detect paths
     ../../math/o2/cw90
     ../../math/o2/cw180
     ../../math/o2/translation
+    ../../math/rect/size
   ]>
   var path-key, axis-key
   path-count = paths.length

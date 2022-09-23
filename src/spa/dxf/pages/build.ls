@@ -17,14 +17,14 @@ function build
   X = state.global
   dir = X.dir
   path = state.path
-  sz = state.got.size
+  sz = state.size
   spans = state.spans
   if dir and state.mirror
     dir = Number !dir
     path = o2 do
       reverse path
       compose do
-        translation [sz[0], 0]
+        translation [state.max-z, 0]
         mirror!
     spans .= slice!
     spans.reverse()

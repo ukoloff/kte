@@ -9,16 +9,19 @@ exports <<<
     m \ul,
       m \li,
         "Файл: #{state.name}"
-      if state.got.paths != 1
-        m \li,
-          "Найдено контуров: #{state.got.paths}"
-      if state.got.axles != 1
-        m \li,
-          "Найдено осей: #{state.got.axles}"
       m \li,
-        "Используется ось #{state.got.$dir}=#{round state.got.axis}"
+        "Отрезков: #{state.spans.length}"
+      if state.$.paths? and state.$.paths != 1
+        m \li,
+          "Найдено контуров: #{state.$.paths}"
+      if state.$.axles? and state.$.axles != 1
+        m \li,
+          "Найдено осей: #{state.$.axles}"
+      if state.$.$dir?
+        m \li,
+          "Используется ось #{state.$.$dir}=#{round state.$.axis}"
       m \li,
-        "Размеры: #{state.got.size.map round .join 'x'} (\u2300#{round 2 * state.got.size[1]})"
+        "Размеры: #{state.size.map round .join 'x'} (\u2300#{round 2 * state.size[1]})"
       m \li,
         'Перейдите на вкладку '
         m \a,
