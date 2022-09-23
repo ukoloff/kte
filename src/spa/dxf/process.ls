@@ -2,6 +2,7 @@ module.exports = process
 
 !async function process files
   require! <[
+    ../m
     ./state
     ../../parser/dxf
     ../../parser/dxf/axis
