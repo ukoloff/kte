@@ -8,6 +8,8 @@ exports <<<
   view: ->
     me = @
     return
+      m 'p',
+        'Загрузите сюда XML-файл с результатами распознавания КТЭ'
       m \input.hidden,
         type: \file
         accept: \.xml
