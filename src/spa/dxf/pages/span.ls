@@ -18,25 +18,25 @@ exports <<<
           onclick: !->
             storage!thread = Number @checked
         ' Резьба'
-      m '',
-        class: \hidden unless storage!thread
-        style:
-          padding-left: \1em
-        m \label,
-          'Тип'
+      if storage!thread
+        m '',
+          style:
+            padding-left: \1em
+          m \label,
+            'Тип'
+            m \br
+            m \select,
+              onchange: !->
+                storage!t$ = @selected-index
+              for opt, i in <[Метрическая Дюймовая Трапецеидальная]>
+                m \option,
+                  selected: (storage!t$ ?= i) == i
+                  opt
           m \br
-          m \select,
-            onchange: !->
-              storage!t$ = @selected-index
-            for opt, i in <[Метрическая Дюймовая Трапецеидальная]>
-              m \option,
-                selected: (storage!t$ ?= i) == i
-                opt
-        m \br
-        m input, \pitch 'Шаг резьбы'
-        m input, \depth 'Глубина резьбы'
-        m input, \xdiameter 'Внешний диаметр (для внутренней резьбы)'
-        m input, \tstart 'Начало резьбы'
+          m input, \pitch 'Шаг резьбы'
+          m input, \depth 'Глубина резьбы'
+          m input, \xdiameter 'Внешний диаметр (для внутренней резьбы)'
+          m input, \tstart 'Начало резьбы'
 
 function storage
   state.spans[state.n-1]
