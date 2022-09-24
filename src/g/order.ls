@@ -71,6 +71,7 @@ function order side
     ktes[i] =
       $: {} <<<< kte.$ <<< Z: -R[1][0]
       _: path
+      L: kte._.map (.L)
 
   # return
   ktes
