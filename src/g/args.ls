@@ -11,8 +11,12 @@ module.exports = args
 
 !function args
   A = process.argv.slice 2
+
   unless A.length
-    base = path.join __filename, "../../../data/var/25"
+    A.push 25
+
+  if A.length == 1 and /^\d+$/.test A[0]
+    base = path.join __filename, "../../../data/var/#{A[0]}"
     A =
       "#{base}.txt"
       "#{base}.xml"

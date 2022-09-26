@@ -6,8 +6,10 @@ require! <[
   ./order
 ]>
 
-console.log "Stage 2"
-args!
-console.log JSON.stringify {["#{i + 1}", order i] for i til 2}, null, 2
+module.exports = run
+
+!function run
+  args!
+  console.log JSON.stringify {["#{i + 1}", order i] for i til 2}, null, 2
 
 

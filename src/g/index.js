@@ -1,3 +1,4 @@
 require('livescript')
 
-require('./g')
+var g = require('./g')
+g()
