@@ -12,6 +12,7 @@ module.exports = order
 function order side
   require! <[
     ../math/rect/union
+    ../math/rect/size
     ../math/path/bounds
     ../math/path/o2
     ../math/o2/compose
@@ -68,6 +69,9 @@ function order side
   # Z := 0
   for kte in state.ktes
     R = union R, bounds kte._
+  state.job <<<
+    bounds: R
+    size:   size R
   O2 = if side
     translation [-R[1][0], 0]
   else
