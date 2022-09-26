@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "args": [
-        "02"
+        "01"
       ],
       "program": "."
     }
