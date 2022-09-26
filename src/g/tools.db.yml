@@ -91,7 +91,7 @@
 
 -
   type: semiopened
-  pos:  top
+  pos:  bottom
   # Полуоткрытая внутр
 
   tool:
