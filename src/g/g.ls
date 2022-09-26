@@ -46,8 +46,16 @@ module.exports = run
       .filter ->
         /^[-+]?\d/.test it[1] # Only numerical values
       .map ->
-        "#{it[0]}=#{it[1]}"
+        "#{it[0]}=#{round it[1]}"
       .join ' '
     })"
+    inc = "./kte/#{kte.$.pos}"
+    switch kte.$.type
+    | \semiopened => inc += 7
+    | \closed => inc += "-#{kte.$.subtype ? kte.$.type}"
+    kte |> require inc
 
   echo \%
+
+function round x
+  Math.round(x * 1000) / 1000
