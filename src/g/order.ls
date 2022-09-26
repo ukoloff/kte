@@ -26,7 +26,6 @@ function order side
 
   # Tree of closed zones
   tree = {}
-  debugger
   for kte in narrow type: \closed when kte.$.subtype != \thread
     tree[][kte.$.parent_id].push kte
 
@@ -56,7 +55,15 @@ function order side
   ktes.push ...side-children
   ktes.push ...end-children
 
-  # TODO: Thread zones
+  # Thread zones
+  delete needle.pos
+  tree = {}
+  children = []
+  for kte in narrow type: \closed, subtype: \thread
+    tree[][kte.$.parent_id].push kte
+  for kte in ktes
+    children.push ...tree[kte.$.id] || []
+  ktes.push ...children
 
   # Z := 0
   for kte in state.ktes
