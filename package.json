@@ -39,7 +39,8 @@
     ]
   },
   "dependencies": {
-    "easysax": "^0.3.2"
+    "easysax": "^0.3.2",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.2",
