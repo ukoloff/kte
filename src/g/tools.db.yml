@@ -1,0 +1,103 @@
+#
+# Fixed tool parameters for Sample 01
+#
+-
+  # Template
+  tool:   # 1 - код инструмента (по поводу кодирование еще есть вопросы, но код должен однозначно определять инструмент)
+  name:   # 2 - Обозначение инструмента (справочное для человека (после отладки можно убрать)
+  AR:     # 3 -  глубина резания  (мм)
+  F:      # 4 -  подача  (мм/об)
+  V:      # 5 -  скорость резания  (м/мин)
+  text:   # инстр
+  plate:  # Шифр пластинки
+-
+  type: opened
+  pos:  end
+  # Торец
+
+  tool: 5
+  name: SCLCR1212M09
+  AR: 1.2
+  F: 0.25
+  V: 175
+  text: Проходной ϕ95
+  plate: Шифр пластинки
+
+-
+  type: opened
+  pos:  top
+  # Открытая зона внеш
+
+  tool: 1
+  name: SCGCR1212F09
+  AR: 1.2
+  F: 0.25
+  V: 175
+  text: Подрезной ϕ90
+  plate: EPSR=80
+
+-
+  type: semiopened
+  pos:  top
+  # Полуоткрытая внеш черн
+
+  tool:  5
+  name: SCLCR1212M09
+  AR: 0.9
+  F: 0.25
+  V: 175
+  text: Проходной ϕ95
+  plate: EPSR=80
+
+-
+  type: semiopened
+  pos:  top
+  # Полуоткрытая внеш чист
+
+  tool:  5
+  name: SCLCR1212M09
+  AR: 0.5
+  F: 0.10
+  V: 117
+  text: Проходной ϕ95
+  plate: "?"
+
+-
+  type: closed
+  pos:  top
+  subtype: notch_x
+  # Выточка внеш
+
+  tool:  18
+  name: CFIR1212M04
+  AR: 4.0
+  F: 0.17
+  V: 130
+  text: Канавочный SFIR
+  plate: LCGF
+
+-
+  type: opened
+  pos:  bottom
+  # Открытая внутр
+
+  tool:
+  name:
+  AR:
+  F:
+  V:
+  text: Сверло
+  plate: Ø12
+
+-
+  type: semiopened
+  pos:  top
+  # Полуоткрытая внутр
+
+  tool:
+  name:
+  AR:
+  F:
+  V:
+  text: Расточной А08К
+  plate: CCGT
