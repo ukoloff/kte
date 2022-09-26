@@ -55,6 +55,7 @@ module.exports = run
     | \closed => inc += "-#{kte.$.subtype ? kte.$.type}"
 
     kte |> require inc
+    echo!
 
   echo \%
 
