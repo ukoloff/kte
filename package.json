@@ -5,7 +5,6 @@
   "description": "Automated CAM for Turning",
   "main": "src/g",
   "scripts": {
-    "z":    "node .",
     "test": "mocha",
     "open": "opener bundle/index.html",
     "build": "rollup -c",
