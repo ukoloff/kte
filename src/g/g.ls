@@ -28,14 +28,26 @@ module.exports = run
   echo "(PASS: #{1 + Number s})"
 
   for kte in order side s
-    attrs = Object.entries kte.$
-    debugger
-    echo "(KTE: #{kte.$.id} #{sortBy do
-      attrs.filter ->
-        /^[a-z]/i.test it[1]  # Filter non-numeric values
+    attrs = sortBy do
+      Object.entries kte.$
+      .filter ->
+        !/id$/.test it[0]   # Skip id-attributes
       (.0)                  # Sort by name
-    .map (.1)               # Values only
-    .join ' '
+    debugger
+    echo "(KTE: #{kte.$.id} #{
+      attrs
+      .filter ->
+        /^[a-z]/i.test it[1]  # Filter non-numeric values
+      .map (.1)               # Values only
+      .join ' '
+    })"
+    echo "(\t#{
+      attrs
+      .filter ->
+        /^[-+]?\d/.test it[1] # Only numerical values
+      .map ->
+        "#{it[0]}=#{it[1]}"
+      .join ' '
     })"
 
   echo \%
