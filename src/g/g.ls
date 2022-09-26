@@ -53,6 +53,7 @@ module.exports = run
     switch kte.$.type
     | \semiopened => inc += 7
     | \closed => inc += "-#{kte.$.subtype ? kte.$.type}"
+
     kte |> require inc
 
   echo \%
