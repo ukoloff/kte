@@ -26,15 +26,16 @@ function order side
 
   # Tree of closed zones
   tree = {}
-  for kte in narrow type: \closed
-    tree[][kte.parent_id].push kte
+  debugger
+  for kte in narrow type: \closed when kte.$.subtype != \thread
+    tree[][kte.$.parent_id].push kte
 
   ktes = []
   children = []
 
   !function add_children kte
     # DFS
-    for child in tree[kte.id] or []
+    for child in tree[kte.$.id] or []
       children.push child
       add_children child
 
@@ -45,12 +46,14 @@ function order side
 
   # Process order
   closed-to = end-children = []
-  for pos, ip in <[ end top bottom ]>
+  side-children = []
+  for pos in <[ end top bottom ]>
     for type in <[ opened semiopened ]>
       add {pos, type}
     closed-to.push ...children
     children = []
-    closed-to = ktes
+    closed-to = side-children
+  ktes.push ...side-children
   ktes.push ...end-children
 
   # TODO: Thread zones
