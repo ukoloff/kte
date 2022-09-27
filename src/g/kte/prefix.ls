@@ -13,7 +13,7 @@ module.exports = prefix
     Object.entries kte.$
     .filter ->
       !/id$/.test it[0]   # Skip id-attributes
-    (.0)                  # Sort by name
+    (.0.to-lower-case!)   # Sort by name
 
   echo "(KTE: #{kte.$.id} #{
     attrs

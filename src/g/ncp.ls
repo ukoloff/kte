@@ -25,7 +25,7 @@ module.exports = run
     ./kte/suffix
   ]>
   echo \%
-  echo "(PART: #{state.job.global.id or \?})"
+  echo "(PART: #{state.job.global.id or \? })"
   echo "(PASS: #{1 + Number s})"
 
   for kte in order side s
