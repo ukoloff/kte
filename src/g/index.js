@@ -1,4 +1,3 @@
 require('livescript')
 
-var g = require('./g')
-g()
+require('./ncp')()
