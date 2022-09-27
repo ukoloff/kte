@@ -34,6 +34,7 @@ module.exports = args
       state.ktes = txt
       |> require \../parser
     | _ => croak "Unknown file type: #{f}"
+    state.out-name = path.parse f .name
 
   unless state.job
     croak "JOB not specified"

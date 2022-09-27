@@ -5,15 +5,17 @@ module.exports = run
 
 !function run
   require! <[
+    fs
     ./args
     ./echo
+    ./state
   ]>
   args!
   for til 2
     half ..
-
-  console.log 'NC Program'
-  console.log echo.all!
+    console.log "Writing NC Program to:", out = "bundle/#{state.out-name}-#{.. + 1}.nc"
+    fs.write-file out, echo.all!, !->
+    echo.reset!
 
 !function half s
   require! <[
