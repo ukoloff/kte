@@ -31,7 +31,7 @@ module.exports = top-semiopened
     echo "#{line};"
   echo "N60 #{tail};"
 
-  echo "( ... )"
+  echo "N70 G00 X#{x0 = state.job.global.D / 2} Z2 M9;"
   echo "N75 M5;"
   if stages < 2
     return
@@ -51,5 +51,5 @@ module.exports = top-semiopened
     echo "#{line};"
   echo "N160 #{tail};"
 
-  echo "( ... )"
+  echo "N170 G00 X#{x0} Z2 M9;"
   echo "N175 M5;"
