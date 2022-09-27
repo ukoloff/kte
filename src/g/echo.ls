@@ -9,7 +9,7 @@ module.exports = echo
 
 echo <<< {all, reset}
 
-!function echo str
+!function echo str=''
   (state.ncp ?= []).push str
 
 function all

@@ -9,10 +9,12 @@ module.exports = run
     ./args
     ./echo
     ./state
+    ./renumber
   ]>
   args!
   for til 2
     half ..
+    renumber!
     console.log "Writing NC Program to:", out = "bundle/#{state.out-name}-#{.. + 1}.nc"
     fs.write-file out, echo.all!, !->
     echo.reset!
