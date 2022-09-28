@@ -94,10 +94,10 @@
   pos:  bottom
   # Полуоткрытая внутр
 
-  tool:
-  name:
-  AR:
-  F:
-  V:
+  tool: 7
+  name: SCLCR1212M09
+  AR:   0.9
+  F:    0.25
+  V:    175
   text: Расточной А08К
   plate: CCGT
