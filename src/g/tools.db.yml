@@ -81,11 +81,11 @@
   pos:  bottom
   # Открытая внутр
 
-  tool:
+  tool: 8
   name:
   AR:
-  F:
-  V:
+  F:    0.888
+  V:    0.888
   text: Сверло
   plate: Ø12
 
