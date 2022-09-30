@@ -8,21 +8,20 @@ module.exports = end-opened
     ../state
     ../echo
     ./qtool
+    ./turret
   ]>
 
   tools = qtool kte
   stages = tools.length
   tool = tools[0]
-  tool-id = "#{tool.tool}"
-  while tool-id.length < 2
-    tool-id = "0#{tool-id}"
+
   x0 = state.job.global.D / 2
   z0 = Math.max (state.job.global.W - state.job.size[0]) / 2
 
   echo "N900 G90 G18 (Podrezat torez);"
   echo "G28 U0 W0;"
   echo "G54;"
-  echo "T#{tool-id}#{tool-id} (#{tool.name});"
+  turret tool
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{x0} Z#{z0};"
   echo "N30 G72 W#{tool.AR} R1;"

@@ -10,6 +10,7 @@ module.exports = bottom-semiopened
     ./qtool
     ./path2g
     ./skip
+    ./turret
   ]>
 
   if skip kte
@@ -18,9 +19,6 @@ module.exports = bottom-semiopened
   tools = qtool kte
   stages = tools.length
   tool = tools[0]
-  tool-id = "#{tool.tool}"
-  while tool-id.length < 2
-    tool-id = "0#{tool-id}"
 
   # TODO: Drilling
   # ...
@@ -29,7 +27,7 @@ module.exports = bottom-semiopened
   echo "N900 G90 G18 (Rastochit poluotkrituyu zonu nacherno);"
   echo "G28 U0 W0;"
   echo "G54;"
-  echo "T#{tool-id}#{tool-id} (#{tool.name});"
+  turret tool
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{kte._[0][1] - 2} Z2;"
   echo "N30 G71 U#{tool.AR} R1;"
@@ -48,13 +46,10 @@ module.exports = bottom-semiopened
     return
 
   tool = tools[1]
-  tool-id = "#{tool.tool}"
-  while tool-id.length < 2
-    tool-id = "0#{tool-id}"
   echo "N900 G90 G18 (Rastochit poluotkrituyu zonu nachisto);"
   echo "G28 U0 W0;"
   echo "G54;"
-  echo "T#{tool-id}#{tool-id} (#{tool.name});"
+  turret tool
   echo "N110 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N120 X#{kte._[0][1] - 2} Z2;"
 

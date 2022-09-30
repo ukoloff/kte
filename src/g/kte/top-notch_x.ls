@@ -6,6 +6,7 @@ module.exports = top-notch
 !function top-notch kte
   require! <[
     ./qtool
+    ./turret
     ../state
     ../echo
   ]>
@@ -13,9 +14,6 @@ module.exports = top-notch
   tools = qtool kte
   stages = tools.length
   tool = tools[0]
-  tool-id = "#{tool.tool}"
-  while tool-id.length < 2
-    tool-id = "0#{tool-id}"
 
   first = kte._[0]
   last = kte._[*-1]
@@ -23,7 +21,7 @@ module.exports = top-notch
   echo "N900 G90 G18 (Tochit vitochku);"
   echo "G28 U0 W0;"
   echo "G54;"
-  echo "T#{tool-id}#{tool-id} (#{tool.name});"
+  turret tool
   echo "N30 G75 R1;"
   echo "N40 G75 X#{last[1]} Z#{last[0] + tool.AR} P#{tool.AR} Q#{0.8 * tool.AR};"
   echo "N50 G00 X#{state.job.global.D / 2 + 2} M9;"

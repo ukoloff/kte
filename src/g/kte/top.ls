@@ -6,6 +6,7 @@ module.exports = top-opened
 !function top-opened kte
   require! <[
     ./qtool
+    ./turret
     ../state
     ../echo
     ../../math/path/bounds
@@ -23,14 +24,11 @@ module.exports = top-opened
   tools = qtool kte
   stages = tools.length
   tool = tools[0]
-  tool-id = "#{tool.tool}"
-  while tool-id.length < 2
-    tool-id = "0#{tool-id}"
 
   echo "N900 G90 G18 (Tochit otkrituyu zonu);"
   echo "G28 U0 W0;"
   echo "G54;"
-  echo "T#{tool-id}#{tool-id} (#{tool.name});"
+  turret tool
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 G00 X#{x0 = state.job.global.D / 2} Z2;"
   echo "N30 G71 U#{tool.AR} R1;"

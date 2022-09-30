@@ -8,14 +8,12 @@ module.exports = bottom-opened
     ../state
     ../echo
     ./qtool
+    ./turret
   ]>
 
   tools = qtool kte
   stages = tools.length
   tool = tools[0]
-  tool-id = "#{tool.tool}"
-  while tool-id.length < 2
-    tool-id = "0#{tool-id}"
 
   # Drilling
   Rad = Math.min 6, kte._[0][1]
@@ -23,7 +21,7 @@ module.exports = bottom-opened
   echo "N900 G90 G18 (Sverlit otverstie);"
   echo "G28 U0 W0;"
   echo "G54;"
-  echo "T#{tool-id}#{tool-id} (#{tool.name});"
+  turret tool
   echo "N10 G96 S#{tool.V};"
   echo "N20 X0 Z0;"
   echo "N30 G83 X0 Z#{kte._[*-1][0] + Rad} Q#{2 * Rad} F#{tool.F};"
