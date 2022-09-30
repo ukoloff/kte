@@ -20,7 +20,10 @@ module.exports = bottom-opened
   # Drilling
   Rad = Math.min 6, kte._[0][1]
 
-  echo "N900 G90 G18 G00 T#{tool-id}#{tool-id};"
+  echo "N900 G90 G18 (Sverlit otverstie);"
+  echo "G28 U0 W0;"
+  echo "G54;"
+  echo "T#{tool-id}#{tool-id} (#{tool.name});"
   echo "N10 G96 S#{tool.V};"
   echo "N20 X0 Z0;"
   echo "N30 G83 X0 Z#{kte._[*-1][0] + Rad} Q#{2 * Rad} F#{tool.F};"
