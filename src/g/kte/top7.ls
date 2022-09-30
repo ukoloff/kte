@@ -9,7 +9,11 @@ module.exports = top-semiopened
     ../echo
     ./qtool
     ./path2g
+    ./skip
   ]>
+
+  if skip kte
+    return
 
   tools = qtool kte
   stages = tools.length
