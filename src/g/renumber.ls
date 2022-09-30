@@ -9,7 +9,11 @@ module.exports = renumber
   ]>
 
   count = 0
+  blocks = 0
   ncp = state.ncp
-  for , i in ncp
-    ncp[i] .= replace /^\s*N\s*\d+\s*/i, ->
-      "N#{++count * 10} "
+  for line, i in ncp when /^[a-z]/i.test <| line .= trim!
+    n = if /N900\s+/i.test line
+      900 + ++blocks
+    else
+      ++count
+    ncp[i] = line.replace /^N\s*\d+\s*|/i, "N#{n} "

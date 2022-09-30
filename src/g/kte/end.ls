@@ -19,7 +19,7 @@ module.exports = end-opened
   x0 = state.job.global.D / 2
   z0 = Math.max (state.job.global.W - state.job.size[0]) / 2
 
-  echo "N9#{tool-id} G90 G18 G00 T#{tool-id}#{tool-id};"
+  echo "N900 G90 G18 G00 T#{tool-id}#{tool-id};"
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{x0} Z#{z0};"
   echo "N30 G72 W#{tool.AR} R1;"

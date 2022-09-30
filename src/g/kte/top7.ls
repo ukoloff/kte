@@ -22,7 +22,7 @@ module.exports = top-semiopened
   while tool-id.length < 2
     tool-id = "0#{tool-id}"
 
-  echo "N9#{tool-id} G90 G18 G00 T#{tool-id}#{tool-id};"
+  echo "N900 G90 G18 G00 T#{tool-id}#{tool-id};"
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{kte._[0][1] + 2} Z2;"
   echo "G71 U#{tool.AR} R1;"
@@ -44,7 +44,7 @@ module.exports = top-semiopened
   tool-id = "#{tool.tool}"
   while tool-id.length < 2
     tool-id = "0#{tool-id}"
-  echo "N9#{tool-id} G90 G18 G00 T#{tool-id}#{tool-id};"
+  echo "N900 G90 G18 G00 T#{tool-id}#{tool-id};"
   echo "N110 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N120 X#{kte._[0][1] + 2} Z2;"
 

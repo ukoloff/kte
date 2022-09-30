@@ -27,7 +27,7 @@ module.exports = top-opened
   while tool-id.length < 2
     tool-id = "0#{tool-id}"
 
-  echo "N9#{tool-id} G90 G18 G00 T#{tool-id}#{tool-id};"
+  echo "N900 G90 G18 G00 T#{tool-id}#{tool-id};"
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{x0 = state.job.global.D / 2} Z2;"
   echo "N30 G71 U#{tool.AR} R1;"
