@@ -81,23 +81,36 @@
   pos:  bottom
   # Открытая внутр
 
-  tool: 8
-  name:
-  AR:
-  F:    0.888
-  V:    0.888
+  tool: 2291
+  name: SD245A-12.0-56-12R1
+  AR: 6.0
+  F: 0.30
+  V: 195
   text: Сверло
   plate: Ø12
 
 -
   type: semiopened
   pos:  bottom
-  # Полуоткрытая внутр
+  # Полуоткрытая внутр черн
 
-  tool: 7
-  name: SCLCR1212M09
-  AR:   0.9
-  F:    0.25
-  V:    175
+  tool: 23
+  name: E08K-SCFCR06-R
+  AR:   2.0
+  F:    0.20
+  V:    126
+  text: Расточной А08К
+  plate: CCGT
+
+-
+  type: semiopened
+  pos:  bottom
+  # Полуоткрытая внутр чист
+
+  tool: 23
+  name: E08K-SCFCR06-R
+  AR:   0.5
+  F:    0.14
+  V:    148
   text: Расточной А08К
   plate: CCGT
