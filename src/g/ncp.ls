@@ -29,9 +29,10 @@ module.exports = run
     ./kte/suffix
     ./kte/turret
   ]>
-  echo \%
-  echo "(PART: #{state.job.global.id or \? })"
-  echo "(ustanov #{1 + Number s})"
+  echo "%;"
+  echo "(PART: #{state.job.global.id or \? });"
+  echo "(ustanov #{1 + Number s});"
+  echo!
 
   turret.reset!
 
@@ -49,4 +50,4 @@ module.exports = run
     handler kte
     suffix kte
 
-  echo \%
+  echo "%;"

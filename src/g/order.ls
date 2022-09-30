@@ -45,16 +45,14 @@ function order side
       add_children kte
 
   # Process order
-  closed-to = end-children = []
-  side-children = []
   for pos in <[ end top bottom ]>
     for type in <[ opened semiopened ]>
       add {pos, type}
-    closed-to.push ...children
+    if end-children
+      ktes.push ...children
+    else
+      end-children = children
     children = []
-    closed-to = side-children
-  ktes.push ...side-children
-  ktes.push ...end-children
 
   # Thread zones
   delete needle.pos
@@ -65,6 +63,9 @@ function order side
   for kte in ktes
     children.push ...tree[kte.$.id] || []
   ktes.push ...children
+
+  # Closed zones of End
+  ktes.push ...end-children
 
   # Z := 0
   for kte in state.ktes
