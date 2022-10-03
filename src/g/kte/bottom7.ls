@@ -31,9 +31,11 @@ module.exports = bottom-semiopened
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{2 * kte._[0][1] - 4} Z2;"
   echo "N30 G71 U#{tool.AR} R1;"
-  echo "N40 G71 P50 Q60 U#{if stages < 2 then -0.05 else -0.5} W1 F#{tool.F} S#{tool.V} M8;"
 
   G-code = path2g kte._, 1
+
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if stages < 2 then -0.05 else -0.5} W1 F#{tool.F} S#{tool.V} M8;"
+
   echo "N50 #{G-code.shift!};"
   tail = G-code.pop!
   for line in G-code
