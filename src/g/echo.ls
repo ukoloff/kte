@@ -7,13 +7,26 @@ require! <[
 
 module.exports = echo
 
-echo <<< {all, reset}
+echo <<< {all, reset, N}
+
+var line, block, lines
 
 !function echo str=''
-  (state.ncp ?= []).push str
+  if /^\s*[a-z]/i.test str
+    n = if /\s*N900\s+/.test str
+      900 + ++block
+    else
+      ++line
+    str .= replace /^\s*N\s*\d+\s*|^\s*/i, "N#{n} "
+  lines.push str
 
 function all
-  (state.ncp ? []).join \\n
+  lines.join \\n
 
-function reset
-  state.ncp = []
+do !function reset
+  lines := []
+  line := 0
+  block := 0
+
+function N delta=0
+  line + 1 + delta
