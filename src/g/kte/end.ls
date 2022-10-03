@@ -15,7 +15,7 @@ module.exports = end-opened
   stages = tools.length
   tool = tools[0]
 
-  x0 = state.job.global.D / 2
+  x0 = state.job.global.D
   z0 = Math.max (state.job.global.W - state.job.size[0]) / 2
 
   echo "N900 G90 G18 (Podrezat torez);"
@@ -28,9 +28,9 @@ module.exports = end-opened
   echo "N40 G72 P50 Q60 U0 W#{if stages < 2 then 0 else 0.5} F#{tool.F} S#{tool.V} M8;"
   echo "N50 G00 Z0;"
   if stages < 2
-    echo "N60 G01 X-1;"
+    echo "N60 G01 X-2;"
   else
-    echo "N60 G01 X-1 F#{tools[1].F} S#{tools[1].V};"
+    echo "N60 G01 X-2 F#{tools[1].F} S#{tools[1].V};"
     echo "N65 G70 P50 Q60;"
   echo "N70 G00 X#{x0} Z#{z0} M9;"
   echo "N75 M5;"

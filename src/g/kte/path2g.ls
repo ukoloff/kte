@@ -18,7 +18,7 @@ function G-code path, G0=0
       3
     else
       2
-    G = "G#{mode} X#{round pt[1]} Z#{round pt[0]}"
+    G = "G#{mode} X#{round 2 * pt[1]} Z#{round pt[0]}"
     if prev and prev[2] != 0
       c = center do
         a: prev
