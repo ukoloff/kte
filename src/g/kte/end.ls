@@ -32,5 +32,6 @@ module.exports = end-opened
   else
     echo "N60 G01 X-2 F#{tools[1].F} S#{tools[1].V};"
     echo "N65 G70 P50 Q60;"
+  echo "G00 Z1;"
   echo "N70 G00 X#{x0} Z#{z0} M9;"
   echo "N75 M5;"
