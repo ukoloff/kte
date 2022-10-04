@@ -4,6 +4,7 @@ require! <[
   ./button
   ./errors
   ./footer
+  ./home
 ]>
 
 exports <<<
@@ -14,3 +15,4 @@ exports <<<
         m button
       m errors, state
       m footer
+      m home
