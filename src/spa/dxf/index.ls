@@ -3,6 +3,7 @@ require! <[
   ./button
   ./state
   ../errors
+  ../home
 ]>
 
 exports <<<
@@ -12,4 +13,4 @@ exports <<<
       m \form do
         m button
       m errors, state
-
+      m home
