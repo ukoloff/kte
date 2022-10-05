@@ -9,3 +9,4 @@ module.exports = unimplemented-kte
   ]>
 
   echo "(--- NOT IMPLEMENTED yet ---)"
+  console.log "SKIP KTE: #{kte.$.pos} #{kte.$.type} #{kte.$.subtype or ''}"
