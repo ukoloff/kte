@@ -3,7 +3,7 @@
   "version": "0.9.0",
   "private": true,
   "description": "Automated CAM for Turning",
-  "main": "index.js",
+  "main": "src/g",
   "scripts": {
     "test": "mocha",
     "open": "opener bundle/index.html",
@@ -39,7 +39,9 @@
     ]
   },
   "dependencies": {
-    "easysax": "^0.3.2"
+    "easysax": "^0.3.2",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.2",
