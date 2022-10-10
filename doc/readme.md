@@ -3,6 +3,9 @@
 ## Архитектура
 
 ```mermaid
+%% VSCode:
+%% bierner.markdown-mermaid
+%% bpruitt-goddard.mermaid-markdown-syntax-highlighting
 
 flowchart TD
 
