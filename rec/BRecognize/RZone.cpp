@@ -225,9 +225,21 @@ void RZone::DefineSubtype(double max_plunge_angle)
     }
     if (IsNotchZ())
     {
-        SetSubType(RZSubType::NOTCH_Z);
+        auto sub = (GetPos() == RZPos::END) ? RZSubType::NOTCH_X : RZSubType::NOTCH_Z;
+        SetSubType(sub);
         return;
     }
+    //if (IsUndercutX())
+    //{
+    //    auto sub = (GetPos() == RZPos::END) ? RZSubType::UNDERCUT_Z : RZSubType::UNDERCUT_X;
+    //    SetSubType(sub);
+    //    return;
+    //}
+    //if (IsUndercutZ())
+    //{
+    //    SetSubType(RZSubType::UNDERCUT_Z); // IsUndercutZ == false for END zones
+    //    return;
+    //}
     if (IsSubtypeST1(max_plunge_angle))
     {
         SetSubType(RZSubType::ST1);
@@ -340,6 +352,135 @@ bool RZone::IsSubtypeST2() const
         if (vect.GetX() < -DMIN)
             return false;
     }
+    return true;
+}
+
+bool RZone::IsUndercutX() const
+{
+    if (IsUndercut1dirX())
+        return true;
+    if (pos_ == RZPos::END)
+    {
+        auto buf = *this;
+        buf.reverse();
+        if (buf.IsUndercut1dirX())
+            return true;
+    }
+    return false;
+}
+
+bool RZone::IsUndercutZ() const
+{
+    if (pos_ == RZPos::END)
+        return false;
+    if (IsUndercut1dirZ())
+        return true;
+    auto buf = *this;
+    buf.reverse();
+    if (buf.IsUndercut1dirZ())
+        return true;
+    return false;
+}
+
+bool RZone::IsUndercut1dirX() const
+{
+    const double start_angle = 45;
+    // First line (45)
+    auto cur1 = begin();
+    for (; cur1 != end(); ++cur1)
+    {
+        if (!cur1->IsLine())
+            break;
+        BPoint v = cur1->GetE() - cur1->GetB();
+        if (fabs(fabs(v.Angle(BPoint(1., 0., 0., 0.))) - start_angle) > MINAD)
+            break;
+    }
+    if (cur1 == begin())
+        return false;
+    // optional arc
+    if (cur1->IsArc())
+        ++cur1;
+    auto cur2 = cur1;
+    // horizontal part
+    for (; cur2 != end(); ++cur2)
+    {
+        if (!cur2->IsLine())
+            break;
+        BPoint v = cur2->GetE() - cur2->GetB();
+        if (fabs(v.GetY()) > MIND)
+            break;
+    }
+    if (cur2 == cur1)
+        return false;
+    // required arc
+    if (!cur2->IsArc())
+        return false;
+    ++cur2;
+    // vertical part down (optional)
+    auto cur3 = cur2;
+    for (; cur3 != end(); ++cur3)
+    {
+        if (!cur3->IsLine())
+            break;
+        BPoint v = cur3->GetE() - cur3->GetB();
+        if (v.GetY() > MIND || fabs(v.GetX()) > MIND)
+            break;
+    }
+    //if (cur3 == cur2)
+    //    return false;
+    if (cur3 != end())
+        return false;
+    return true;
+}
+
+bool RZone::IsUndercut1dirZ() const
+{
+    const double start_angle = 45;
+    // First line (45)
+    auto cur1 = begin();
+    for (; cur1 != end(); ++cur1)
+    {
+        if (!cur1->IsLine())
+            break;
+        BPoint v = cur1->GetE() - cur1->GetB();
+        if (fabs(fabs(v.Angle(BPoint(0., 1., 0., 0.))) - start_angle) > MINAD)
+            break;
+    }
+    if (cur1 == begin())
+        return false;
+    // optional arc
+    if (cur1->IsArc())
+        ++cur1;
+    auto cur2 = cur1;
+    // vertical part down
+    for (; cur2 != end(); ++cur2)
+    {
+        if (!cur2->IsLine())
+            break;
+        BPoint v = cur2->GetE() - cur2->GetB();
+        if (fabs(v.GetX()) > MIND || v.GetY() > MIND)
+            break;
+    }
+    if (cur2 == cur1)
+        return false;
+    // required arc
+    if (!cur2->IsArc())
+        return false;
+    ++cur2;
+    // horizontal part (optional)
+    auto cur3 = cur2;
+    for (; cur3 != end(); ++cur3)
+    {
+        if (!cur3->IsLine())
+            break;
+        BPoint v = cur3->GetE() - cur3->GetB();
+        if (fabs(v.GetY()) > MIND)
+            break;
+    }
+    //if (cur3 == cur2)
+    //    return false;
+    if (cur3 != end())
+        return false;
     return true;
 }
 
@@ -474,16 +615,16 @@ void RZone::Transform(const BMatr& matr)
     RContour::Transform(matr);
 }
 
-int RZone::WriteKTE(TiXmlElement* e_parent, int parent_id, double stock_diameter) const
+int RZone::WriteKTE(TiXmlElement* e_parent, int parent_id, const RGlobParams& params) const
 {
-    auto id = Write1KTE(e_parent, parent_id, stock_diameter);
+    auto id = Write1KTE(e_parent, parent_id, params);
     // recursion
     for each (const auto& zone in children_)
-        zone.WriteKTE(e_parent, id, stock_diameter);
+        zone.WriteKTE(e_parent, id, params);
     return id;
 }
 
-int RZone::Write1KTE(TiXmlElement* e_parent, int parent_id, double stock_diameter) const
+int RZone::Write1KTE(TiXmlElement* e_parent, int parent_id, const RGlobParams& params) const
 {
     static int loc_id = 0;
     if (e_parent == nullptr)
@@ -497,16 +638,16 @@ int RZone::Write1KTE(TiXmlElement* e_parent, int parent_id, double stock_diamete
     e_parent->LinkEndChild(e_kte);
     e_kte->SetAttribute(_T("id"), loc_id);
     e_kte->SetAttribute(_T("parent_id"), parent_id);
-    e_kte->SetDoubleAttribute(_T("X"), GetBaseY());
-    e_kte->SetDoubleAttribute(_T("Z"), GetBaseX());
+    e_kte->SetDoubleAttribute(_T("X"), Round(GetBaseY()));
+    e_kte->SetDoubleAttribute(_T("Z"), Round(GetBaseX()));
     const double max_y = GetMaxY();
     const double min_y = GetMinY();
-    e_kte->SetDoubleAttribute(_T("A"), 2. * min_y);
-    e_kte->SetDoubleAttribute(_T("B"), 2. * max_y);
-    e_kte->SetDoubleAttribute(_T("h"), max_y - min_y);
-    e_kte->SetDoubleAttribute(_T("Rmin"), GetRintMin());
-    e_kte->SetDoubleAttribute(_T("b"), GetWidth());
-    e_kte->SetDoubleAttribute(_T("H1"), stock_diameter * 0.5 - max_y);
+    e_kte->SetDoubleAttribute(_T("A"), Round(2. * min_y));
+    e_kte->SetDoubleAttribute(_T("B"), Round(2. * max_y));
+    e_kte->SetDoubleAttribute(_T("h"), Round(max_y - min_y));
+    e_kte->SetDoubleAttribute(_T("Rmin"), Round(GetRintMin()));
+    e_kte->SetDoubleAttribute(_T("b"), Round(GetWidth()));
+    e_kte->SetDoubleAttribute(_T("H1"), Round(GetH1(params)));
 
     CString type_s;
     switch (GetType())
@@ -572,6 +713,12 @@ int RZone::Write1KTE(TiXmlElement* e_parent, int parent_id, double stock_diamete
             break;
         case RZone::RZSubType::NOTCH_Z:
             sub_s = _T("notch_z");
+            break;
+        case RZone::RZSubType::UNDERCUT_X:
+            sub_s = _T("undercut_x");
+            break;
+        case RZone::RZSubType::UNDERCUT_Z:
+            sub_s = _T("undercut_z");
             break;
         default:
             sub_s = _T("undef");
@@ -699,15 +846,15 @@ double RZone::GetMinY() const
 double RZone::GetRintMin() const
 {
     if (IsEmpty())
-        return DBL_MAX;
+        return FLT_MAX;
     if (GetType() == RZType::OPENED || GetType() == RZType::UNDEF)
-        return DBL_MAX;
+        return FLT_MAX;
 
     const bool right_oriented = (GetSide() == RZSide::LEFT) == (GetPos() == RZPos::TOP);
     const double turn_sign = (right_oriented) ? 1. : -1.;
     const curve arc_dir = (right_oriented) ? ccwarc : cwarc;
 
-    double min_r = DBL_MAX;
+    double min_r = FLT_MAX;
 
     // check arcs
     for each (auto el in *this)
@@ -739,12 +886,69 @@ double RZone::GetMaxY() const
     return max_y;
 }
 
+double RZone::GetMaxX() const
+{
+    if (IsEmpty())
+        return 0.;
+
+    double max_x = at(0).GetB().GetX();
+
+    for each (auto el in *this)
+        max_x = fmax(max_x, el.GetE().GetX());
+
+    return max_x;
+}
+
+double RZone::GetMinX() const
+{
+    if (IsEmpty())
+        return 0.;
+
+    double min_x = at(0).GetB().GetX();
+
+    for each (auto el in *this)
+        min_x = fmin(min_x, el.GetE().GetX());
+
+    return min_x;
+}
+
 double RZone::GetWidth() const
 {
     if (IsEmpty())
         return 0.;
 
     return fabs(front().GetB().GetX() - back().GetE().GetX());
+}
+
+double RZone::GetH1(const RGlobParams& params) const
+{
+    if (pos_ == RZPos::TOP)
+    {
+        const double max_y = GetMaxY();
+        return params.stock_diameter_ * 0.5 - max_y;
+    }
+    if (pos_ == RZPos::END)
+    {
+        const double shift = (params.stock_length_ - (params.x_max_ - params.x_min_)) * 0.5;
+        if(side_ == RZSide::RIGHT)
+            return  shift + params.x_max_ - GetMaxX();
+        else
+            return shift + GetMinX() - params.x_min_;
+    }
+    // pos_ == RZPos::BOTTOM or UNDEF
+    if (type_ == RZType::CLOSED)
+    {
+        const double last_x = back().GetE().GetX();
+        if (side_ == RZSide::LEFT)
+        {
+            return last_x - params.x_min_;
+        }
+        if (side_ == RZSide::RIGHT)
+        {
+            return params.x_max_ - last_x;
+        }
+    }
+    return 0.0;
 }
 
 int RZone::CreateClosed(const RZone& base_cont, std::vector<bool> thread, double max_plunge_angle)
@@ -811,6 +1015,8 @@ bool RZone::IsSubTypeTerminal() const
 {
     switch (sub_type_)
     {
+    case RZSubType::UNDERCUT_X:
+    case RZSubType::UNDERCUT_Z:
     case RZSubType::NOTCH_X:
     case RZSubType::NOTCH_Z:
     case RZSubType::THREAD:
@@ -821,6 +1027,11 @@ bool RZone::IsSubTypeTerminal() const
     default:
         return false;
     }
+}
+
+double RZone::Round(double val)
+{
+    return floor(val * 1.e12) / 1.e12;
 }
 
 void RZone::AlignNotchEnds(int& start_ind, int& end_ind)

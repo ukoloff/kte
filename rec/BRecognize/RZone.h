@@ -1,5 +1,7 @@
 #pragma once
+#include "RGlobParams.h"
 #include "RContour.h"
+
 class RZone : public RContour
 {
 	friend class BTurnRec;
@@ -31,6 +33,8 @@ public:
         ST1,
         ST2,
         THREAD,
+        UNDERCUT_X,
+        UNDERCUT_Z,
         UNDEF
     };
 public:
@@ -59,22 +63,30 @@ public:
     void ProcClosed(double max_plunge_angle);
     bool IsSubtypeST1(double max_angle) const;
     bool IsSubtypeST2() const;
+    bool IsUndercutX() const;
+    bool IsUndercutZ() const;
+    bool IsUndercut1dirX() const;
+    bool IsUndercut1dirZ() const;
     bool IsNotchX() const;
     int HaveNotchX(int start_ind) const;
     bool IsNotchZ() const;
     void InitClosed(const RZone& parent);
     void Transform(const BMatr& matr) override;
-    int WriteKTE(class TiXmlElement* e_parent, int parent_id, double stock_diameter) const;
-    int Write1KTE(class TiXmlElement* e_parent, int parent_id, double stock_diameter) const;
+    int WriteKTE(class TiXmlElement* e_parent, int parent_id, const RGlobParams& params) const;
+    int Write1KTE(class TiXmlElement* e_parent, int parent_id, const RGlobParams& params) const;
     void WriteToStrStCRec(CString& text) const;
     double GetBaseY() const;
     double GetBaseX() const;
     double GetMinY() const;
     double GetRintMin() const;
     double GetMaxY() const;
+    double GetMaxX() const;
+    double GetMinX() const;
     double GetWidth() const;
+    double GetH1(const RGlobParams& params) const;
     int CreateClosed(const RZone& base_cont, std::vector<bool> thread, double max_plunge_angle);
     bool IsSubTypeTerminal() const;
+    static double Round(double val);
 protected:
     void AlignNotchEnds(int& start_ind, int& end_ind);
 

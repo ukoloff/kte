@@ -14,16 +14,18 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-BTurnRec::BTurnRec(const char* exe_path, const char* in, const char* out) : Config(*GenNTiParams())
+BTurnRec::BTurnRec(const char* exe_path, const char* in, const char* out) : config_(*GenNTiParams())
 {
 	exe_file_ = CString(exe_path);
 	input_file_ = CString(in);
 	output_file_ = CString(out);
 	left_start_ = false;
-	x_min_ = 0.;
-	x_max_ = 0.;
-	y_min_ = 0.;
-	y_max_ = 0.;
+	params_.x_min_ = 0.;
+	params_.x_max_ = 0.;
+	params_.y_min_ = 0.;
+	params_.y_max_ = 0.;
+	params_.stock_diameter_ = 0.;
+	params_.stock_length_ = 0.;
 }
 
 int BTurnRec::Proc()
@@ -44,7 +46,7 @@ int BTurnRec::ReadConfig()
 	if (ind == -1)
 		return 0;
 	CString path = exe_file_.Left(ind + 1) + _T("Config.xml");
-	bool load_ok = Config.LoadFile(path.GetBuffer());
+	bool load_ok = config_.LoadFile(path.GetBuffer());
 	return load_ok ? 1 : 0;
 }
 
@@ -67,11 +69,11 @@ int BTurnRec::ReadInput()
 	// read stock diameter
 	if (!f.ReadString(str, StrLen))
 		return 0;
-	stock_diameter_ = atof(str);
+	params_.stock_diameter_ = atof(str);
 	// read stock length
 	if (!f.ReadString(str, StrLen))
 		return 0;
-	stock_length_ = atof(str);
+	params_.stock_length_ = atof(str);
 	// read start side
 	if (!f.ReadString(str, StrLen))
 		return 0;
@@ -152,7 +154,7 @@ int BTurnRec::WriteOutput()
 	TiXmlElement* e_result = new TiXmlElement(_T("recognition_result"));
 	for (int i = 0; i < 8; ++i)
 	{
-		auto id = open_parts_[i].WriteKTE(e_result, 0, stock_diameter_);
+		auto id = open_parts_[i].WriteKTE(e_result, 0, params_);
 	}
 	xml->LinkEndChild(e_result);
 	bool res = xml->SaveFile(output_file_);
@@ -205,7 +207,7 @@ int BTurnRec::MakeResult()
 	// G.Разрезать контур на 8 частей по характерным точкам и установить ориентацию
 	if (CutCont8(nodes) == 0)
 		return 0;
-	const double max_plunge_angle = Config.GetDouble(_T("config@MaxPlungeAngle"), 30.);
+	const double max_plunge_angle = config_.GetDouble(_T("config@MaxPlungeAngle"), 30.);
 	for (int part_ind = 0; part_ind < 8; ++part_ind)
 	{
 		if (cont_parts_[part_ind].IsEmpty())
@@ -231,31 +233,31 @@ int BTurnRec::Find8Nodes(int nodes[9]) const
 	for (int i = 0; i < 9; ++i)
 		nodes[i] = -1;// empty point
 	nodes[0] = 0;
-	if (fabs(cur_.at(0).GetB().GetY() - y_min_) < MIND)
+	if (fabs(cur_.at(0).GetB().GetY() - params_.y_min_) < MIND)
 	{
 		nodes[1] = 0;
 		nodes[2] = 0;
 	}
 	for (int i = 1; i < cur_.size(); ++i)
 	{
-		if (fabs(cur_.at(i).GetB().GetY() - y_min_) < MIND)
+		if (fabs(cur_.at(i).GetB().GetY() - params_.y_min_) < MIND)
 		{
 			if (nodes[1] == -1)
 				nodes[1] = i;
 			nodes[2] = i;
 		}
-		if (fabs(cur_.at(i).GetB().GetY() - y_max_) < MIND)
+		if (fabs(cur_.at(i).GetB().GetY() - params_.y_max_) < MIND)
 		{
 			if (nodes[5] == -1)
 				nodes[5] = i;
 			nodes[6] = i;
 		}
-		if (fabs(cur_.at(i).GetB().GetX() - x_min_) < MIND)
+		if (fabs(cur_.at(i).GetB().GetX() - params_.x_min_) < MIND)
 		{
 			if (nodes[7] == -1)
 				nodes[7] = i;
 		}
-		if (fabs(cur_.at(i).GetB().GetX() - x_max_) < MIND)
+		if (fabs(cur_.at(i).GetB().GetX() - params_.x_max_) < MIND)
 		{
 			if (nodes[3] == -1)
 				nodes[3] = i;
@@ -296,18 +298,18 @@ int BTurnRec::CutCont8(int nodes[9])
 
 void BTurnRec::FindMinMax()
 {
-	x_min_ = 1.e12;
-	x_max_ = -1.e12;
-	y_min_ = 1.e12;
-	y_max_ = -1.e12;
+	params_.x_min_ = 1.e12;
+	params_.x_max_ = -1.e12;
+	params_.y_min_ = 1.e12;
+	params_.y_max_ = -1.e12;
 	for each (auto & el in cur_)
 	{
 		double x, y, z, h;
 		el.GetB().Get(x, y, z, h);
-		x_min_ = fmin(x_min_, x);
-		x_max_ = fmax(x_max_, x);
-		y_min_ = fmin(y_min_, y);
-		y_max_ = fmax(y_max_, y);
+		params_.x_min_ = fmin(params_.x_min_, x);
+		params_.x_max_ = fmax(params_.x_max_, x);
+		params_.y_min_ = fmin(params_.y_min_, y);
+		params_.y_max_ = fmax(params_.y_max_, y);
 	}
 }
 
@@ -321,7 +323,7 @@ int BTurnRec::FindLeftBottomInd() const
 		auto& el = cur_[i];
 		double x, y, z, h;
 		el.GetB().Get(x, y, z, h);
-		if (fabs(x_min_ - x) < MIND)
+		if (fabs(params_.x_min_ - x) < MIND)
 		{
 			if (y < yminxmin)
 			{

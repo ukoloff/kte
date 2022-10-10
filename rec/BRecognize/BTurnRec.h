@@ -4,6 +4,7 @@
 #include "NTiParams.h"
 #include "RContour.h"
 #include "RZone.h"
+#include "RGlobParams.h"
 #include <vector>
 #include <list>
 
@@ -27,17 +28,15 @@ public:
 
 
 protected:
-	NTiParams& Config;
+	NTiParams& config_;
+	RGlobParams params_;
 	CString exe_file_;
 	CString input_file_;
 	CString output_file_;
 	bool left_start_;
-	double stock_diameter_;
-	double stock_length_;
 	std::vector<bool> thread_;
 	RContour orig_;
 	RContour cur_;
-	double x_min_, x_max_, y_min_, y_max_;
 	RZone cont_parts_[8];// left-bottom, bottom, ..., left-top, left-end
 	RZone open_parts_[8];// left-bottom, bottom, ..., left-top, left-end
 };
