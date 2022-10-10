@@ -22,6 +22,7 @@ TXT --> S2
 %% click XML href "a"
 
 ```
+Подробности -- в [документации](doc).
 
 ## Used software
 
