@@ -18,7 +18,8 @@ DB[[Подбор <br>инструмента <br>и режима резки]] <--
 XLS[(Инструменты)] -.-> DB
 TXT --> S2
 
-%% click XML href "a"
+click S1 href "rec"
+click S2 href "lathe"
 
 ```
 
