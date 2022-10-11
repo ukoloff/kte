@@ -28,7 +28,6 @@ exports <<<
               ' '
               v.t
 
-      for v in tabs
+      for v in tabs when state.tab == v.k
         m '',
-          class: \hidden if state.tab != v.k
           m v

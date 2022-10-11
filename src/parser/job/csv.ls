@@ -5,7 +5,6 @@ module.exports = csv
 
 function csv s
   var L
-  result = []
 
   function test rexp
     Z = rexp.exec s
@@ -13,7 +12,7 @@ function csv s
     s := s.substring Z.index + Z[0].length
     Z[0].trim!
 
-  loop
+  until done
     unless mode
       L = ''
       s .= trim!
@@ -26,15 +25,13 @@ function csv s
       | \"" =>
         L += \"
         continue
-      | _ => mode = 3
+      | _ => done = 1
     else
       # , ...
       switch test /"|\s*,|\s*$/
       | \" =>
         mode = 2
         continue
-      | "" => mode = 3
-    result.push L
-    if mode == 3
-      return result
+      | "" => done = 1
     mode = 0
+    L
