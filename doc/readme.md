@@ -33,16 +33,17 @@ TXT --> S2
 + Утилита генерации управляющих программ (командная строка)
 
 ## Форматы файлов данных
-+ [DXF]
++ .dxf: [DXF]
 + [STEP]
-+ Задание на распознавание КТЭ
-+ [Список КТЭ][kte]
++ .txt: [Задание на распознавание КТЭ][txt]
++ .xml: [Список КТЭ][kte]
 + Модуль поиска инструмента и режимов резания
   - [Входной файл](tooling/in.md)
   - [Выходной файл](tooling/out.md)
 
 [DXF]: http://images.autodesk.com/adsk/files/autocad_2012_pdf_dxf-reference_enu.pdf
 [STEP]: https://www.loc.gov/preservation/digital/formats/fdd/fdd000448.shtml
+[txt]: rec/input.md
 [kte]: rec/RecognitionResultFileFormat.docx
 
 ## Описания алгоритмов
