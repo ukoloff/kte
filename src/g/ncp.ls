@@ -47,3 +47,6 @@ module.exports = run
         require \./kte/todo
     handler kte
     suffix kte
+
+  if /M01;?$/.test echo.last!
+    echo.last echo.last!replace /M01/, 'M30'
