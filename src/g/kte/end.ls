@@ -9,6 +9,8 @@ module.exports = end-opened
     ../echo
     ./qtool
     ./turret
+    ./prolog
+    ./epilog
   ]>
 
   tools = qtool kte
@@ -18,10 +20,9 @@ module.exports = end-opened
   x0 = state.job.global.D
   z0 = Math.max (state.job.global.W - state.job.size[0]) / 2
 
-  echo "N900 G90 G18 (Podrezat torez);"
-  echo "G28 U0 W0;"
-  echo "G54;"
+  prolog kte, "Podrezat torez"
   turret tool
+
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{x0} Z#{z0};"
   echo "N30 G72 W#{tool.AR} R1;"
@@ -35,3 +36,4 @@ module.exports = end-opened
   echo "G00 Z1;"
   echo "N70 G00 X#{x0} Z#{z0} M9;"
   echo "N75 M5;"
+  epilog kte

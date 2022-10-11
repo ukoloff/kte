@@ -9,6 +9,8 @@ module.exports = bottom-opened
     ../echo
     ./qtool
     ./turret
+    ./prolog
+    ./epilog
   ]>
 
   tools = qtool kte
@@ -18,9 +20,7 @@ module.exports = bottom-opened
   # Drilling
   Rad = Math.min 6, kte._[0][1]
 
-  echo "N900 G90 G18 (Sverlit otverstie);"
-  echo "G28 U0 W0;"
-  echo "G54;"
+  prolog kte, "Sverlit otverstie"
   turret tool
   echo "N10 G96 S#{tool.V};"
   echo "N20 X0 Z2;"
@@ -30,3 +30,5 @@ module.exports = bottom-opened
 
   # TODO: Milling
   # ...
+
+  epilog kte

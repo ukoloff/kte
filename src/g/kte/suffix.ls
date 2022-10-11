@@ -1,5 +1,6 @@
 #
 # Print trailer
+# after KTE
 #
 module.exports = suffix
 

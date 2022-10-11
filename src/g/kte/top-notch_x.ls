@@ -7,6 +7,8 @@ module.exports = top-notch
   require! <[
     ./qtool
     ./turret
+    ./prolog
+    ./epilog
     ../state
     ../echo
   ]>
@@ -18,9 +20,7 @@ module.exports = top-notch
   first = kte._[0]
   last = kte._[*-1]
 
-  echo "N900 G90 G18 (Tochit vitochku);"
-  echo "G28 U0 W0;"
-  echo "G54;"
+  prolog kte, "Tochit vitochku"
   turret tool
 
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
@@ -41,3 +41,5 @@ module.exports = top-notch
     echo "N100 G00 X#{state.job.global.D + 2} M9 M5;"
   else
     echo "N65 M5;"
+
+  epilog kte

@@ -11,6 +11,8 @@ module.exports = top-semiopened
     ./path2g
     ./skip
     ./turret
+    ./prolog
+    ./epilog
   ]>
 
   if skip kte
@@ -20,10 +22,9 @@ module.exports = top-semiopened
   stages = tools.length
   tool = tools[0]
 
-  echo "N900 G90 G18 (Tochit poluotkrituyu zonu nacherno);"
-  echo "G28 U0 W0;"
-  echo "G54;"
+  prolog kte, "Tochit poluotkrituyu zonu nacherno"
   turret tool
+
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{2 * kte._[0][1] + 4} Z2;"
   echo "G71 U#{tool.AR} R1;"
@@ -41,13 +42,13 @@ module.exports = top-semiopened
   echo "N70 G00 X#{x0 = state.job.global.D + 4} Z2 M9;"
   echo "N75 M5;"
   if stages < 2
+    epilog kte
     return
 
   tool = tools[1]
-  echo "N900 G90 G18 (Tochit poluotkrituyu zonu nachisto);"
-  echo "G28 U0 W0;"
-  echo "G54;"
+  prolog kte, "Tochit poluotkrituyu zonu nachisto"
   turret tool
+
   echo "N110 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N120 X#{2 * kte._[0][1] + 2} Z2;"
 
@@ -60,3 +61,4 @@ module.exports = top-semiopened
 
   echo "N170 G00 X#{x0} Z2 M9;"
   echo "N175 M5;"
+  epilog kte

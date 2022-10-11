@@ -1,5 +1,6 @@
 #
 # Print some comments
+# before KTE
 #
 module.exports = prefix
 
