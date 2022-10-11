@@ -47,5 +47,3 @@ module.exports = run
         require \./kte/todo
     handler kte
     suffix kte
-
-  echo "%;"

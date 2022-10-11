@@ -26,7 +26,7 @@ module.exports = top-notch
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{2 * first[1] + 2} Z#{first[0]};"
   echo "N30 G75 R1;"
-  echo "N40 G75 X#{2 * last[1]} Z#{last[0] + tool.AR} P#{tool.AR} Q#{0.8 * tool.AR};"
+  echo "N40 G75 X#{2 * kte._[1][1]} Z#{last[0] + tool.AR} P#{1000 * tool.AR} Q#{800 * tool.AR} R0;"
   echo "N50 G00 X#{state.job.global.D + 2} M9;"
   echo "N60 Z#{(state.job.global.W - last[0]) / 2};"  # TODO: ??? WTF?!
 

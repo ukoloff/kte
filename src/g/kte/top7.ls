@@ -26,7 +26,7 @@ module.exports = top-semiopened
   turret tool
 
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
-  echo "N20 X#{2 * kte._[0][1] + 4} Z2;"
+  echo "N20 X#{state.job.global.D } Z2;"
   echo "G71 U#{tool.AR} R1;"
 
   G-code = path2g kte._, 1
