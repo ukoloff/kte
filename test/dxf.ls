@@ -8,6 +8,8 @@ context 'DXF Parser' !->
   context 'can read DXF file' !->
     for let src in discover!
       <-! specify path.basename src
+      @timeout 10000  # 10 sec
+
       require! <[
         iconv-lite
         ../src/parser/dxf/read
@@ -65,6 +67,8 @@ context 'DXF Parser' !->
     items = JSON.parse fs.read-file-sync path.join(data-root!, \dxf.json), \utf-8
     for let src in discover!
       <-! specify path.basename src
+      @timeout 10000  # 10 sec
+
       require! <[
         ../src/parser/dxf
         ../src/parser/dxf/spline

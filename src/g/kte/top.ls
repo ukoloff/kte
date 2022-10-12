@@ -9,6 +9,8 @@ module.exports = top-opened
     ./turret
     ../state
     ../echo
+    ./prolog
+    ./epilog
     ../../math/path/bounds
     ../../math/rect/size
   ]>
@@ -25,10 +27,9 @@ module.exports = top-opened
   stages = tools.length
   tool = tools[0]
 
-  echo "N900 G90 G18 (Tochit otkrituyu zonu);"
-  echo "G28 U0 W0;"
-  echo "G54;"
+  prolog kte, "Tochit otkrituyu zonu"
   turret tool
+
   echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
   echo "N20 G00 X#{x0 = state.job.global.D} Z2;"
   echo "N30 G71 U#{tool.AR} R1;"
@@ -41,3 +42,4 @@ module.exports = top-opened
     echo "N65 G70 P#{echo.N -2} Q#{echo.N -1};"
   echo "N70 G00 X#{x0} Z2 M9;"
   echo "N75 M5;"
+  epilog kte

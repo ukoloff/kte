@@ -48,4 +48,5 @@ module.exports = run
     handler kte
     suffix kte
 
-  echo "%;"
+  if /M01;?$/.test echo.last!
+    echo.last echo.last!replace /M01/, 'M30'
