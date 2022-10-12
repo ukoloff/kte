@@ -28,6 +28,7 @@
 <summary>
 Под Microsoft Windows
 </summary>
+
 рекомендуется использовать
 [Scoop],
 для этого в консоли PowerShell
