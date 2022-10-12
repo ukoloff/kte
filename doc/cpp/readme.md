@@ -34,4 +34,10 @@ NPRecognition <имя входного файла.txt> <имя выходног�
 + 0: успешно
 + 1: произошла ошибка.
 
+## Используемое ПО
 
+- [Visual Studio] 2019
+- [TinyXML]
+
+[Visual Studio]: https://visualstudio.microsoft.com/
+[TinyXML]: https://www.grinninglizard.com/tinyxml/
