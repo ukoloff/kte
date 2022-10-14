@@ -34,10 +34,9 @@ jobs:
       run:  msbuild source\NRecognition.sln -property:Configuration=${{ matrix.Configuration }} -property:Platform=${{ matrix.Platform }}
 
     -
-      name: Remove Tests
-      run:  del Tests.*
-
-    - uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: rec-${{ matrix.Configuration }}
-        path: ./rec/${{ matrix.Configuration }}
+        path: |
+          ./rec/${{ matrix.Configuration }}
+          !**/Tests.*
