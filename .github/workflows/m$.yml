@@ -24,7 +24,10 @@ jobs:
     -
       name: Build
       working-directory: rec
-      run:  msbuild source\NRecognition.sln -property:Configuration=${{ matrix.Configuration }} -property:Platform=${{ matrix.Platform }}
+      run:  msbuild source\NRecognition.sln
+      env:
+        Configuration: ${{ matrix.Configuration }}
+        Platform:      ${{ matrix.Platform }}
     -
       uses: actions/upload-artifact@v3
       with:
