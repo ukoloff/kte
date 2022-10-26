@@ -5,6 +5,8 @@ require! <[
   fs
   path
   ./state
+  ./croak
+  ./recognize
 ]>
 
 module.exports = args
@@ -19,28 +21,15 @@ module.exports = args
     base = path.join __filename, "../../../data/var/#{A[0]}"
     A =
       "#{base}.txt"
-      "#{base}.xml"
+      ...
 
-  if A.length != 2
-    croak "Usage: node #{path.basename process.argv[1]} JOB.txt KTEs.xml"
+  if A.length != 1
+    croak "Usage: node #{path.basename process.argv[1]} JOB.txt"
 
-  for f in A
-    txt = fs.read-file-sync f, \utf-8
-    switch f.replace /.*[.]/, '' .to-lower-case!
-    | \txt =>
-      state.job = txt
-      |> require \../parser/job
-    | \xml =>
-      state.ktes = txt
-      |> require \../parser
-    | _ => croak "Unknown file type: #{f}"
-    state.out-name = path.parse f .name
+  state.out-name = path.parse A[0] .name
 
-  unless state.job
-    croak "JOB not specified"
-  unless state.ktes
-    croak "KTEs not specified"
+  console.log "Reading:", A[0]
+  state.job = fs.read-file-sync A[0], \utf-8
+    |> require \../parser/job
 
-!function croak text
-  console.error text
-  process.exit 1
+  recognize A[0]
