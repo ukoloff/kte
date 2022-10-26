@@ -86,7 +86,13 @@ function order side
     ktes[i] =
       $: {} <<<< kte.$ <<< Z: -R[1][0]
       _: path
-      L: kte._.map (.L)
+      # Technological parameters
+      t: kte._
+        .map (.L)   # extract L property
+        .map Number
+        .map (- 1)
+        .map (state.job.spans.)
+        .map -> it or {}
 
   # return
   ktes
