@@ -92,7 +92,7 @@ function order side
         .map Number
         .map (- 1)
         .map (state.job.spans.)
-        .map -> it or {}
+        .map (or {})
 
   # return
   ktes
