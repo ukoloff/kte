@@ -6,6 +6,7 @@ module.exports = run
 !function run
   require! <[
     fs
+    dotenv/config
     ./args
     ./echo
     ./state
