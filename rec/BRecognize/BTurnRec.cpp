@@ -14,8 +14,12 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif
 
-BTurnRec::BTurnRec(const char* exe_path, const char* in, const char* out) : config_(*GenNTiParams())
+NTiParams* BTurnRec::config_ = nullptr;
+
+BTurnRec::BTurnRec(const char* exe_path, const char* in, const char* out)
 {
+	if(config_ == nullptr)
+		config_ = GenNTiParams();
 	exe_file_ = CString(exe_path);
 	input_file_ = CString(in);
 	output_file_ = CString(out);
@@ -46,7 +50,7 @@ int BTurnRec::ReadConfig()
 	if (ind == -1)
 		return 0;
 	CString path = exe_file_.Left(ind + 1) + _T("Config.xml");
-	bool load_ok = config_.LoadFile(path.GetBuffer());
+	bool load_ok = config_->LoadFile(path.GetBuffer());
 	return load_ok ? 1 : 0;
 }
 
@@ -148,6 +152,7 @@ int BTurnRec::ReadInput()
 
 int BTurnRec::WriteOutput()
 {
+	RZone::ResetLocId();
 	TiXmlDocument* xml = new TiXmlDocument();
 	TiXmlDeclaration* decl = new TiXmlDeclaration("1.0", "", "");
 	xml->LinkEndChild(decl);
@@ -207,7 +212,6 @@ int BTurnRec::MakeResult()
 	// G.Разрезать контур на 8 частей по характерным точкам и установить ориентацию
 	if (CutCont8(nodes) == 0)
 		return 0;
-	const double max_plunge_angle = config_.GetDouble(_T("config@MaxPlungeAngle"), 30.);
 	for (int part_ind = 0; part_ind < 8; ++part_ind)
 	{
 		if (cont_parts_[part_ind].IsEmpty())
@@ -220,7 +224,7 @@ int BTurnRec::MakeResult()
 		// B.Построить открытый(полуоткрытый)
 		open_parts_[part_ind].CreateSemiOpen(cont_parts_[part_ind]);
 		// C.Построить все закрытые.
-		open_parts_[part_ind].CreateClosed(cont_parts_[part_ind], thread_, max_plunge_angle);
+		open_parts_[part_ind].CreateClosed(cont_parts_[part_ind], thread_);
 		// E.Вернуть в исходное положение.
 		open_parts_[part_ind].Transform(norm_matr.Inv());
 		cont_parts_[part_ind].Transform(norm_matr.Inv());
@@ -373,6 +377,11 @@ BMatr BTurnRec::CalcNormMatr(int ind) const
 		break;
 	}
 	return ret;
+}
+
+const NTiParams& BTurnRec::GetConfig()
+{
+	return *config_;
 }
 
 size_t BTurnRec::ReadFromStrStCRec(std::list<NCadrGeom>& ResList, size_t Size, CString& Text)
