@@ -22,7 +22,7 @@ NTiParamsInt::NTiParamsInt(void)
 NTiParamsInt::~NTiParamsInt(void)
 {
 }
-double NTiParamsInt::GetDouble( const char * Key, double Default)
+double NTiParamsInt::GetDouble( const char * Key, double Default) const
 {
 	string SKey(Key);
 	size_t LastPos = SKey.rfind('@');
@@ -60,11 +60,11 @@ bool NTiParamsInt::GetBool( const char * Key, bool Default)
 }
 
 
-TiXmlElement * NTiParamsInt::GetElement(const char * Key, size_t Length)
+TiXmlElement * NTiParamsInt::GetElement(const char * Key, size_t Length) const
 {
 	string SKey(Key);
 
-	TiXmlNode * pElem = this;
+	const TiXmlNode * pElem = this;
 	for(size_t CurPos = 0; CurPos < Length; )
 	{
 		size_t CurEnd = SKey.find('/', CurPos);

@@ -59,8 +59,8 @@ public:
     bool DivideGeomMultiInd(const RindMulti& multi_ind, const BPoint& int_point);
     bool DivideGeomInd(int ind, const BPoint& int_point);
     void reverse() noexcept override;
-    void DefineSubtype(double max_plunge_angle);
-    void ProcClosed(double max_plunge_angle);
+    void DefineSubtype();
+    void ProcClosed();
     bool IsSubtypeST1(double max_angle) const;
     bool IsSubtypeST2() const;
     bool IsUndercutX() const;
@@ -84,13 +84,16 @@ public:
     double GetMinX() const;
     double GetWidth() const;
     double GetH1(const RGlobParams& params) const;
-    int CreateClosed(const RZone& base_cont, std::vector<bool> thread, double max_plunge_angle);
+    double GetChamf() const;
+    int CreateClosed(const RZone& base_cont, std::vector<bool> thread);
     bool IsSubTypeTerminal() const;
     static double Round(double val);
+    static void ResetLocId();
 protected:
     void AlignNotchEnds(int& start_ind, int& end_ind);
 
 protected:
+    static int loc_id_; // id for output
     std::vector<RindMulti> ind_v_;// мульти индексы вершин исходного контура
     std::vector<RZone> children_;// дочерние зоны
     RZType type_;
