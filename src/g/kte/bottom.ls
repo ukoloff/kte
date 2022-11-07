@@ -2,6 +2,9 @@
 # Bottom Opened Zone
 #
 module.exports = bottom-opened
+<<<
+  id: 16  # Also: 0
+  name: 'Отверстие'
 
 !function bottom-opened kte
   require! <[

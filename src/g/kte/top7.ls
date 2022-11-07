@@ -2,6 +2,9 @@
 # Top Semiopened Zone
 #
 module.exports = top-semiopened
+<<<
+  id: 3
+  name: 'Полуоткрытая зона наружная'
 
 !function top-semiopened kte
   require! <[

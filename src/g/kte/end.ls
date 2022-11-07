@@ -2,6 +2,9 @@
 # End (Opened) Zone
 #
 module.exports = end-opened
+<<<
+  id: 1
+  name: 'Торец'
 
 !function end-opened kte
   require! <[

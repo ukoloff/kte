@@ -2,6 +2,9 @@
 # Top Opened Zone
 #
 module.exports = top-notch
+<<<
+  id: 4
+  name: 'Выточка наружная'
 
 !function top-notch kte
   require! <[

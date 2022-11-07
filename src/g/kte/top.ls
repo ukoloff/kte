@@ -2,6 +2,9 @@
 # Top Opened Zone
 #
 module.exports = top-opened
+<<<
+  id: 2
+  name: 'Открытая зона наружная'
 
 !function top-opened kte
   require! <[

@@ -2,6 +2,9 @@
 # Bottom Semiopened Zone
 #
 module.exports = bottom-semiopened
+<<<
+  id:   10
+  name: 'Полуоткрытая внутр'
 
 !function bottom-semiopened kte
   require! <[
