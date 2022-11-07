@@ -46,6 +46,7 @@ module.exports = run
     handler = try require inc
       catch
         require \./kte/todo
+    kte <<< {handler}
     handler kte
     suffix kte
 

@@ -6,9 +6,12 @@ module.exports = query-tool
 function query-tool kte
   require! <[
     ./tools
+    ../turret
   ]>
 
-  dry-run!
+  # Run FoxPro utility
+  turret kte
+    .query!
 
   kte .= $
   for tool in tools
@@ -18,10 +21,3 @@ function query-tool kte
       continue
     tool
   .slice 0, 2
-
-!function dry-run
-  # Run ForPro utility
-  require! <[
-    ../turret
-  ]>
-  turret!

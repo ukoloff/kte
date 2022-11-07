@@ -1,28 +1,22 @@
 #
 #
 #
-module.exports = fox-pro
+module.exports = init-turret
 
-function fox-pro
+function init-turret kte
   require! <[
-    path
-    child_process
-    ../croak
+    ./query
+    ./out
   ]>
 
-  unless exe = process.env.TURRET_BIN
-    croak "Turret utility not specified"
+  result =
+    kte:    kte
+    id:     kte.handler.id  # Код КТЭ
+    fine:   0               # Признак чистовой обработки
+    mat:    77              # Код обрабатываемого материала
+    dir:    \R              # Направление обработки: R / L
+    # Methods
+    query:  query
+    out:    out
 
-  child = child_process.spawn-sync do
-    exe
-    cwd: path.dirname exe
-    stdio: \inherit
-    windows-hide: true
-
-  if child.error
-    throw that
-  if child.signal
-    croak "Turret utility killed with signal:", that
-  if child.status != 0
-    croak "Turret utility finished with error:", child.status
-
+  result
