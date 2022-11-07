@@ -7,6 +7,8 @@ function init-turret kte
   require! <[
     ./query
     ./out
+    ./Ra
+    ../state
   ]>
 
   result =
@@ -14,9 +16,11 @@ function init-turret kte
     id:     kte.handler.id  # Код КТЭ
     fine:   0               # Признак чистовой обработки
     mat:    77              # Код обрабатываемого материала
+    hard:   state.job.global.hard
     dir:    \R              # Направление обработки: R / L
     # Methods
     query:  query
     out:    out
 
-  result
+  # return
+  result |> Ra
