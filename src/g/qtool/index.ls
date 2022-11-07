@@ -8,6 +8,8 @@ function query-tool kte
     ./tools
   ]>
 
+  dry-run!
+
   kte .= $
   for tool in tools
     if tool.pos != kte.pos or tool.type != kte.type
@@ -16,3 +18,10 @@ function query-tool kte
       continue
     tool
   .slice 0, 2
+
+!function dry-run
+  # Run ForPro utility
+  require! <[
+    ../turret
+  ]>
+  turret!

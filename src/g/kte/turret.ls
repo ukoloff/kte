@@ -2,15 +2,7 @@
 # Position tools in Turret
 #
 module.exports = turret
-
-turret <<< {reset}
-
-!function dry-run
-  # Run ForPro utility
-  require! <[
-    ../turret
-  ]>
-  turret!
+<<< {reset}
 
 var tools
 
@@ -18,8 +10,6 @@ function turret tool
   require! <[
     ../echo
   ]>
-
-  dry-run!
 
   unless tool.tool of tools._
     tools._[tool.tool] = tools.length

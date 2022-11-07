@@ -8,7 +8,7 @@ module.exports = top-notch
 
 !function top-notch kte
   require! <[
-    ./qtool
+    ../qtool
     ./turret
     ./prolog
     ./epilog

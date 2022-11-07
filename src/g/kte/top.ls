@@ -8,7 +8,7 @@ module.exports = top-opened
 
 !function top-opened kte
   require! <[
-    ./qtool
+    ../qtool
     ./turret
     ../state
     ../echo

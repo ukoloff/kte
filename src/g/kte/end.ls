@@ -10,7 +10,7 @@ module.exports = end-opened
   require! <[
     ../state
     ../echo
-    ./qtool
+    ../qtool
     ./turret
     ./prolog
     ./epilog

@@ -10,7 +10,7 @@ module.exports = top-semiopened
   require! <[
     ../state
     ../echo
-    ./qtool
+    ../qtool
     ./path2g
     ./skip
     ./turret
