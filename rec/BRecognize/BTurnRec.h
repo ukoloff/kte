@@ -8,6 +8,7 @@
 #include <vector>
 #include <list>
 
+
 class BRecognize_API BTurnRec
 {
 public:
@@ -23,12 +24,13 @@ public:
 	void FindMinMax();
 	int FindLeftBottomInd() const;
 	BMatr CalcNormMatr(int ind) const;
+	static const NTiParams& GetConfig();
 
 	size_t ReadFromStrStCRec(std::list<NCadrGeom>& res_list, size_t size, CString& text);
 
 
 protected:
-	NTiParams& config_;
+	static NTiParams* config_;
 	RGlobParams params_;
 	CString exe_file_;
 	CString input_file_;

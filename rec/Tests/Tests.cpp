@@ -158,5 +158,13 @@ namespace Tests
 		{
 			DoTest("var23");
 		}
+		TEST_METHOD(Test91)
+		{
+			DoTest("InputTest_var24_3");
+		}
+		TEST_METHOD(Test92)
+		{
+			DoTest("InputTest_var16_1");
+		}
 	};
 }

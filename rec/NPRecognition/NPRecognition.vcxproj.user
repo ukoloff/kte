@@ -13,11 +13,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerCommand>..\debug\NPRecognition.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>C:\Development\RectWork\InputTest_var2-2.txt C:\Development\RectWork\InputTest_var2-2.xml</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Development\NPRecognition\Tests\source\InputTest_var16_1.txt C:\Development\NPRecognition\Tests\curresult\InputTest_var16_1.xml</LocalDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerCommand>..\debug\NPRecognition.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>C:\Development\RectWork\InputTest_var2-2.txt C:\Development\RectWork\InputTest_var2-2.xml</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Development\NPRecognition\Tests\source\InputTest_var16_1.txt C:\Development\NPRecognition\Tests\curresult\InputTest_var16_1.xml</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
