@@ -26,5 +26,7 @@ function min-Ra query
     2
   else
     1
+
   # return
   query
+

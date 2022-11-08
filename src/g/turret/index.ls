@@ -18,9 +18,19 @@ function init-turret kte
     mat:    77              # Код обрабатываемого материала
     hard:   state.job.global.hard
     dir:    \R              # Направление обработки: R / L
+
     # Methods
     query:  query
+    stage2: stage2
     out:    out
 
   # return
   result |> Ra
+
+function stage2 dry-run
+  if @stages < 2 or !@fine
+    return
+  unless dry-run
+    @fine = 1
+    @query!
+  1

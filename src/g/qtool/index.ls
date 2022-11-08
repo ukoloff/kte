@@ -10,8 +10,8 @@ function query-tool kte
   ]>
 
   # Run FoxPro utility
-  turret kte
-    .query!
+  # turret kte
+  #   .query!
 
   kte .= $
   for tool in tools
