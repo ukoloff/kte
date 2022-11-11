@@ -23,7 +23,6 @@ module.exports = end-opened
   z0 = Math.max (state.job.global.W - state.job.size[0]) / 2
 
   prolog kte, "Podrezat torez"
-  # turret tool
   tx.out!
 
   echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
