@@ -10,12 +10,15 @@ function run-fox-pro params={}
     child_process
     ../croak
     ../../parser/job/csv
+    ./dump
   ]>
 
   unless exe = process.env.TURRET_BIN
     croak "Turret utility not specified"
 
   @ <<<< params
+
+  dump.head @kte
 
   line = for f in <[id fine mat hard Xmax Xmin
             grooveDepth grooveWidth
@@ -28,6 +31,8 @@ function run-fox-pro params={}
       v = \" + v + \"
     v
   .join \,
+
+  dump.input line
 
   fs.write-file-sync do
     path.join do
@@ -55,6 +60,7 @@ function run-fox-pro params={}
     \utf-8
   .split /\r?\n|\r/
   .0
+  |> dump.output
   |> csv
 
   @tool = {[
