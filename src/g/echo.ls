@@ -7,11 +7,18 @@ require! <[
 
 module.exports = echo
 
-echo <<< {all, reset, N, last}
+echo <<< {all, N, last}
 
-var line, block, lines, last-cmd
+var line, block, lines, last-cmd, last-pass
 
 !function echo str=''
+  if last-pass != state.pass
+    last-pass := state.pass
+    # Start NC Program from scratch
+    lines := []
+    line := 0
+    block := 0
+
   if /^\s*[a-z]/i.test str
     n = if /\s*N900\s+/.test str
       900 + ++block
@@ -23,11 +30,6 @@ var line, block, lines, last-cmd
 
 function all
   lines.join \\n
-
-do !function reset
-  lines := []
-  line := 0
-  block := 0
 
 function N delta=0
   line + 1 + delta

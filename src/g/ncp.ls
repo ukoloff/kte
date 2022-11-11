@@ -16,7 +16,6 @@ module.exports = run
     half ..
     console.log "Writing NC Program to:", out = "bundle/#{state.out-name}-#{.. + 1}.nc"
     fs.write-file out, echo.all!, !->
-    echo.reset!
 
 !function half s
   require! <[
@@ -27,12 +26,13 @@ module.exports = run
     ./kte/prefix
     ./kte/suffix
   ]>
+  state.pass = 1 + Number s
+
   echo "%;"
   echo "(PART: #{state.job.global.id or \? });"
-  echo "(ustanov #{1 + Number s});"
+  echo "(ustanov #{state.pass});"
   echo!
 
-  state.pass = 1 + Number s
 
   for kte in order side s
     prefix kte
