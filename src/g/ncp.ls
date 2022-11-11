@@ -26,14 +26,13 @@ module.exports = run
     ./echo
     ./kte/prefix
     ./kte/suffix
-    ./kte/turret
   ]>
   echo "%;"
   echo "(PART: #{state.job.global.id or \? });"
   echo "(ustanov #{1 + Number s});"
   echo!
 
-  turret.reset!
+  state.pass = 1 + Number s
 
   for kte in order side s
     prefix kte
