@@ -20,7 +20,6 @@ module.exports = bottom-semiopened
   if skip kte
     return
 
-  debugger
   tx = turret kte
     .query do
       Xmax: kte._[0][1]
@@ -31,7 +30,7 @@ module.exports = bottom-semiopened
 
   # Milling
   prolog kte, "Rastochit poluotkrituyu zonu nacherno"
-  tx.out
+  tx.out!
 
   echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
   echo "N20 X#{2 * kte._[0][1] - 4} Z2;"
