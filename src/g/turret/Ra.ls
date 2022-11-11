@@ -22,6 +22,8 @@ function min-Ra query
         Number that[1]
     |> compact
     |> min
+
+  query.Ra = Ra
   query.stages = if T and T <=11 or Ra and Ra <= 6
     2
   else

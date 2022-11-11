@@ -28,7 +28,7 @@ function init-turret kte
   result |> Ra
 
 function stage2 dry-run
-  if @stages < 2 or !@fine
+  if @stages < 2 or @fine
     return
   unless dry-run
     @fine = 1
