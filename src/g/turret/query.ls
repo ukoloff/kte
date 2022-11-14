@@ -40,6 +40,12 @@ function run-fox-pro params={}
       \instr_input.txt
     line + "\n"
 
+  fs.write-file-sync do
+    path.join do
+      path.dirname exe
+      \Instr_rezult.txt
+    "\t0,ERROR\t, 0.0,0.0, 0.0, 0\n"
+
   child = child_process.spawn-sync do
     exe
     cwd: path.dirname exe
