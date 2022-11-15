@@ -5,15 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
       "name": "Stage 2 Debug",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "args": [
-        "01"
-      ],
+      "args": [],
       "program": "."
     }
   ]

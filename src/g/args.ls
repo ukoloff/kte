@@ -15,7 +15,7 @@ module.exports = args
   A = process.argv.slice 2
 
   unless A.length
-    A.push \01
+    A.push process.env.LATHE_JOB || \01
 
   if A.length == 1 and /^\d+$/.test A[0]
     base = path.join __filename, "../../../data/var/#{A[0]}"

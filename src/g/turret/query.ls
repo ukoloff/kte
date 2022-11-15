@@ -44,7 +44,7 @@ function run-fox-pro params={}
     path.join do
       path.dirname exe
       \Instr_rezult.txt
-    "\t0,ERROR\t, 0.0,0.0, 0.0, 0\n"
+    "\t0,ERROR\t, 0.0,0.0, 0\n"
 
   child = child_process.spawn-sync do
     exe
