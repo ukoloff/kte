@@ -20,10 +20,14 @@ module.exports = bottom-semiopened
   if skip kte
     return
 
+  last = kte._[*-1]
+
   tx = turret kte
     .query do
       Xmax: kte._[0][1]
-      Xmin: kte._[*-1][1]
+      Xmin: last[1]
+      bore-diameter: 2 * last[1]
+      bore-depth: -last[0]
 
   # TODO: Drilling
   # ...
