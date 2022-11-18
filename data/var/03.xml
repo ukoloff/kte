@@ -9,8 +9,8 @@
     <kte id="3" parent_id="2" X="5.25" Z="43.4" A="10.5" B="10.5" h="0" Rmin="3.40282e+38" b="20.4" H1="22" Chamf="0" subtype="thread" type="closed" side="right" pos="bottom">
         <contour>G0X5.250000Z43.400000L0&#x0A;G1X5.250000Z23.000000L10&#x0A;</contour>
     </kte>
-    <kte id="4" parent_id="0" X="8.4" Z="45" A="16.8" B="16.8" h="0" Rmin="3.40282e+38" b="0" H1="2.5" Chamf="0" type="opened" side="right" pos="end">
-        <contour>G0X8.400000Z45.000000L0&#x0A;G1X8.400000Z45.000000L0&#x0A;</contour>
+    <kte id="4" parent_id="0" X="8.4" Z="45" A="13.7" B="16.8" h="1.55" Rmin="3.40282e+38" b="1.55" H1="2.5" Chamf="0" type="opened" side="right" pos="end">
+        <contour>G0X8.400000Z45.000000L0&#x0A;G1X6.850000Z45.000000L12&#x0A;</contour>
     </kte>
     <kte id="5" parent_id="0" X="8.4" Z="45" A="16.8" B="46" h="14.6" Rmin="5" b="30" H1="2" Chamf="1.6" type="semiopened" side="right" pos="top">
         <contour>G0X8.400000Z45.000000L0&#x0A;G1X10.000000Z43.400000L1&#x0A;G1X10.000000Z42.000000L2&#x0A;G2X15.000000Z37.000000L3I5.000000K0.000000&#x0A;G1X20.000000Z37.000000L4&#x0A;G1X23.000000Z15.000000L5&#x0A;</contour>
