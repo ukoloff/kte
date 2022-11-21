@@ -28,12 +28,12 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug current file",
+      "name": "Debug!",
       "skipFiles": [
         "<node_internals>/**"
       ],
       "args": [],
-      "program": "${fileDirname}"
+      "program": "."
     }
   ]
 }

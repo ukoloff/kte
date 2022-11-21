@@ -1,1 +1,1 @@
-module.exports = require \end-notch_z
+module.exports = require \./end-notch_z
