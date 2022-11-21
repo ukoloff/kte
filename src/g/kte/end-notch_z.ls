@@ -7,4 +7,17 @@ module.exports = end-notch
   name: 'Выточка аксиальная'
 
 !function end-notch kte
-  void
+  require! <[
+    ../state
+    ../echo
+    ../turret
+    ./prolog
+    ./epilog
+  ]>
+
+  prolog kte, "Tochit vitochku"
+  # tx.out!
+
+  epilog kte
+
+
