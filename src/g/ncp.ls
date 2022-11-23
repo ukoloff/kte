@@ -6,6 +6,7 @@ module.exports = run
 !function run
   require! <[
     fs
+    path
     dotenv/config
     ./args
     ./echo
@@ -14,7 +15,7 @@ module.exports = run
   args!
   for til 2
     half ..
-    console.log "Writing NC Program to:", out = "bundle/#{state.out-name}-#{.. + 1}.nc"
+    console.log "Writing NC Program to:", out = "#{path.join state.out-path, state.out-name}-#{.. + 1}.nc"
     fs.write-file out, echo.all!, !->
 
 !function half s
