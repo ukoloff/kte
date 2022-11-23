@@ -14,10 +14,13 @@ var stream
 function get-stream
   require! <[
     fs
+    path
     ../state
   ]>
-  stream ||:=
-    fs.create-write-stream "bundle/#{state.out-name}.turret.log"
+  stream ||:= if process.env.TURRET_LOGS
+    fs.create-write-stream "#{path.join that, state.out-name}.turret.log"
+  else
+    write: ->
 
 !function head kte
   get-stream!write """
