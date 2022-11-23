@@ -28,7 +28,7 @@ module.exports = run
   ]>
   state.pass = 1 + Number s
 
-  echo "%;"
+  # echo "%;"
   echo "(PART: #{state.job.global.id or \? });"
   echo "(ustanov #{state.pass});"
   echo!
