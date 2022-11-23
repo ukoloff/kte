@@ -20,7 +20,7 @@ var line, block, lines, last-cmd, last-pass
     block := 0
 
   # Remove trailing ;
-  str .= replace /\s*;\s*$/, ''
+  str .= replace /\s*;+\s*$/, ''
 
   if /^\s*[a-z]/i.test str
     n = if /\s*N900\s+/.test str

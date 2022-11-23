@@ -41,7 +41,7 @@ module.exports = top-opened
   unless tx.stage2!
     echo "N60 G01 Z#{kte._[*-1][0]};"
   else
-    echo "N60 G01 Z#{kte._[*-1][0]} F#{tx.tool.F} S#{tx.tool.V};;"
+    echo "N60 G01 Z#{kte._[*-1][0]} F#{tx.tool.F} S#{tx.tool.V}"
     echo "N65 G70 P#{echo.N -2} Q#{echo.N -1};"
   echo "N70 G00 X#{x0} Z2 M9;"
   echo "N75 M5;"
