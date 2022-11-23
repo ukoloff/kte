@@ -6,9 +6,11 @@ posh = child_process.spawn-sync do
     \powershell
     <[-Command -]>
     input: """
-        echo Hi
-        echo there!
-        pwd
+        Add-Type -AssemblyName System.Windows.Forms
+        $FileBrowser = New-Object System.Windows.Forms.OpenFileDialog 
+        $FileBrowser.filter = "TXT files|*.txt|All files|*.*"
+        $null = $FileBrowser.ShowDialog()
+        $FileBrowser.FileName
         """
     encoding: \utf8
 
