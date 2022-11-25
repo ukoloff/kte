@@ -90,7 +90,7 @@ module.exports = args
 !function paths src
   if /^\d+(_\d+)?$/.test src
     src = path.join __filename, "../../../data/var", "#{src}.txt"
-  dst = if process.env.NCP_OUT
+  dst = path.resolve if process.env.NCP_OUT
     that
   else
     path.dirname src
