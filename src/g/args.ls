@@ -49,8 +49,43 @@ module.exports = args
     ./posh
   ]>
 
-  console.log \@@@@@@@@@@@@@
-  process.exit 1
+  console.log "Please, select Job-file (in TXT format) for processing..."
+  src = posh """
+    Add-Type -AssemblyName System.Windows.Forms
+    $d = New-Object System.Windows.Forms.OpenFileDialog
+    $d.Title = "Open JOB file"
+    $d.filter = "Job files (*.txt)|*.txt|All files|*.*"
+    $d.ShowDialog()
+    $d.FileName
+    """
+  if src[0] != 'OK'
+    process.exit!
+  src .= 1
+  dst = path.resolve if process.env.NCP_OUT
+    that
+  else
+    path.dirname src
+  dst = path.join dst, "#{path.parse src .name}-1"
+  console.log "Select file(s) to save NCP..."
+  dst = posh """
+    Add-Type -AssemblyName System.Windows.Forms
+    $d = New-Object System.Windows.Forms.SaveFileDialog
+    $d.Title = "Save NCP file(s)"
+    $d.DefaultExt = "nc"
+    $d.filter = "NCP files (*.nc)|*.nc|All files|*.*"
+    $d.FileName = "#{dst}"
+    $d.ShowDialog()
+    $d.FileName
+    """
+  if dst[0] != 'OK'
+    process.exit!
+  dst .= 1
+  dst =
+    path.join do
+      path.dirname dst
+      "#{path.parse dst .name.replace /(-\d+)$/, ''}-"
+    path.extname dst
+  state.IO = {src, dst}
 
 !function paths src
   if /^\d+(_\d+)?$/.test src

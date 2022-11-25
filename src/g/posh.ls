@@ -12,7 +12,7 @@ function PoSH script
   ]>
 
   unless mutex
-    mutex = true
+    mutex := true
     PoSH """
       [Console]::InputEncoding=[System.Text.Encoding]::UTF8
       [Console]::OutputEncoding=[System.Text.Encoding]::UTF8
@@ -29,3 +29,4 @@ function PoSH script
 
   # return
   posh.stdout
+  .split /\r?\n|\r/
