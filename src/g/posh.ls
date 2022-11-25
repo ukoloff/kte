@@ -3,30 +3,33 @@
 #
 module.exports = PoSH
 
-var mutex
-
-function PoSH script
+function raw script
   require! <[
       child_process
       ./croak
   ]>
-
-  unless mutex
-    mutex := true
-    PoSH """
-      [Console]::InputEncoding=[System.Text.Encoding]::UTF8
-      [Console]::OutputEncoding=[System.Text.Encoding]::UTF8
-      """
-
   posh = child_process.spawn-sync do
     \powershell
     <[-Command -]>
     input: script
-    encoding: \utf8
 
   if posh.status != 0
     croak "PowerShell failure ##{posh.status}"
 
   # return
   posh.stdout
+
+var encoding
+
+function PoSH script
+  require! <[
+      iconv-lite
+  ]>
+
+  encoding ?:= raw "[Console]::InputEncoding.WebName"
+    .toString!trim!
+
+  iconv-lite.decode do
+    raw iconv-lite.encode script, encoding
+    encoding
   .split /\r?\n|\r/
