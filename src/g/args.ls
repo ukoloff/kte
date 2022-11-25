@@ -22,7 +22,7 @@ module.exports = args
 
   A = A[0]
 
-  if A == \@
+  if A == \:
     browse!
   else
     paths A
@@ -40,7 +40,7 @@ module.exports = args
       .map ->
         path.parse it .name
       .join ' '
-    } <path/to/job-file.txt>|@
+    } <path/to/job-file.txt>|:
     """
   process.exit 1
 
@@ -49,7 +49,8 @@ module.exports = args
     ./posh
   ]>
 
-  ...
+  console.log \@@@@@@@@@@@@@
+  process.exit 1
 
 !function paths src
   if /^\d+(_\d+)?$/.test src
