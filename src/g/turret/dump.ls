@@ -18,7 +18,7 @@ function get-stream
     ../state
   ]>
   stream ||:= if process.env.TURRET_LOGS
-    fs.create-write-stream "#{path.join that, state.out-name}.turret.log"
+    fs.create-write-stream path.join that, "#{path.parse state.IO.src .name}.turret.log"
   else
     write: ->
 

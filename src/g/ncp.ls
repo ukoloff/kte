@@ -15,7 +15,7 @@ module.exports = run
   args!
   for til 2
     half ..
-    console.log "Writing NC Program to:", out = "#{path.join state.out-path, state.out-name}-#{.. + 1}.nc"
+    console.log "Writing NC Program to:", out = state.IO.dst.join .. + 1
     fs.write-file out, echo.all!, !->
 
 !function half s
