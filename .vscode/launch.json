@@ -13,16 +13,6 @@
       ],
       "args": [],
       "program": "."
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "PoSH!",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "args": [],
-      "program": "src/posh"
     }
   ]
 }
