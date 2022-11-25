@@ -5,7 +5,6 @@ require! <[
   fs
   path
   ./state
-  ./croak
   ./recognize
 ]>
 
@@ -15,25 +14,88 @@ module.exports = args
   A = process.argv.slice 2
 
   unless A.length
-    A.push process.env.LATHE_JOB || \01
-
-  if A.length == 1 and /^\d+(_\d+)?$/.test A[0]
-    base = path.join __filename, "../../../data/var/#{A[0]}"
-    A =
-      "#{base}.txt"
-      ...
+    if process.env.LATHE_JOB
+      A.push that
 
   if A.length != 1
-    croak "Usage: node #{path.basename process.argv[1]} JOB.txt"
+    Help!
 
-  state.out-name = path.parse A[0] .name
-  state.out-path = if process.env.NCP_OUT
-    that
+  A = A[0]
+
+  if A == \:
+    browse!
   else
-    path.dirname A[0]
+    paths A
 
-  console.log "Reading:", A[0]
-  state.job = fs.read-file-sync A[0], \utf-8
+  console.log "Reading:", state.IO.src
+  state.job = fs.read-file-sync state.IO.src, \utf-8
     |> require \../parser/job
 
-  recognize A[0]
+  recognize state.IO.src
+
+!function Help
+  console.log """Usage: #{
+    process.argv
+      .slice 0, 2
+      .map ->
+        path.parse it .name
+      .join ' '
+    } <path/to/job-file.txt>|:
+    """
+  process.exit 1
+
+!function browse
+  require! <[
+    ./posh
+  ]>
+
+  console.log "Please, select Job-file (in TXT format) for processing..."
+  src = posh """
+    Add-Type -AssemblyName System.Windows.Forms
+    $d = New-Object System.Windows.Forms.OpenFileDialog
+    $d.Title = "Open JOB file"
+    $d.filter = "Job files (*.txt)|*.txt|All files|*.*"
+    $d.ShowDialog()
+    $d.FileName
+    """
+  if src[0] != 'OK'
+    process.exit!
+  src .= 1
+  dst = path.resolve if process.env.NCP_OUT
+    that
+  else
+    path.dirname src
+  dst = path.join dst, "#{path.parse src .name}-1"
+  console.log "Select file(s) to save NCP..."
+  dst = posh """
+    Add-Type -AssemblyName System.Windows.Forms
+    $d = New-Object System.Windows.Forms.SaveFileDialog
+    $d.Title = "Save NCP file(s)"
+    $d.DefaultExt = "nc"
+    $d.filter = "NCP files (*.nc)|*.nc|All files|*.*"
+    $d.FileName = "#{dst}"
+    $d.ShowDialog()
+    $d.FileName
+    """
+  if dst[0] != 'OK'
+    process.exit!
+  dst .= 1
+  dst =
+    path.join do
+      path.dirname dst
+      "#{path.parse dst .name.replace /(-\d+)$/, ''}-"
+    path.extname dst
+  state.IO = {src, dst}
+
+!function paths src
+  if /^\d+(_\d+)?$/.test src
+    src = path.join __filename, "../../../data/var", "#{src}.txt"
+  dst = if process.env.NCP_OUT
+    that
+  else
+    path.dirname src
+  dst =
+    path.join dst, "#{path.parse src .name}-"
+    \.nc
+
+  state.IO = {src, dst}
