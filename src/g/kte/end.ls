@@ -25,7 +25,7 @@ module.exports = end-opened
   prolog kte, "Podrezat torez"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 X#{x0} Z#{z0};"
   echo "N30 G72 W#{tx.tool.AR} R1;"
   echo "N40 G72 P#{echo.N +1} Q#{echo.N +2} U0 W#{if tx.stage2 true then 0.5 else 0} F#{tx.tool.F} S#{tx.tool.V} M8;"

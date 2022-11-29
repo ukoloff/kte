@@ -28,7 +28,7 @@ module.exports = top-notch
   prolog kte, "Tochit vitochku"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 X#{2 * first[1] + 2} Z#{first[0]};"
   echo "N30 G75 R1;"
   echo "N40 G75 X#{2 * kte._[1][1]} Z#{last[0] + tx.tool.AR} P#{1000 * tx.tool.AR} Q#{800 * tx.tool.AR} R0;"

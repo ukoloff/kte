@@ -8,6 +8,7 @@ function init-turret kte
     ./query
     ./out
     ./Ra
+    ./m03
     ../state
   ]>
 
@@ -23,6 +24,7 @@ function init-turret kte
     query:  query
     stage2: stage2
     out:    out
+    m03:    m03
 
   # return
   result |> Ra

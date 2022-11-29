@@ -30,7 +30,7 @@ module.exports = end-notch
   prolog kte, "Tochit vitochku"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 G00 X#{R[1][1]} Z2;"
   echo "N30 Z#{R[1][0] + 1};"
   echo "N40 G74 R1;"
@@ -42,7 +42,7 @@ module.exports = end-notch
   echo "N65 X#{state.job.global.D + 2} M05;"
 
   if tx.stage2! and kte.$.b > tx.tool.AR
-    echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
+    echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
     echo "N20 G00 X#{R[1][1] - 0.01} Z2;"
     echo "N30 Z#{R[1][0] + 1};"
     echo "N40 G74 R1;"

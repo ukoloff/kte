@@ -28,7 +28,7 @@ module.exports = top-semiopened
   prolog kte, "Tochit poluotkrituyu zonu nacherno"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 X#{2 * kte._[*-1][1]} Z2;"
   echo "G71 U#{tx.tool.AR} R1;"
 
@@ -51,7 +51,7 @@ module.exports = top-semiopened
   prolog kte, "Tochit poluotkrituyu zonu nachisto"
   tx.out!
 
-  echo "N110 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
+  echo "N110 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N120 X#{2 * kte._[0][1] + 2} Z2;"
 
   G-code = path2g kte._, 1
