@@ -37,7 +37,7 @@ module.exports = bottom-semiopened
   tx.out!
 
   echo "N10 G96 S#{tx.tool.V} #{if true then \M03 else \M04 };"
-  echo "N20 X#{2 * kte._[0][1] - 4} Z2;"
+  echo "N20 X#{2 * last[1] - 1} Z2;"
   echo "N30 G71 U#{tx.tool.AR} R1;"
 
   G-code = path2g kte._, 1
