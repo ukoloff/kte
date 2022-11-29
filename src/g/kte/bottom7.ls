@@ -50,7 +50,8 @@ module.exports = bottom-semiopened
     echo "#{line};"
   echo "N60 #{tail};"
 
-  echo "N70 G00 X#{x0 = state.job.global.D - 4} Z2 M9;"
+  echo "N65 G00 Z2 M9"
+  echo "N70 G00 X#{x0 = state.job.global.D + 4}"
   echo "N75 M5;"
   unless tx.stage2!
     epilog kte
@@ -69,7 +70,8 @@ module.exports = bottom-semiopened
     echo "#{line};"
   echo "N160 #{tail};"
 
-  echo "N170 G00 X#{x0} Z2 M9;"
+  echo "N165 G00 Z2 M9"
+  echo "N170 G00 X#{x0}"
   echo "N175 M5;"
 
   epilog kte
