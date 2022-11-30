@@ -31,7 +31,20 @@ module.exports = bottom-opened
   echo "N40 G00 G80 X#{state.job.global.D + 2} Z2 M9;"
   echo "N75 M5;"
 
+  if kte._[0][1] <= Rad
+    epilog kte
+    return
+
   # TODO: Milling
-  # ...
+  epilog kte
+  return
+
+  tx = turret kte
+    .query do
+      id: 9   # Отверстие резцом
+      Xmin: Rad
+      Xmax: kte._[0][1]
+      bore-diameter: 2 * Rad
+      bore-depth: state.job.size[0]
 
   epilog kte
