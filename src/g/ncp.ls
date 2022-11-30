@@ -34,7 +34,6 @@ module.exports = run
   echo "(ustanov #{state.pass});"
   echo!
 
-
   for kte in order side s
     prefix kte
 
