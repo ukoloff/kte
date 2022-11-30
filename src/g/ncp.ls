@@ -6,6 +6,8 @@ module.exports = run
 !function run
   require! <[
     fs
+    path
+    dotenv/config
     ./args
     ./echo
     ./state
@@ -13,9 +15,8 @@ module.exports = run
   args!
   for til 2
     half ..
-    console.log "Writing NC Program to:", out = "bundle/#{state.out-name}-#{.. + 1}.nc"
+    console.log "Writing NC Program to:", out = state.IO.dst.join .. + 1
     fs.write-file out, echo.all!, !->
-    echo.reset!
 
 !function half s
   require! <[
@@ -25,14 +26,13 @@ module.exports = run
     ./echo
     ./kte/prefix
     ./kte/suffix
-    ./kte/turret
   ]>
-  echo "%;"
-  echo "(PART: #{state.job.global.id or \? });"
-  echo "(ustanov #{1 + Number s});"
-  echo!
+  state.pass = 1 + Number s
 
-  turret.reset!
+  # echo "%;"
+  echo "(PART: #{state.job.global.id or \? });"
+  echo "(ustanov #{state.pass});"
+  echo!
 
   for kte in order side s
     prefix kte
@@ -45,6 +45,7 @@ module.exports = run
     handler = try require inc
       catch
         require \./kte/todo
+    kte <<< {handler}
     handler kte
     suffix kte
 

@@ -6,7 +6,12 @@ module.exports = query-tool
 function query-tool kte
   require! <[
     ./tools
+    ../turret
   ]>
+
+  # Run FoxPro utility
+  # turret kte
+  #   .query!
 
   kte .= $
   for tool in tools

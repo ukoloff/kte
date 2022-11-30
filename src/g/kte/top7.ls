@@ -2,15 +2,17 @@
 # Top Semiopened Zone
 #
 module.exports = top-semiopened
+<<<
+  id: 3
+  name: 'Полуоткрытая зона наружная'
 
 !function top-semiopened kte
   require! <[
     ../state
     ../echo
-    ./qtool
     ./path2g
     ./skip
-    ./turret
+    ../turret
     ./prolog
     ./epilog
   ]>
@@ -18,20 +20,21 @@ module.exports = top-semiopened
   if skip kte
     return
 
-  tools = qtool kte
-  stages = tools.length
-  tool = tools[0]
+  tx = turret kte
+    .query do
+      Xmax: kte._[*-1][1]
+      Xmin: kte._[0][1]
 
   prolog kte, "Tochit poluotkrituyu zonu nacherno"
-  turret tool
+  tx.out!
 
-  echo "N10 G96 S#{tool.V} #{if true then \M03 else \M04 };"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 X#{2 * kte._[*-1][1]} Z2;"
-  echo "G71 U#{tool.AR} R1;"
+  echo "G71 U#{tx.tool.AR} R1;"
 
   G-code = path2g kte._, 1
 
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if stages < 2 then 0 else 0.5} W1 F#{tool.F} S#{tool.V} M8;"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stage2 true then 0.5 else 0} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
 
   echo "N50 #{G-code.shift!};"
   tail = G-code.pop!
@@ -41,19 +44,18 @@ module.exports = top-semiopened
 
   echo "N70 G00 X#{x0 = state.job.global.D + 4} Z2 M9;"
   echo "N75 M5;"
-  if stages < 2
+  unless tx.stage2!
     epilog kte
     return
 
-  tool = tools[1]
   prolog kte, "Tochit poluotkrituyu zonu nachisto"
-  turret tool
+  tx.out!
 
-  echo "N110 G96 S#{tool.V} #{if true then \M03 else \M04 };"
+  echo "N110 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N120 X#{2 * kte._[0][1] + 2} Z2;"
 
   G-code = path2g kte._, 1
-  echo "N130 #{G-code.shift!} F#{tool.F} S#{tool.V} M8;"
+  echo "N130 #{G-code.shift!} F#{tx.tool.F} S#{tx.tool.V} M8;"
   tail = G-code.pop!
   for line in G-code
     echo "#{line};"

@@ -1,36 +1,36 @@
 <?xml version="1.0" ?>
 <recognition_result>
-    <kte id="1" parent_id="0" X="8.5" Z="0" A="17" B="17" h="0" Rmin="1.79769e+308" b="0" H1="16.5" type="semiopened" side="left" pos="bottom">
+    <kte id="1" parent_id="0" X="8.5" Z="0" A="17" B="17" h="0" Rmin="3.40282e+38" b="0" H1="0" Chamf="0" type="semiopened" side="left" pos="bottom">
         <contour>G0X8.500000Z0.000000L0&#x0A;G1X8.500000Z0.000000L0&#x0A;</contour>
     </kte>
-    <kte id="2" parent_id="0" X="8.5" Z="0" A="17" B="17" h="0" Rmin="1.79769e+308" b="6" H1="16.5" type="opened" side="left" pos="bottom">
+    <kte id="2" parent_id="0" X="8.5" Z="0" A="17" B="17" h="0" Rmin="3.40282e+38" b="6" H1="0" Chamf="0" type="opened" side="left" pos="bottom">
         <contour>G0X8.500000Z0.000000L0&#x0A;G1X8.500000Z6.000000L5&#x0A;</contour>
     </kte>
-    <kte id="3" parent_id="0" X="15.5" Z="30" A="17" B="31" h="7" Rmin="0" b="24" H1="9.5" type="semiopened" side="right" pos="bottom">
+    <kte id="3" parent_id="0" X="15.5" Z="30" A="17" B="31" h="7" Rmin="0" b="24" H1="0" Chamf="1.5" type="semiopened" side="right" pos="bottom">
         <contour>G0X15.500000Z30.000000L0&#x0A;G1X14.000000Z28.500000L11&#x0A;G1X14.000000Z13.000000L10&#x0A;G1X14.000000Z6.000000L0&#x0A;G1X8.500000Z6.000000L6&#x0A;</contour>
     </kte>
-    <kte id="4" parent_id="3" X="14" Z="28.5" A="28" B="28" h="0" Rmin="1.79769e+308" b="15.5" H1="11" subtype="thread" type="closed" side="right" pos="bottom">
+    <kte id="4" parent_id="3" X="14" Z="28.5" A="28" B="28" h="0" Rmin="3.40282e+38" b="15.5" H1="17" Chamf="0" subtype="thread" type="closed" side="right" pos="bottom">
         <contour>G0X14.000000Z28.500000L0&#x0A;G1X14.000000Z13.000000L10&#x0A;</contour>
     </kte>
-    <kte id="5" parent_id="3" X="14" Z="13" A="28" B="32" h="2" Rmin="0" b="7" H1="9" subtype="st2" type="closed" side="right" pos="bottom">
+    <kte id="5" parent_id="3" X="14" Z="13" A="28" B="32" h="2" Rmin="0" b="3.5" H1="24" Chamf="2" subtype="undercut_x" type="closed" side="right" pos="bottom">
         <contour>G0X14.000000Z13.000000L0&#x0A;G1X16.000000Z11.000000L9&#x0A;G1X16.000000Z7.500000L8&#x0A;G3X14.500000Z6.000000L7I-1.500000K0.000000&#x0A;G1X14.000000Z6.000000L6&#x0A;</contour>
     </kte>
-    <kte id="6" parent_id="0" X="22" Z="30" A="31" B="44" h="6.5" Rmin="1.79769e+308" b="0" H1="3" type="opened" side="right" pos="end">
+    <kte id="6" parent_id="0" X="22" Z="30" A="31" B="44" h="6.5" Rmin="3.40282e+38" b="6.5" H1="2" Chamf="0" type="opened" side="right" pos="end">
         <contour>G0X22.000000Z30.000000L0&#x0A;G1X20.500000Z30.000000L16&#x0A;G1X16.500000Z30.000000L0&#x0A;G1X15.500000Z30.000000L12&#x0A;</contour>
     </kte>
-    <kte id="7" parent_id="6" X="20.5" Z="30" A="33" B="41" h="4" Rmin="0" b="0" H1="4.5" subtype="notch_z" type="closed" side="right" pos="end">
+    <kte id="7" parent_id="6" X="20.5" Z="30" A="33" B="41" h="4" Rmin="0" b="4" H1="2" Chamf="0" subtype="notch_z" type="closed" side="right" pos="end">
         <contour>G0X20.500000Z30.000000L0&#x0A;G1X20.500000Z25.500000L15&#x0A;G1X16.500000Z25.500000L14&#x0A;G1X16.500000Z30.000000L13&#x0A;</contour>
     </kte>
-    <kte id="8" parent_id="0" X="22" Z="30" A="44" B="47" h="1.5" Rmin="1.79769e+308" b="1.5" H1="1.5" type="semiopened" side="right" pos="top">
+    <kte id="8" parent_id="0" X="22" Z="30" A="44" B="47" h="1.5" Rmin="3.40282e+38" b="1.5" H1="1.5" Chamf="1.5" type="semiopened" side="right" pos="top">
         <contour>G0X22.000000Z30.000000L0&#x0A;G1X23.500000Z28.500000L1&#x0A;</contour>
     </kte>
-    <kte id="9" parent_id="0" X="23.5" Z="1.5" A="47" B="47" h="0" Rmin="1.79769e+308" b="27" H1="1.5" type="opened" side="left" pos="top">
+    <kte id="9" parent_id="0" X="23.5" Z="1.5" A="47" B="47" h="0" Rmin="3.40282e+38" b="27" H1="1.5" Chamf="0" type="opened" side="left" pos="top">
         <contour>G0X23.500000Z1.500000L0&#x0A;G1X23.500000Z28.500000L2&#x0A;</contour>
     </kte>
-    <kte id="10" parent_id="0" X="22" Z="0" A="44" B="47" h="1.5" Rmin="1.79769e+308" b="1.5" H1="1.5" type="semiopened" side="left" pos="top">
+    <kte id="10" parent_id="0" X="22" Z="0" A="44" B="47" h="1.5" Rmin="3.40282e+38" b="1.5" H1="1.5" Chamf="1.5" type="semiopened" side="left" pos="top">
         <contour>G0X22.000000Z0.000000L0&#x0A;G1X23.500000Z1.500000L3&#x0A;</contour>
     </kte>
-    <kte id="11" parent_id="0" X="22" Z="0" A="17" B="44" h="13.5" Rmin="1.79769e+308" b="0" H1="3" type="opened" side="left" pos="end">
+    <kte id="11" parent_id="0" X="22" Z="0" A="17" B="44" h="13.5" Rmin="3.40282e+38" b="13.5" H1="2" Chamf="0" type="opened" side="left" pos="end">
         <contour>G0X22.000000Z0.000000L0&#x0A;G1X8.500000Z0.000000L4&#x0A;</contour>
     </kte>
 </recognition_result>

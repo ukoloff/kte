@@ -13,6 +13,7 @@ function order side
   require! <[
     ../math/rect/union
     ../math/rect/size
+    ../math/rect/round
     ../math/path/bounds
     ../math/path/o2
     ../math/o2/compose
@@ -70,6 +71,7 @@ function order side
   # Z := 0
   for kte in state.ktes
     R = union R, bounds kte._
+  round R
   state.job <<<
     bounds: R
     size:   size R
@@ -86,7 +88,13 @@ function order side
     ktes[i] =
       $: {} <<<< kte.$ <<< Z: -R[1][0]
       _: path
-      L: kte._.map (.L)
+      # Technological parameters
+      t: kte._
+        .map (.L)   # extract L property
+        .map Number
+        .map (- 1)
+        .map (state.job.spans.)
+        .map (or {})
 
   # return
   ktes
