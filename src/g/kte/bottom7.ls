@@ -20,19 +20,32 @@ module.exports = bottom-semiopened
   if skip kte
     return
 
-  last = kte._[*-1]
 
+  last = kte._[*-1]
+  Rad = last[1]
+  if blind = 1e-3 > Math.abs Rad
+    last = kte._[*-2]
+    Rad = Math.min 6, last[1]
+
+
+    # TODO: Drilling
+    # ...
+    tx = turret kte
+      .query do
+        id: 16    # Отверстие сверлом
+        Xmax: Rad
+        Xmin: Rad
+        bore-diameter: 2 * Rad
+        bore-depth: -last[0]
+
+  # Milling
   tx = turret kte
     .query do
       Xmax: kte._[0][1]
-      Xmin: last[1]
-      bore-diameter: 2 * last[1]
+      Xmin: Rad
+      bore-diameter: 2 * Rad
       bore-depth: -last[0]
 
-  # TODO: Drilling
-  # ...
-
-  # Milling
   prolog kte, "Rastochit poluotkrituyu zonu nacherno"
   tx.out!
 
