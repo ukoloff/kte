@@ -20,7 +20,7 @@ module.exports = end-opened
       Xmax: state.job.global.D / 2
 
   x0 = state.job.global.D
-  z0 = Math.max (state.job.global.W - state.job.size[0]) / 2
+  z0 = Math.max 0, round (state.job.global.W - state.job.size[0]) / 2
 
   prolog kte, "Podrezat torez"
   tx.out!
@@ -39,3 +39,6 @@ module.exports = end-opened
   echo "N70 G00 X#{x0} Z#{z0} M9;"
   echo "N75 M5;"
   epilog kte
+
+function round x
+  1e-3 * Math.round 1e+3 * x
