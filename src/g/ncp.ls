@@ -8,6 +8,7 @@ module.exports = run
     fs
     path
     dotenv
+    js-yaml
     ./args
     ./echo
     ./state
@@ -22,6 +23,13 @@ module.exports = run
     half ..
     console.log "Writing NC Program to:", out = state.IO.dst.join .. + 1
     fs.write-file out, echo.all!, !->
+
+  if state.turret
+    console.log "Writing setup chart to:", out = state.IO.dst[0] + 'tools.txt'
+    fs.write-file do
+      out
+      js-yaml.dump state.turret
+      ->
 
 !function half s
   require! <[
