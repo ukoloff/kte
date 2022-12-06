@@ -7,11 +7,16 @@ module.exports = run
   require! <[
     fs
     path
-    dotenv/config
+    dotenv
     ./args
     ./echo
     ./state
   ]>
+
+  dotenv.config do
+    path: path.join __filename, \../../../.env
+    # debug: true
+
   args!
   for til 2
     half ..
