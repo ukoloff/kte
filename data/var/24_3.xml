@@ -12,7 +12,7 @@
     <kte id="4" parent_id="3" X="14" Z="28.5" A="28" B="28" h="0" Rmin="3.40282e+38" b="16.5" H1="18" Chamf="0" subtype="thread" type="closed" side="right" pos="bottom">
         <contour>G0X14.000000Z28.500000L0&#x0A;G1X14.000000Z12.000000L10&#x0A;</contour>
     </kte>
-    <kte id="5" parent_id="3" X="14" Z="12" A="28" B="32" h="2" Rmin="0" b="6" H1="24" Chamf="0" subtype="st2" type="closed" side="right" pos="bottom">
+    <kte id="5" parent_id="3" X="14" Z="12" A="28" B="32" h="2" Rmin="0" b="6" H1="24" Chamf="0" subtype="st3" type="closed" side="right" pos="bottom">
         <contour>G0X14.000000Z12.000000L0&#x0A;G1X16.000000Z11.000000L9&#x0A;G1X16.000000Z7.500000L8&#x0A;G3X14.500000Z6.000000L7I-1.500000K0.000000&#x0A;G1X14.000000Z6.000000L6&#x0A;</contour>
     </kte>
     <kte id="6" parent_id="0" X="22" Z="30" A="31" B="44" h="6.5" Rmin="3.40282e+38" b="6.5" H1="2" Chamf="0" type="opened" side="right" pos="end">
