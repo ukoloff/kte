@@ -8,7 +8,6 @@ module.exports = run
     fs
     path
     dotenv
-    js-yaml
     ./args
     ./echo
     ./state
@@ -25,11 +24,7 @@ module.exports = run
     fs.write-file out, echo.all!, !->
 
   if state.turret
-    console.log "Writing setup chart to:", out = state.IO.dst[0] + 'tools.txt'
-    fs.write-file do
-      out
-      js-yaml.dump state.turret
-      ->
+    write-chart!
 
 !function half s
   require! <[
@@ -64,3 +59,16 @@ module.exports = run
 
   if /M01;?$/.test echo.last!
     echo.last echo.last!replace /M01/, 'M30'
+
+function write-chart
+  require! <[
+    fs
+    path
+    ./state
+  ]>
+  console.log "Writing setup chart to:", out = state.IO.dst[0] + 'tools.txt'
+  f = fs.create-write-stream out
+
+  for pass, z of state.turret
+    for pos, tool of z
+      f.write("#{pass}\t#{pos}\t#{tool.tool}:\t#{tool.name}\n")
