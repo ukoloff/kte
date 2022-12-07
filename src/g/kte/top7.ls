@@ -28,21 +28,21 @@ module.exports = top-semiopened
   prolog kte, "Tochit poluotkrituyu zonu nacherno"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
-  echo "N20 X#{2 * kte._[*-1][1]} Z2;"
-  echo "G71 U#{tx.tool.AR} R1;"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!}"
+  echo "N20 X#{2 * kte._[0][1] + 2} Z2"
+  echo "G71 U#{tx.tool.AR} R1"
 
   G-code = path2g kte._, 1
 
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stage2 true then 0.5 else 0} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{0.5} W1 F#{tx.tool.F} S#{tx.tool.V} M8"
 
-  echo "N50 #{G-code.shift!};"
+  echo "N50 #{G-code.shift!}"
   tail = G-code.pop!
   for line in G-code
-    echo "#{line};"
-  echo "N60 #{tail};"
+    echo line
+  echo "N60 #{tail}"
 
-  echo "N70 G00 X#{x0 = state.job.global.D + 4} Z2 M9;"
+  echo "N70 G00 X#{x0 = state.job.global.D + 2} Z2 M9;"
   echo "N75 M5;"
   unless tx.stage2!
     epilog kte
@@ -51,16 +51,18 @@ module.exports = top-semiopened
   prolog kte, "Tochit poluotkrituyu zonu nachisto"
   tx.out!
 
-  echo "N110 G96 S#{tx.tool.V} #{tx.m03!};"
-  echo "N120 X#{2 * kte._[0][1] + 2} Z2;"
+  echo "N110 G96 S#{tx.tool.V} #{tx.m03!}"
+  echo "N120 X#{2 * kte._[0][1] + 2} Z2"
 
   G-code = path2g kte._, 1
-  echo "N130 #{G-code.shift!} F#{tx.tool.F} S#{tx.tool.V} M8;"
+  echo "N130 #{G-code.shift!} F#{tx.tool.F} S#{tx.tool.V} M8"
   tail = G-code.pop!
   for line in G-code
-    echo "#{line};"
-  echo "N160 #{tail};"
+    echo line
+  echo "N160 #{tail}"
+
+  echo "N165 G70 P20 Q60"
 
   echo "N170 G00 X#{x0} Z2 M9;"
-  echo "N175 M5;"
+  echo "N175 M5"
   epilog kte

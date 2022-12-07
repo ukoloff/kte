@@ -7,16 +7,24 @@ module.exports = run
   require! <[
     fs
     path
-    dotenv/config
+    dotenv
     ./args
     ./echo
     ./state
   ]>
+
+  dotenv.config do
+    path: path.join __filename, \../../../.env
+    # debug: true
+
   args!
   for til 2
     half ..
     console.log "Writing NC Program to:", out = state.IO.dst.join .. + 1
     fs.write-file out, echo.all!, !->
+
+  if state.turret
+    write-chart!
 
 !function half s
   require! <[
@@ -51,3 +59,16 @@ module.exports = run
 
   if /M01;?$/.test echo.last!
     echo.last echo.last!replace /M01/, 'M30'
+
+function write-chart
+  require! <[
+    fs
+    path
+    ./state
+  ]>
+  console.log "Writing setup chart to:", out = state.IO.dst[0] + 'tools.txt'
+  f = fs.create-write-stream out
+
+  for pass, z of state.turret
+    for pos, tool of z
+      f.write("#{pass}\t#{pos}\t#{tool.tool}:\t#{tool.name}\n")

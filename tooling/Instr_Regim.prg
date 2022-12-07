@@ -3163,7 +3163,7 @@ FOR ii=1 TO 6 STEP 1
    		    endcase  
           
 		IF !EMPTY(m.Kd_gr_rezc)and  m.instr_OK=.f.
-		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND lh>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
+		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND vilet>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
 		    n=_tally
 		    SELECT rezc_tmp
 		    
@@ -3371,7 +3371,7 @@ FOR ii=1 TO 6 STEP 1
    		    endcase  
           
 		IF !EMPTY(m.Kd_gr_rezc)and  m.instr_OK=.f.
-		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND lh>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
+		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND vilet>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
 		    n=_tally
 		    SELECT rezc_tmp
 		    
@@ -3546,7 +3546,7 @@ FOR ii=1 TO 6 STEP 1
    		    endcase  
           
 		IF !EMPTY(m.Kd_gr_rezc)and  m.instr_OK=.f.
-		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND lh>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
+		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND vilet>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
 		    n=_tally
 		    SELECT rezc_tmp
 		    
@@ -3752,7 +3752,7 @@ FOR ii=1 TO 6 STEP 1
    		    endcase  
           
 		IF !EMPTY(m.Kd_gr_rezc) and  m.instr_OK=.f.
-		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND lh>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
+		    SELECT * from Cutters WHERE tip=m.Kd_gr_rezc  AND direct= m.direction AND dcinn<=m.d_nach AND vilet>=m.L_obr INTO TABLE rezc_tmp ORDER BY prior
 		    n=_tally
 		    SELECT rezc_tmp
 		    
