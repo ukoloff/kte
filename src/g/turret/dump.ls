@@ -16,9 +16,10 @@ function get-stream
     fs
     path
     ../state
+    ../../home
   ]>
   stream ||:= if process.env.TURRET_LOGS
-    fs.create-write-stream path.join that, "#{path.parse state.IO.src .name}.turret.log"
+    fs.create-write-stream path.resolve home, that, "#{path.parse state.IO.src .name}.turret.log"
   else
     write: ->
 

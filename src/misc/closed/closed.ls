@@ -4,6 +4,7 @@
 require! <[
   fs
   path
+  ../../home
   ../../parser
 ]>
 
@@ -11,7 +12,7 @@ tests = {}
 files = []
 columns = {}
 
-vars = path.join __filename, '../../../../data/var'
+vars = path.join home, 'data/var'
 for f in fs.readdir-sync vars
   if \.xml != path.extname f
     continue

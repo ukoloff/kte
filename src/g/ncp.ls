@@ -8,13 +8,14 @@ module.exports = run
     fs
     path
     dotenv
+    ../home
     ./args
     ./echo
     ./state
   ]>
 
   dotenv.config do
-    path: path.join __filename, \../../../.env
+    path: path.join home, \.env
     # debug: true
 
   args!

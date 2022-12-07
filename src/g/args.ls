@@ -88,12 +88,15 @@ module.exports = args
   state.IO = {src, dst}
 
 !function paths src
+  require! <[ ../home ]>
+
   if /^\d+(_\d+)?$/.test src
-    src = path.join __filename, "../../../data/var", "#{src}.txt"
-  dst = path.resolve if process.env.NCP_OUT
-    that
+    src = path.join home, "data/var", "#{src}.txt"
+
+  dst = if process.env.NCP_OUT
+    path.resolve home, that
   else
-    path.dirname src
+    path.resolve path.dirname src
   dst =
     path.join dst, "#{path.parse src .name}-"
     \.nc
