@@ -47,10 +47,10 @@ cd kte
 Создайте файл `.env`
 и внесите в него пути:
 ```bat
-echo STAGEI_BIN=...\kte.wiki\Kaz\NPRecognition.exe >  .env
-echo TURRET_BIN=...\kte.wiki\Bog\instr_regim.exe   >> .env
+echo STAGEI_BIN=..\kte.wiki\Kaz\NPRecognition.exe >  .env
+echo TURRET_BIN=..\kte.wiki\Bog\instr_regim.exe   >> .env
 ```
-Вместо `...` укажите реальный путь к рабочей папке.
+Вместо `..` моэжно указать реальный путь к рабочей папке.
 
 Вероятно, удобнее воспользоваться любым текстовым редактором.
 

@@ -11,10 +11,14 @@ module.exports = run
     child_process
     ./croak
     ./state
+    ../home
   ]>
 
   unless exe = process.env.STAGEI_BIN
     croak "Recogntion utility not specified"
+
+  exe = path.resolve home, exe
+  txt = path.resolve txt
 
   console.log "Running KTE recognition for:", txt
 

@@ -11,10 +11,13 @@ function run-fox-pro params={}
     ../croak
     ../../parser/job/csv
     ./dump
+    ../../home
   ]>
 
   unless exe = process.env.TURRET_BIN
     croak "Turret utility not specified"
+
+  exe = path.resolve home, exe
 
   @ <<<< params
 
