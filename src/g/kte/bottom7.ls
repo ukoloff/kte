@@ -41,7 +41,7 @@ module.exports = bottom-semiopened
 
     echo "N10 G96 S#{tx.tool.V} M04" # Not "#{tx.m03!}" !!!
     echo "N20 X0 Z2"
-    echo "N30 G83 X0 Z#{-kte._[*-1][0]} Q#{2 * Rad} F#{tx.tool.F}"
+    echo "N30 G83 X0 Z#{kte._[*-1][0].to-fixed 3} Q#{2 * Rad} F#{tx.tool.F}"
     echo "N40 G00 G80 X#{state.job.global.D + 2} Z2 M9"
     echo "N75 M5"
 
