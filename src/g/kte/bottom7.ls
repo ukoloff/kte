@@ -27,9 +27,7 @@ module.exports = bottom-semiopened
     last = kte._[*-2]
     Rad = Math.min 6, last[1]
 
-
     # TODO: Drilling
-    # ...
     tx = turret kte
       .query do
         id: 16    # Отверстие сверлом
@@ -37,6 +35,15 @@ module.exports = bottom-semiopened
         Xmin: Rad
         bore-diameter: 2 * Rad
         bore-depth: -last[0]
+
+    prolog kte, "Sverlit otverstie"
+    tx.out!
+
+    echo "N10 G96 S#{tx.tool.V} M04" # Not "#{tx.m03!}" !!!
+    echo "N20 X0 Z2"
+    echo "N30 G83 X0 Z#{kte._[*-1][0].to-fixed 3} Q#{2 * Rad} F#{tx.tool.F}"
+    echo "N40 G00 G80 X#{state.job.global.D + 2} Z2 M9"
+    echo "N75 M5"
 
   # Milling
   tx = turret kte
@@ -55,13 +62,10 @@ module.exports = bottom-semiopened
 
   G-code = path2g kte._, 1
 
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stage2 true then -0.5 else -0.05} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stages > 1 then -0.5 else -0.05} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
 
-  echo "N50 #{G-code.shift!};"
-  tail = G-code.pop!
   for line in G-code
-    echo "#{line};"
-  echo "N60 #{tail};"
+    echo line
 
   echo "N65 G00 Z2 M9"
   echo "N70 G00 X#{x0 = state.job.global.D + 4}"
@@ -78,10 +82,8 @@ module.exports = bottom-semiopened
 
   G-code = path2g kte._, 1
   echo "N130 #{G-code.shift!} F#{tx.tool.F} S#{tx.tool.V} M8;"
-  tail = G-code.pop!
   for line in G-code
-    echo "#{line};"
-  echo "N160 #{tail};"
+    echo line
 
   echo "N165 G00 Z2 M9"
   echo "N170 G00 X#{x0}"

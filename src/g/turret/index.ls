@@ -29,10 +29,9 @@ function init-turret kte
   # return
   result |> Ra
 
-function stage2 dry-run
+function stage2
   if @stages < 2 or @fine
     return
-  unless dry-run
-    @fine = 1
-    @query!
+  @fine = 1
+  @query!
   1

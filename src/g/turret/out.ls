@@ -27,6 +27,7 @@ var last-pass
   id = tools._[t.tool] + 1
   id = "0#{2 * id}".slice -2
   state.{}turret.{}[state.pass][id] ?= t{tool, name}
+  state.[]t-ops.push {state.pass,id} <<< t
 
   # echo "(::DB::Tool: #{t.tool})"
   echo "T#{id}#{id} (#{t.name});"

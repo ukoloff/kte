@@ -47,6 +47,7 @@ module.exports = args
 !function browse
   require! <[
     ./posh
+    ../home
   ]>
 
   console.log "Please, select Job-file (in TXT format) for processing..."
@@ -61,10 +62,10 @@ module.exports = args
   if src[0] != 'OK'
     process.exit!
   src .= 1
-  dst = path.resolve if process.env.NCP_OUT
-    that
+  dst = if process.env.NCP_OUT
+    path.resolve home, that
   else
-    path.dirname src
+    path.resolve path.dirname src
   dst = path.join dst, "#{path.parse src .name}-1"
   console.log "Select file(s) to save NCP..."
   dst = posh """
