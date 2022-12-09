@@ -14,6 +14,7 @@ module.exports = turret-report
 
   f.write """
     Pass\tPos\t@DB\tName
+    #{"#{'-' * 4}\t" * 4}
 
   """
 
@@ -24,3 +25,17 @@ module.exports = turret-report
 
         """
 
+  f.write "\n" * 2
+
+  f.write """
+    Pass\tPos\tAR\tF\tV\tName
+    #{"#{'-' * 4}\t" * 6}
+
+  """
+
+
+  for op in state.t-ops
+    f.write """
+        #{op.pass}\t#{op.id}\t#{op.AR}\t#{op.F}\t#{op.V}\t#{op.name}
+
+      """
