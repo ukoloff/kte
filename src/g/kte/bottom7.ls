@@ -64,11 +64,8 @@ module.exports = bottom-semiopened
 
   echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stages > 1 then -0.5 else -0.05} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
 
-  echo "N50 #{G-code.shift!};"
-  tail = G-code.pop!
   for line in G-code
-    echo "#{line};"
-  echo "N60 #{tail};"
+    echo line
 
   echo "N65 G00 Z2 M9"
   echo "N70 G00 X#{x0 = state.job.global.D + 4}"
@@ -85,10 +82,8 @@ module.exports = bottom-semiopened
 
   G-code = path2g kte._, 1
   echo "N130 #{G-code.shift!} F#{tx.tool.F} S#{tx.tool.V} M8;"
-  tail = G-code.pop!
   for line in G-code
-    echo "#{line};"
-  echo "N160 #{tail};"
+    echo line
 
   echo "N165 G00 Z2 M9"
   echo "N170 G00 X#{x0}"
