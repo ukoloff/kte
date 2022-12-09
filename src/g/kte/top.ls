@@ -36,7 +36,7 @@ module.exports = top-opened
   echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 G00 X#{x0 = state.job.global.D} Z2;"
   echo "N30 G71 U#{tx.tool.AR} R1;"
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N +2} U#{if tx.stage2 true then 0.5 else 0} W0 F#{tx.tool.F} S#{tx.tool.V} M8;"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N +2} U#{if tx.stages > 1 then 0.5 else 0} W0 F#{tx.tool.F} S#{tx.tool.V} M8;"
   echo "N50 G00 X#{2 * kte._[0][1]};"
   unless tx.stage2!
     echo "N60 G01 Z#{kte._[*-1][0]};"

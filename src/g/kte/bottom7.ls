@@ -55,7 +55,7 @@ module.exports = bottom-semiopened
 
   G-code = path2g kte._, 1
 
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stage2 true then -0.5 else -0.05} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{if tx.stages > 1 then -0.5 else -0.05} W1 F#{tx.tool.F} S#{tx.tool.V} M8;"
 
   echo "N50 #{G-code.shift!};"
   tail = G-code.pop!
