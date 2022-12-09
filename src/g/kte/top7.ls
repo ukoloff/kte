@@ -56,7 +56,7 @@ module.exports = top-semiopened
   for line in G-code
     echo line
 
-  echo "N165 G70 P20 Q60"
+  # echo "N165 G70 P20 Q60"
 
   echo "N170 G00 X#{x0} Z2 M9;"
   echo "N175 M5"
