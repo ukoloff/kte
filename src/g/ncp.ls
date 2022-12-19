@@ -13,11 +13,14 @@ module.exports = run
     ./echo
     ./state
     ./turret/report
+    ./git-date
   ]>
 
   dotenv.config do
     path: path.join home, \.env
     # debug: true
+
+  state.git-date = git-date!
 
   args!
   for til 2
@@ -40,8 +43,10 @@ module.exports = run
   state.pass = 1 + Number s
 
   # echo "%;"
-  echo "(PART: #{state.job.global.id or \? });"
-  echo "(ustanov #{state.pass});"
+  echo "(PART: #{state.job.global.id or \? })"
+  echo "(ustanov #{state.pass})"
+  if state.git-date
+    echo "(V #{that})"
   echo!
 
   for kte in order side s
