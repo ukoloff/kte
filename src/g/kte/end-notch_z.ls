@@ -15,9 +15,11 @@ module.exports = end-notch
     ./epilog
     ../../math/path/bounds
     ../../math/rect/size
+    ../../math/rect/round
   ]>
 
   R = bounds kte._
+  round R
   Sz = size R
 
   tx = turret kte
@@ -33,7 +35,7 @@ module.exports = end-notch
   echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
   echo "N20 G00 X#{2 * R[1][1]} Z2;"
   echo "N30 Z#{R[1][0] + 1};"
-  echo "N40 G74 R1;"
+  echo "N40 G74 R1"
   if tx.tool.AR == Sz[1]:
     echo "N50 G74 Z#{R[0][0]} Q#{500 * tx.tool.AR} F#{tx.tool.F} M8;"
   else:
