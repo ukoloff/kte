@@ -21,6 +21,10 @@ function run-fox-pro params={}
 
   @ <<<< params
 
+  if @Xmax and @Xmin and @Xmax <= @Xmin
+    # Dirty hack against zero output parameters
+    @Xmax = @Xmin + 0.987
+
   dump.head @kte
 
   line = for f in <[id fine mat hard Xmax Xmin
