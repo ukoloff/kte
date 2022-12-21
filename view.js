@@ -1452,7 +1452,8 @@ if(co.path)return t=tr(),e=rr(),n=nr(),r=t([co.path]),uo("svg",{
 xmlns:"http://www.w3.org/2000/svg",viewBox:e(r.bounds)
 },uo("g",uo("g.DXF",uo("defs",function(){var t,e,r=[]
 for(t=0,e=co.path.length;t<e;++t)(o=t)&&r.push(uo("path",{id:":"+o,
-d:n(co.path.slice(o-1,o+1)),"vector-effect":"non-scaling-stroke"}))
+d:n(co.path.slice(o-1,o+1)),"vector-effect":"non-scaling-stroke"
+},uo("title","("+co.path[o-1].slice(0,2).join(", ")+")\n("+co.path[o].slice(0,2).join(", ")+")")))
 return r}()),"span"===co.tab?uo("use",{href:"#:"+co.n,class:"active"
 }):void 0,function(){var t,e,n=[]
 for(t=0,e=co.path.length;t<e;++t)(o=t)&&n.push(r.call(this,o))
@@ -1533,7 +1534,7 @@ return r}),Zo
 }(),o=Kr(),i=jo(),a=Hr(),l=(s=t.global).dir,u=t.path,c=t.size,f=t.spans,
 l&&t.mirror&&(l=Number(!l),
 u=o(a(u),r(e([t.maxZ,0]),n())),(f=f.slice()).reverse())
-return(s.id||42)+"\n"+(s.matter||"STEEL")+"\n"+(s.hard||1)+"\n"+(s.D||Math.ceil(2*c[1]))+"\n"+(s.W||Math.ceil(c[0]))+"\n"+(l||0)+"\n"+f.length+"\n"+function(){
+return(s.id||42)+"\n"+(s.matter||"STEEL")+"\n"+(s.hard||1)+"\n"+(s.D||3+Math.ceil(2*c[1]))+"\n"+(s.W||4+Math.ceil(c[0]))+"\n"+(l||0)+"\n"+f.length+"\n"+function(){
 var t,e,n,r=[]
 for(t=0,n=(e=f).length;t<n;++t)h=e[t],r.push((h.thread||0)+","+Jo(h.Ra)+",,,,,"+Jo(h.tstart)+","+Jo(h.xdiameter)+","+Jo(h.depth)+","+Jo(h.t$)+","+Jo(h.pitch)+","+Jo(h.Q))
 return r}().join("\n")+"\n"+i(u)}
@@ -1564,7 +1565,8 @@ t=Rn(),e=_n(),n=Uo._,delete Uo._,Uo.$=n,r=t(n.path),(o=e(r))[1]=Math.max.apply(M
 var t,e=[]
 for(t=0;t<2;++t)e.push(Math.abs(r[t][1]))
 return e}()),Uo.path=n.path,Uo.global=n.global||{id:Uo.name.replace(/[.].*/,""),
-D:Math.ceil(2*o[1]),W:Math.ceil(o[0])},Uo.spans=n.spans||function(){var t,e,n=[]
+D:3+Math.ceil(2*o[1]),W:4+Math.ceil(o[0])},Uo.spans=n.spans||function(){
+var t,e,n=[]
 for(t=0,e=Uo.path.length-1;t<e;++t)n.push({})
 return n}(),Uo.size=o,Uo.maxZ=r[1][0],Uo.n=1,Uo.tab="info"
 }(),Uo.path)return document.title="Ввод технологических параметров: "+Uo.name,
