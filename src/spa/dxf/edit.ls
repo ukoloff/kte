@@ -36,8 +36,8 @@ exports <<<
     path: got.path
     global: got.global or do
       id: state.name.replace /[.].*/, ''
-      D: Math.ceil 2 * sz[1]
-      W: Math.ceil sz[0]
+      D: 3 + Math.ceil 2 * sz[1]
+      W: 4 + Math.ceil sz[0]
     spans: got.spans or [{} for til state.path.length - 1]
     size: sz
     max-z: R[1][0]
