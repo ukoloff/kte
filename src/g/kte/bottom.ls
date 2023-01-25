@@ -25,11 +25,11 @@ module.exports = bottom-opened
   prolog kte, "Sverlit otverstie"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} M04" # Not "#{tx.m03!}" !!!
-  echo "N20 X0 Z2;"
-  echo "N30 G83 X0 Z#{-state.job.size[0] - Rad} Q#{2 * Rad} F#{tx.tool.F};"
-  echo "N40 G00 G80 X#{state.job.global.D + 2} Z2 M9;"
-  echo "N75 M5;"
+  echo "N10 G97 S#{Math.round 1000 * tx.tool.V / Math.PI / 2 / Rad} M04" # Not "#{tx.m03!}" !!!
+  echo "N20 X0 Z2"
+  echo "N30 G83 X0 Z#{-state.job.size[0] - Rad} Q#{2 * Rad} F#{tx.tool.F}"
+  echo "N40 G00 G80 X#{state.job.global.D + 2} Z2 M9"
+  echo "N75 M5"
 
   if kte._[0][1] <= Rad
     epilog kte
