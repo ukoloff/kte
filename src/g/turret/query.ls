@@ -21,7 +21,7 @@ function run-fox-pro params={}
 
   @ <<<< params
 
-  if @Xmax and @Xmin and @Xmax <= @Xmin and @id != 16
+  if @Xmax and @Xmin and @Xmax <= @Xmin
     # Dirty hack against zero output parameters
     @Xmax = @Xmin + 0.987
 

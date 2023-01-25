@@ -32,7 +32,7 @@ module.exports = bottom-semiopened
       .query do
         id: 16    # Отверстие сверлом
         Xmax: Rad
-        Xmin: Rad
+        Xmin: 0
         bore-diameter: 2 * Rad
         bore-depth: -last[0]
 
