@@ -3,7 +3,7 @@
 #
 module.exports = top-undercut
 <<<
-  id: 5
+  id: 6
   name: 'Резьбовая канавка внешняя'
 
 function top-undercut kte
@@ -20,7 +20,6 @@ function top-undercut kte
   R = bounds kte._
   Sz = size R
 
-  return
   tx = turret kte
     .query do
       Xmax: R[1][1]
