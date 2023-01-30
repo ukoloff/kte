@@ -15,13 +15,12 @@ module.exports = top-thread
     ./epilog
   ]>
 
-  return
   t = kte.t[1]
   tx = turret kte
     .query do
       Xmax: kte._[0][1]
       # Xmin: kte._[0][1]
-      thread-diameter: 2 * kte._[0][1]
+      thread-diameter: 1 + t.t$ # 1 = Метрическая; 2 = Дюймовая; ...
       thread-pitch: t.pitch or 1
       thread-angle: switch t.t$
         case 1 => 55  # Дюймовая
