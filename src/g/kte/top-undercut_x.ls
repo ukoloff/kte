@@ -26,3 +26,9 @@ function top-undercut kte
       # Xmin: R[0][1]
       groove-depth: kte.$.h
       groove-width: kte.$.b
+
+  prolog kte, "Tochit kanavku"
+  tx.out!
+
+  echo "(---)"
+  epilog kte

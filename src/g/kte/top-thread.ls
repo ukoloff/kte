@@ -15,6 +15,7 @@ module.exports = top-thread
     ./epilog
   ]>
 
+  debugger
   t = kte.t[1]
   tx = turret kte
     .query do
@@ -26,4 +27,13 @@ module.exports = top-thread
         case 1 => 55  # Дюймовая
         case 2 => 30  # Трапецеидальная
         case _ => 60  # Метрическая
+
+  echo "G28 U0 W0 (Rezba)"
+  tx.out!
+  echo "(---)"
+  echo "G28 U0"
+  echo "G28 W0"
+  echo "G00 M09"
+
+  epilog kte
 
