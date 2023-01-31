@@ -1,5 +1,5 @@
 #
-# Bottom Thread Closed Zone
+# Top Thread
 #
 module.exports = top-thread
 <<<
