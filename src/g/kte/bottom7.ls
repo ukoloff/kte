@@ -67,7 +67,7 @@ module.exports = bottom-semiopened
   echo "N50 G00 X#{2 * kte._[0][1]}"
   for line in G-code
     echo line
-  echo "N60 G91 X#{2 * last[1] -  2}"
+  echo "N60 G01 X#{2 * last[1] -  2}"
 
   echo "N65 G00 Z2 M9"
   echo "N70 G00 X#{x0 = state.job.global.D + 2}"
