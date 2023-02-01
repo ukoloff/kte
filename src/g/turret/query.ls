@@ -30,7 +30,7 @@ function run-fox-pro params={}
   line = for f in <[id fine mat hard Xmax Xmin
             grooveDepth grooveWidth
             boreDiameter boreDepth
-            threadDiameter threadPitch threadAngle
+            threadKind threadPitch threadAngle
             Ra dir]>
     v = "#{@[f] or 0}"
     v .= replace /"/g, \""
