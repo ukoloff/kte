@@ -27,7 +27,7 @@ module.exports = top-thread
         case 2 => 30  # Трапецеидальная
         case _ => 60  # Метрическая
 
-  prolog kte, "Rezba"
+  prolog kte, "Rezba naruzh"
   echo "G28 U0 W0"
   tx.out!
 

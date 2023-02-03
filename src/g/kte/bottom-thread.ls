@@ -48,9 +48,8 @@ module.exports = bottom-thread
   ap1 = D + 2 * ap0 * Math.sqrt(0.3/(n-1))
 
   echo "G97 S500 M04"
-  echo "G00 Z#{round ZL0 + 3}"
+  echo "G00 Z#{round ZL0 + 3 * P}"
   echo "X#{D - 3}"
-  echo "X#{ZL1 + 3 * P} (???)"                        ### WTF ???
   echo "G78 X#{round ap1} Z#{ZL2} F#{P} M08"
   for i from 1 til n
     echo "X#{round D + 2 * ap0 * Math.sqrt(i / (n-1))}"
