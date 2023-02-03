@@ -18,7 +18,10 @@
     <kte id="6" parent_id="0" X="8" Z="0" A="16" B="50" h="17" Rmin="0" b="34" H1="1.5" Chamf="2" type="semiopened" side="left" pos="top">
         <contour>G0X8.000000Z0.000000L0&#x0A;G1X10.000000Z2.000000L2&#x0A;G1X10.000000Z27.000000L3&#x0A;G3X13.000000Z30.000000L4I3.000000K0.000000&#x0A;G1X18.000000Z30.000000L5&#x0A;G1X18.000000Z34.000000L6&#x0A;G1X25.000000Z34.000000L7&#x0A;</contour>
     </kte>
-    <kte id="7" parent_id="0" X="8" Z="0" A="0" B="16" h="8" Rmin="3.40282e+38" b="8" H1="2" Chamf="0" type="opened" side="left" pos="end">
+    <kte id="7" parent_id="6" X="10" Z="2" A="20" B="20" h="0" Rmin="3.40282e+38" b="25" H1="16.5" Chamf="0" subtype="thread" type="closed" side="left" pos="top">
+        <contour>G0X10.000000Z2.000000L0&#x0A;G1X10.000000Z27.000000L3&#x0A;</contour>
+    </kte>
+    <kte id="8" parent_id="0" X="8" Z="0" A="0" B="16" h="8" Rmin="3.40282e+38" b="8" H1="2" Chamf="0" type="opened" side="left" pos="end">
         <contour>G0X8.000000Z0.000000L0&#x0A;G1X0.000000Z0.000000L1&#x0A;</contour>
     </kte>
 </recognition_result>
