@@ -31,7 +31,7 @@ function build
   """
   #{X.id or 6 * 7}
   #{X.matter or \STEEL }
-  #{X.hard or 1.0}
+  #{X.hard or 0}
   #{X.D or Math.ceil 2 * sz[1]}
   #{X.W or Math.ceil sz[0]}
   #{dir or 0}
