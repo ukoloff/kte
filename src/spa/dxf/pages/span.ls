@@ -26,6 +26,7 @@ exports <<<
             'Тип'
             m \br
             m \select,
+              disabled: true
               onchange: !->
                 storage!t$ = @selected-index
               for opt, i in <[Метрическая Дюймовая Трапецеидальная]>
