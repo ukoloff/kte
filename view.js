@@ -1494,8 +1494,8 @@ ko=o.exports,Eo=Ur,Co.k="span",Co.t="Локально",Co.view=function(){var t,
 return ko("form",ko(Mo),ko(So,"Ra","Шероховатость Ra"),ko(So,"Q","Квалитет","\\p{Letter}?\\d+"),ko("label",ko("input",{
 type:"checkbox",checked:zo().thread,onclick:function(){
 zo().thread=Number(this.checked)}})," Резьба"),zo().thread?ko("",{style:{
-paddingLeft:"1em"}},ko("label","Тип",ko("br"),ko("select",{onchange:function(){
-zo().t$=this.selectedIndex}},function(){var n,r,o,i,a,s=[]
+paddingLeft:"1em"}},ko("label","Тип",ko("br"),ko("select",{disabled:!0,
+onchange:function(){zo().t$=this.selectedIndex}},function(){var n,r,o,i,a,s=[]
 for(n=0,o=(r=["Метрическая","Дюймовая","Трапецеидальная"]).length;n<o;++n)t=n,e=r[n],
 s.push(ko("option",{selected:(null!=(a=(i=zo()).t$)?a:i.t$=t)===t},e))
 return s
@@ -1534,7 +1534,7 @@ return r}),Zo
 }(),o=Kr(),i=jo(),a=Hr(),l=(s=t.global).dir,u=t.path,c=t.size,f=t.spans,
 l&&t.mirror&&(l=Number(!l),
 u=o(a(u),r(e([t.maxZ,0]),n())),(f=f.slice()).reverse())
-return(s.id||42)+"\n"+(s.matter||"STEEL")+"\n"+(s.hard||1)+"\n"+(s.D||3+Math.ceil(2*c[1]))+"\n"+(s.W||4+Math.ceil(c[0]))+"\n"+(l||0)+"\n"+f.length+"\n"+function(){
+return(s.id||42)+"\n"+(s.matter||"STEEL")+"\n"+(s.hard||0)+"\n"+(s.D||3+Math.ceil(2*c[1]))+"\n"+(s.W||4+Math.ceil(c[0]))+"\n"+(l||0)+"\n"+f.length+"\n"+function(){
 var t,e,n,r=[]
 for(t=0,n=(e=f).length;t<n;++t)h=e[t],r.push((h.thread||0)+","+Jo(h.Ra)+",,,,,"+Jo(h.tstart)+","+Jo(h.xdiameter)+","+Jo(h.depth)+","+Jo(h.t$)+","+Jo(h.pitch)+","+Jo(h.Q))
 return r}().join("\n")+"\n"+i(u)}
