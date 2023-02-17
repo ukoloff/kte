@@ -35,19 +35,24 @@ module.exports = top-thread
   D = 2 * kte._[0][1]
   ap0 = 0.615 * P
   ZL0 = kte._[0][0]
+  ZL0P3 = round ZL0 + 3 * P
   ZL1 = ZL0 - t.tstart
   ZL2 = if t.depth
     ZL1 - t.depth
   else
     kte._[*-1][0]
-  ap1 = D - 2 * ap0 * Math.sqrt(0.3/(n-1))
+  # ap1 = D - 2 * ap0 * Math.sqrt(0.3/(n-1))
 
   echo "G97 S500 M04"
-  echo "G00 Z#{round ZL0 + 3 * P}"
-  echo "X#{3 + D}"
-  echo "G92 X#{round ap1} Z#{ZL2} F#{P} M08"
-  for i from 1 til n
-    echo "X#{round D - 2 * ap0 * Math.sqrt(i / (n-1))}"
+  echo "G00 Z#{ZL0P3}"
+
+  for i til n
+    apY = round D - 2 * ap0 * Math.sqrt((i or 0.3) / (n-1))
+    echo "X#{apY}#{if i then '' else ' M08'}"
+    echo "G33 X#{apY} Z#{ZL2} F#{P}"
+    echo "G00 G80 X#{3 + D}"
+    echo "Z#{ZL0P3}"
+
   echo "G28 U0"
   echo "G28 W0"
   echo "G00 M09"
