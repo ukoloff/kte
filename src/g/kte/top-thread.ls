@@ -28,7 +28,7 @@ module.exports = top-thread
         case _ => 60  # Метрическая
 
   prolog kte, "Rezba naruzh"
-  echo "G28 U0 W0"
+  # echo "G28 U0 W0"
   tx.out!
 
   n = tx.tool.AR
@@ -53,8 +53,8 @@ module.exports = top-thread
     echo "G00 G80 X#{3 + D}"
     echo "Z#{ZL0P3}"
 
-  echo "G28 U0"
-  echo "G28 W0"
+  # echo "G28 U0"
+  # echo "G28 W0"
   echo "G00 M09"
 
   epilog kte
