@@ -82,5 +82,12 @@ function run-fox-pro params={}
     ] for f, i in <[tool :name AR F V]>
   }
 
+  if @tool.name == \ERROR
+    attrs = Object.values @kte.$
+      .filter ->
+        /^[a-z]+$/.test it
+    attrs.sort!
+
+    console.log "### No tool found for:", attrs.join ' '
   # return
   @
