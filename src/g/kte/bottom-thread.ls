@@ -40,7 +40,7 @@ module.exports = bottom-thread
   tx.out!
 
   n = tx.tool.AR
-  n ||= 8           # Quck-n-dirty hack
+  # n ||= 8           # Quck-n-dirty hack
   ap0 = 0.615 * P
   ZL0 = kte._[0][0]
   ZL0P3 = round ZL0 + 3 * P
