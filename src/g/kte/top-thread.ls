@@ -45,13 +45,14 @@ module.exports = top-thread
 
   echo "G97 S500 M04"
   echo "G00 Z#{ZL0P3}"
+  echo "X#{3 + D} M08"
 
   for i til n
     apY = round D - 2 * ap0 * Math.sqrt((i or 0.3) / (n-1))
-    echo "X#{apY}#{if i then '' else ' M08'}"
-    echo "G33 X#{apY} Z#{ZL2} F#{P}"
+    echo "G33 X#{apY} F#{P}"
+    echo "G33 X#{apY} Z#{ZL2}"
     echo "G33 X#{3 + D}"
-    echo "G80"
+    # echo "G80"
     echo "G00 Z#{ZL0P3}"
 
   # echo "G28 U0"
