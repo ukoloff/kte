@@ -34,7 +34,7 @@ module.exports = top-semiopened
 
   G-code = path2g kte._, 1
 
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length + 2} U#{if tx.stages > 1 then 0.5 else 0} W1 F#{tx.tool.F} S#{tx.tool.V} M8"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length + 1} U#{if tx.stages > 1 then 0.5 else 0} W1 F#{tx.tool.F} S#{tx.tool.V} M8"
 
   echo "N50 G00 X#{2 * kte._[0][1]}"
   for line in G-code
