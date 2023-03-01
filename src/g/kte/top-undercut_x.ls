@@ -16,6 +16,7 @@ function top-undercut kte
     ../../math/path/bounds
     ../../math/rect/size
     ../../math/span/radius
+    ./undercuts
   ]>
 
   R = bounds kte._
@@ -38,6 +39,8 @@ function top-undercut kte
       # Xmin: R[0][1]
       groove-depth: kte.$.h
       groove-width: kte.$.b
+
+  [down, up] = undercuts kte._, tx.tool.AR
 
   prolog kte, "Tochit kanavku"
   tx.out!
