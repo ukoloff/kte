@@ -3,8 +3,8 @@
 #
 module.exports = bottom-undercut
 <<<
-  id: 6
-  name: 'Резьбовая канавка внешняя'
+  id: 13
+  name: 'Резьбовая канавка внутренняя'
 
 function bottom-undercut kte
   require! <[
@@ -36,6 +36,7 @@ function bottom-undercut kte
       # Xmin: R[0][1]
       groove-depth: kte.$.h
       groove-width: kte.$.b
+      bore-diameter: kte.$.A
 
   prolog kte, "Tochit kanavku"
   tx.out!
