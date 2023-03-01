@@ -20,6 +20,8 @@ function split-undercut path, tool-width
   up = path.slice k
   up = reverse o2 up, translation [tool-width, 0]
   up[*-1][0] -= tool-width
+  if 1e-3 > Math.abs up[*-1][0] - up[*-2][0]
+    up.pop!
 
   return
     path.slice 0, k + 1
