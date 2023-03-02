@@ -38,7 +38,7 @@ function top-st1 kte
     echo line
 
   if tx.stage2!
-    echo "N65 ! G70 P#{echo.N -G-code.length} Q#{echo.N -1}"
+    echo "N65 G70 P#{echo.N -G-code.length} Q#{echo.N -1}"
 
   echo "N70 G00 X#{state.job.global.D + 2} Z2 M9"
   echo "N75 M5"
