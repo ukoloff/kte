@@ -85,7 +85,7 @@ function run-fox-pro params={}
   if @tool.name == \ERROR
     attrs = Object.values @kte.$
       .filter ->
-        /^[a-z_]+$/.test it
+        /^[a-z_]+\d*$/.test it
     attrs.sort!
 
     console.log "### No tool found for:", attrs.join ' '
