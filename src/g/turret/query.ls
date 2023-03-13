@@ -88,6 +88,7 @@ function run-fox-pro params={}
         /^[a-z_]+\d*$/.test it
     attrs.sort!
 
-    console.log "### No tool found for:", attrs.join ' '
+    debugger
+    console.log "### No tool found for: [#{@kte.$.id}]", attrs.join ' '
   # return
   @
