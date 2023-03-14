@@ -67,6 +67,8 @@ module.exports = bottom-semiopened
   echo "N30 G71 U#{tx.tool.AR} R1"
 
   G-code = path2g kte._, 1
+  if blind
+    G-code.pop!
 
   echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length + 1} U#{if tx.stages > 1 then -0.5 else -0.05} W1 F#{tx.tool.F} S#{tx.tool.V} M8"
 
@@ -90,6 +92,9 @@ module.exports = bottom-semiopened
   echo "N120 X#{2 * kte._[0][1] - 4} Z2"
 
   G-code = path2g kte._, 1
+  if blind
+    G-code.pop!
+
   echo "N130 #{G-code.shift!} F#{tx.tool.F} S#{tx.tool.V} M8;"
   for line in G-code
     echo line
