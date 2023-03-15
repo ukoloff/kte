@@ -42,7 +42,7 @@ module.exports = bottom-opened
       Xmin: Rad
       Xmax: kte._[0][1]
       bore-diameter: 2 * Rad
-      bore-depth: state.job.size[0]
+      # bore-depth: state.job.size[0] ### TODO: bore-depth!!!
 
   prolog kte, "Rastochit otverstie nacherno"
   tx.out!
