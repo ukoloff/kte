@@ -57,7 +57,8 @@ module.exports = bottom-semiopened
       Xmax: kte._[0][1]
       Xmin: Rad
       bore-diameter: 2 * Rad
-      bore-depth: -last[0]
+      # bore-depth: -last[0]
+      bore-depth: 1 ### TODO: boreDepth !!!
 
   prolog kte, "Rastochit poluotkrituyu zonu nacherno"
   tx.out!
