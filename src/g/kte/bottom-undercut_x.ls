@@ -32,7 +32,7 @@ function bottom-undercut kte
   tx.out!
 
   echo "N10 G96 S#{tx.tool.V} #{tx.m03!}"
-  echo "N15 G00 X#{2 * kte._[0][1] - 1}"
+  echo "N15 G00 X#{2 * kte._[0][1] - 1} Z#{2 + tx.tool.AR}"
   echo "N20 Z#{Z-point[0]}"
   echo "N25 G01 X#{2 * Z-point[1]} F#{tx.tool.F}"
   echo "N30 G01 X#{2 * kte._[0][1] - 1} F2"
@@ -52,7 +52,7 @@ function bottom-undercut kte
     echo line
 
   echo "N65 G01 X#{2 * kte._[0][1] - 1} F2"
-  echo "N70 G00 Z2 M9"
+  echo "N70 G00 Z#{2 + tx.tool.AR} M9"
   echo "N75 G00 X#{state.job.global.D + 2} M05"
 
   epilog kte
