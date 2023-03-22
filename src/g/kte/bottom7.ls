@@ -50,6 +50,7 @@ module.exports = bottom-semiopened
     echo "N30 G83 X0 Z#{kte._[*-1][0].to-fixed 3} Q#{2 * Rad} F#{tx.tool.F}"
     echo "N40 G00 G80 X#{state.job.global.D + 2} Z2 M9"
     echo "N75 M5"
+    epilog kte
 
   # Lathing
   tx = turret kte
