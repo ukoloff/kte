@@ -33,16 +33,22 @@ module.exports = top-opened
   prolog kte, "Tochit otkrituyu zonu"
   tx.out!
 
-  echo "N10 G96 S#{tx.tool.V} #{tx.m03!};"
-  echo "N20 G00 X#{x0 = state.job.global.D} Z2;"
-  echo "N30 G71 U#{tx.tool.AR} R1;"
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N +2} U#{if tx.stages > 1 then 0.5 else 0} W0 F#{tx.tool.F} S#{tx.tool.V} M8;"
-  echo "N50 G00 X#{2 * kte._[0][1]};"
-  unless tx.stage2!
-    echo "N60 G01 Z#{kte._[*-1][0]};"
+  echo "N10 G96 S#{tx.tool.V} #{tx.m03!}"
+  echo "N20 G00 X#{x0 = state.job.global.D + 2} Z2"
+  echo "N30 G71 U#{tx.tool.AR} R1"
+  if tx.stages < 2
+    echo "N40 G71 P#{echo.N +1} Q#{echo.N +3} U0 W0 F#{tx.tool.F} S#{tx.tool.V} M8"
+    echo "N50 G00 X#{2 * kte._[0][1]}"
+    echo "N55 G01 Z#{kte._[*-1][0]}"
+    echo "N60 G01 X#{state.job.global.D + 1}"
   else
+    echo "N40 G71 P#{echo.N +1} Q#{echo.N +2} U0.5 W0 F#{tx.tool.F} S#{tx.tool.V} M8"
+    echo "N50 G00 X#{2 * kte._[0][1]}"
+    tx.stage2!        # Sic!
     echo "N60 G01 Z#{kte._[*-1][0]} F#{tx.tool.F} S#{tx.tool.V}"
-    echo "N65 G70 P#{echo.N -2} Q#{echo.N -1};"
-  echo "N70 G00 X#{x0} Z2 M9;"
-  echo "N75 M5;"
+
+    echo "N65 G70 P#{echo.N -2} Q#{echo.N -1}"
+
+  echo "N70 G00 X#{x0} Z2 M9"
+  echo "N75 M5"
   epilog kte

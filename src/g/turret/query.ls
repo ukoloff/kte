@@ -21,12 +21,16 @@ function run-fox-pro params={}
 
   @ <<<< params
 
+  if @Xmax and @Xmin and @Xmax <= @Xmin
+    # Dirty hack against zero output parameters
+    @Xmax = @Xmin + 0.987
+
   dump.head @kte
 
   line = for f in <[id fine mat hard Xmax Xmin
             grooveDepth grooveWidth
             boreDiameter boreDepth
-            threadDiameter threadPitch threadAngle
+            threadKind threadPitch threadAngle
             Ra dir]>
     v = "#{@[f] or 0}"
     v .= replace /"/g, \""
@@ -78,5 +82,13 @@ function run-fox-pro params={}
     ] for f, i in <[tool :name AR F V]>
   }
 
+  if @tool.name == \ERROR
+    attrs = Object.values @kte.$
+      .filter ->
+        /^[a-z_]+\d*$/.test it
+    attrs.sort!
+
+    debugger
+    console.log "### No tool found for: [#{@kte.$.id}]", attrs.join ' '
   # return
   @

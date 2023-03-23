@@ -34,13 +34,15 @@ module.exports = top-semiopened
 
   G-code = path2g kte._, 1
 
-  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length} U#{0.5} W1 F#{tx.tool.F} S#{tx.tool.V} M8"
+  echo "N40 G71 P#{echo.N +1} Q#{echo.N G-code.length + 1} U#{if tx.stages > 1 then 0.5 else 0} W1 F#{tx.tool.F} S#{tx.tool.V} M8"
 
+  echo "N50 G00 X#{2 * kte._[0][1]}"
   for line in G-code
     echo line
+  echo "N60 G01 X#{state.job.global.D + 1}"
 
-  echo "N70 G00 X#{x0 = state.job.global.D + 2} Z2 M9;"
-  echo "N75 M5;"
+  echo "N70 G00 X#{x0 = state.job.global.D + 2} Z2 M9"
+  echo "N75 M5"
   unless tx.stage2!
     epilog kte
     return
@@ -58,6 +60,6 @@ module.exports = top-semiopened
 
   # echo "N165 G70 P20 Q60"
 
-  echo "N170 G00 X#{x0} Z2 M9;"
+  echo "N170 G00 X#{x0} Z2 M9"
   echo "N175 M5"
   epilog kte

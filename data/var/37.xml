@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<recognition_result>
+    <kte id="1" parent_id="0" X="75" Z="0" A="150" B="150" h="0" Rmin="3.40282e+38" b="0" H1="0" Chamf="0" type="semiopened" side="left" pos="bottom">
+        <contour>G0X75.000000Z0.000000L0&#x0A;G1X75.000000Z0.000000L0&#x0A;</contour>
+    </kte>
+    <kte id="2" parent_id="0" X="75" Z="0" A="150" B="150" h="0" Rmin="3.40282e+38" b="116" H1="0" Chamf="0" type="opened" side="left" pos="bottom">
+        <contour>G0X75.000000Z0.000000L0&#x0A;G1X75.000000Z116.000000L9&#x0A;</contour>
+    </kte>
+    <kte id="3" parent_id="0" X="79" Z="120" A="150" B="158" h="4" Rmin="3.40282e+38" b="4" H1="0" Chamf="4" type="semiopened" side="right" pos="bottom">
+        <contour>G0X79.000000Z120.000000L0&#x0A;G1X75.000000Z116.000000L8&#x0A;</contour>
+    </kte>
+    <kte id="4" parent_id="0" X="95" Z="120" A="158" B="190" h="16" Rmin="3.40282e+38" b="16" H1="2.5" Chamf="0" type="opened" side="right" pos="end">
+        <contour>G0X95.000000Z120.000000L0&#x0A;G1X79.000000Z120.000000L7&#x0A;</contour>
+    </kte>
+    <kte id="5" parent_id="0" X="95" Z="120" A="190" B="210" h="10" Rmin="3.40282e+38" b="5.774" H1="1.5" Chamf="0" type="semiopened" side="right" pos="top">
+        <contour>G0X95.000000Z120.000000L0&#x0A;G1X105.000000Z114.226000L6&#x0A;</contour>
+    </kte>
+    <kte id="6" parent_id="0" X="105" Z="87" A="210" B="210" h="0" Rmin="3.40282e+38" b="27.226" H1="1.5" Chamf="0" type="opened" side="left" pos="top">
+        <contour>G0X105.000000Z87.000000L0&#x0A;G1X105.000000Z114.226000L5&#x0A;</contour>
+    </kte>
+    <kte id="7" parent_id="0" X="83" Z="0" A="166" B="210" h="22" Rmin="2" b="87" H1="1.5" Chamf="2" type="semiopened" side="left" pos="top">
+        <contour>G0X83.000000Z0.000000L0&#x0A;G1X85.000000Z2.000000L1&#x0A;G1X85.000000Z85.000000L2&#x0A;G3X87.000000Z87.000000L3I2.000000K0.000000&#x0A;G1X105.000000Z87.000000L4&#x0A;</contour>
+    </kte>
+    <kte id="8" parent_id="0" X="83" Z="0" A="150" B="166" h="8" Rmin="3.40282e+38" b="8" H1="2.5" Chamf="0" type="opened" side="left" pos="end">
+        <contour>G0X83.000000Z0.000000L0&#x0A;G1X75.000000Z0.000000L10&#x0A;</contour>
+    </kte>
+</recognition_result>
