@@ -1217,7 +1217,7 @@ return t[0][0]*t[1][1]-t[1][0]*t[0][1]}),kr=function(n,r){var o,i,a,s,l
 for(i=[],a=0,s=n.length;a<s;++a)l=n[a],i.push(t(l,r).concat(l[2]||0))
 if(o=i,r&&0>e(r))for(a=0,s=o.length;a<s;++a)(l=o[a])[2]=-l[2]
 return o}}function Qr(){if(Mr)return Sr
-var t,e,n,r
+var t,e,n,r,o
 return Mr=1,t=function(){if(vr)return dr
 var t,e
 function n(t,e){return t.x-e.x}return vr=1,t=Ft,e=Hr(),dr=function(r){
@@ -1243,17 +1243,18 @@ function t(r){var o
 return"function"!=typeof(o=t.mode)&&(o=o?e:n),o(r)}function e(t){var e
 return[(e=t.controls)[0].concat(0),e[e.length-1].concat(0)]}function n(){
 throw TypeError("SPLINE found!")}return gr=1,mr=t,t.mode=!1,mr}(),n=Yr(),r=Kr(),
-Sr=function(o){var i,a,s,l,u
-for(a={},s=0,l=o.length;s<l;++s)(u=o[s]).name&&(a[u.name]=u)
-return i=a,function o(a){var s,l,u,c,f,h,p,d,v,m,g,b,y
-if(a.paths)return
-for(a.paths=[],s=a.closed.concat(t(a.nonClosed.concat(function(){var t,n,r,o=[]
-for(t=0,r=(n=a.splines).length;t<r;++t)l=n[t],o.push(e(l))
+o=er(),Sr=function(i){var a,s,l,u,c
+for(s={},l=0,u=i.length;l<u;++l)(c=i[l]).name&&(s[c.name]=c)
+return a=s,function i(s){var l,u,c,f,h,p,d,v,m,g,b,y,w,x,k
+if(s.paths)return
+for(s.paths=[],l=s.closed.concat(t(s.nonClosed.concat(function(){var t,n,r,o=[]
+for(t=0,r=(n=s.splines).length;t<r;++t)u=n[t],o.push(e(u))
 return o
-}()))),u=0,f=(c=a.edges).length;u<f;++u)if(h=c[u],p=i[h.name])for(o(p),d=n(h.origin),
-v=0,g=(m=p.paths).length;v<g;++v)b=m[v],s.push(r(b,d))
-for(d=n(a.base),u=0,f=s.length;u<f;++u)y=u,b=s[u],s[y]=r(b,d)
-a.paths=s}(o[0]),o[0].paths}}function Jr(){if(zr)return Cr
+}()))),c=0,h=(f=s.edges).length;c<h;++c)if(p=f[c],d=a[p.name])for(i(d),v=n(p.origin),
+m=0,b=(g=d.paths).length;m<b;++m)y=g[m],l.push(r(y,v))
+for(w=[],x=[],c=0,h=l.length;c<h;++c)y=l[c],(o(y)?w:x).push(y)
+for(l=w.concat(t(x)),v=n(s.base),c=0,h=l.length;c<h;++c)k=c,y=l[c],l[k]=r(y,v)
+s.paths=l}(i[0]),i[0].paths}}function Jr(){if(zr)return Cr
 var t,e,n
 return zr=1,t=function(){return ur||(ur=1,t=On(),e=Gr(),n=Wr(),lr=function(r){
 var o,i,a,s
