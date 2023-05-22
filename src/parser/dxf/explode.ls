@@ -6,6 +6,7 @@ require! <[
   ./spline
   ../../math/o2/translation
   ../../math/path/o2
+  ../../math/path/closed
 ]>
 
 module.exports = explode
@@ -28,6 +29,13 @@ function explode vertices
       O2 = translation edge.origin
       for path in v2.paths
         paths.push o2 path, O2
+
+    # Rejoin
+    closed-ones = []
+    non-closed = []
+    for path in paths
+      (if closed path then closed-ones else non-closed).push path
+    paths = closed-ones.concat joiner non-closed
 
     O2 = translation vertex.base
     for path, i in paths
