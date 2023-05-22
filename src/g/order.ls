@@ -11,6 +11,7 @@ module.exports = order
 # true  = right
 function order side
   require! <[
+    ./check-size
     ../math/rect/union
     ../math/rect/size
     ../math/path/bounds
@@ -73,6 +74,8 @@ function order side
   state.job <<<
     bounds: R
     size:   size R
+  check-size!
+
   O2 = if side
     translation [-R[1][0], 0]
   else
